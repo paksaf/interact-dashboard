@@ -4,11 +4,43 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>INTERACT — Products</title>
-  <meta name="description" content="Product categories: FMCG, spices, home textiles, cookware, leather chemicals, leather products, and custom sourcing. FOB Karachi pricing." />
+  <meta name="description" content="Product categories: FMCG, spices, home textiles, cookware, leather chemicals, leather products, and custom sourcing. FOB Karachi pricing with brand-wise selection and container loading guides." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    .tab-nav { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:18px; }
+    .tab-btn { padding:10px 18px; border-radius:999px; border:1px solid rgba(16,24,40,0.10); background:rgba(255,255,255,0.68); font-size:13px; font-weight:700; cursor:pointer; color:var(--muted); transition:.18s ease; }
+    .tab-btn:hover { background:rgba(255,255,255,0.92); color:var(--brand); }
+    .tab-btn.active { background:linear-gradient(135deg,#10243d,#204269); color:#fff; border-color:transparent; }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+    .brand-row { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+    .brand-badge { padding:5px 12px; border-radius:999px; background:linear-gradient(135deg,rgba(18,37,63,0.08),rgba(190,154,95,0.14)); font-size:12px; font-weight:700; color:var(--brand); }
+    .container-viz { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .container-box { background:var(--surface-strong); border:1px solid rgba(16,24,40,0.07); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow-soft); }
+    .container-box h4 { font-family:var(--display); font-size:1.15rem; margin:0 0 6px; color:var(--brand); }
+    .container-box .cap-bar { height:10px; border-radius:8px; background:rgba(18,37,63,0.08); margin:10px 0 6px; overflow:hidden; }
+    .container-box .cap-fill { height:100%; border-radius:8px; background:linear-gradient(90deg,var(--brand),var(--accent)); }
+    .load-item { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(16,24,40,0.04); font-size:.88rem; }
+    .load-item:last-child { border-bottom:none; }
+    .load-item .li-label { color:var(--muted); }
+    .load-item .li-value { font-weight:700; color:var(--brand); }
+    .savings-card { background:linear-gradient(135deg,#f0fdf4,#dcfce7); border:1px solid rgba(31,106,97,0.18); border-radius:var(--radius); padding:20px; }
+    .savings-card h4 { color:var(--success); margin:0 0 8px; font-family:var(--display); font-size:1.1rem; }
+    .savings-card p { color:var(--muted); margin:0; font-size:.9rem; }
+    .savings-num { font-family:var(--display); font-size:1.8rem; font-weight:700; color:var(--success); }
+    .suggest-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .suggest-card { background:var(--surface-strong); border:1px solid rgba(16,24,40,0.07); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow-soft); position:relative; overflow:hidden; }
+    .suggest-card::before { content:""; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--brand),var(--accent)); }
+    .suggest-card h4 { font-family:var(--display); font-size:1.1rem; margin:0 0 4px; color:var(--brand); }
+    .suggest-card .sub { font-size:.82rem; color:var(--accent); font-weight:700; margin-bottom:10px; }
+    .suggest-card ul { margin:0; padding-left:16px; font-size:.86rem; color:var(--muted); }
+    .suggest-card ul li+li { margin-top:4px; }
+    .suggest-card .total { margin-top:12px; padding-top:10px; border-top:1px solid rgba(16,24,40,0.06); font-weight:700; color:var(--brand); font-size:.9rem; }
+    @media (max-width:980px) { .container-viz, .suggest-grid { grid-template-columns:1fr; } }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -23,99 +55,469 @@
   </header>
 
   <section class="page-hero"><div class="container"><div class="page-hero-box">
-    <span class="eyebrow" style="background:rgba(255,255,255,.16);color:white;">Products</span>
+    <span class="eyebrow" style="background:rgba(255,255,255,.16);color:white;">Products &amp; Ordering Guide</span>
     <h1>Product Categories</h1>
-    <p>Sourced from verified Pakistani suppliers with real invoice history. FOB Karachi pricing based on actual shipments across 462K+ pieces.</p>
-    <div class="hero-actions"><a class="btn primary" href="contact.html#rfq">Request Product Sourcing</a></div>
+    <p>126+ products across 25 verified Pakistani brands. FOB Karachi pricing at 8.5% below wholesale, with container loading plans and bulk buying guidance based on actual shipment history.</p>
+    <div class="hero-actions"><a class="btn primary" href="contact.html#rfq">Request Product Sourcing</a><a class="btn ghost" href="#container-guide">Container Loading Guide</a></div>
+    <ul class="inline-list">
+      <li>126+ Products</li><li>25 Brands</li><li>8.5% Below Wholesale</li><li>34.8% Avg. Margin MY</li>
+    </ul>
   </div></div></section>
 
   <main>
+
+    <!-- ━━ SECTION 1: PRODUCT CATEGORIES (unchanged cards) ━━ -->
     <section class="section">
-      <div class="container grid cols-3">
+      <div class="container">
+        <div class="section-header"><div><div class="kicker">Categories</div><h2>What we source</h2></div></div>
+        <div class="grid cols-3">
 
-        <article class="card compact">
-          <div class="ic"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/></svg></div>
-          <h3>FMCG &amp; Packaged Food</h3>
-          <p>Snacks, biscuits, sauces, condiments, cosmetics, and shelf-ready grocery for Malaysian and KSA retail distribution.</p>
-          <div class="tag-row"><span class="tag">A-ONE Snacks</span><span class="tag">Hafiz Sweets</span><span class="tag">Cosmetics</span></div>
-          <a class="card-link" href="contact.html#rfq">Inquire</a>
-        </article>
+          <article class="card compact">
+            <div class="ic"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/></svg></div>
+            <h3>FMCG &amp; Packaged Food</h3>
+            <p>70 branded products: masalas, cooking pastes, noodles, desserts, tea, drinks, and shelf-ready grocery. 3&ndash;5 carton MOQ per item.</p>
+            <div class="tag-row"><span class="tag">National</span><span class="tag">Shan</span><span class="tag">Laziza</span><span class="tag">Tang</span><span class="tag">Tapal</span></div>
+            <a class="card-link" href="contact.html#rfq">Inquire</a>
+          </article>
 
-        <article class="card compact">
-          <div class="ic"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"/></svg></div>
-          <h3>Spices &amp; Seasonings</h3>
-          <p>Powdered spices, seasoning blends, and pantry staples in bulk and retail packs from verified suppliers.</p>
-          <div class="tag-row"><span class="tag">Imran Masala</span><span class="tag">Bulk</span><span class="tag">Retail Pack</span></div>
-          <a class="card-link" href="contact.html#rfq">Inquire</a>
-        </article>
+          <article class="card compact">
+            <div class="ic"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"/></svg></div>
+            <h3>Spices &amp; Seasonings</h3>
+            <p>8 bulk spice lines: whole and ground. Haldi, zeera, red chilli, anar dana, black salt, chat masala, javitri, dhara mirch. 10&ndash;200 kg MOQ.</p>
+            <div class="tag-row"><span class="tag">Imran Masala</span><span class="tag">Bulk 1 kg</span><span class="tag">PKR 150&ndash;7,000/kg</span></div>
+            <a class="card-link" href="contact.html#rfq">Inquire</a>
+          </article>
 
-        <article class="card compact">
-          <div class="ic"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg></div>
-          <h3>Home Textiles &amp; Terry Towels</h3>
-          <p>Bath towels (400-500 GSM), kitchen towels, beach towels, bathrobes, hotel bathroom sets, and slippers. FOB Karachi from USD 2.20-30/unit. 0% duty to Malaysia under MPCEPA (HS 6302).</p>
-          <div class="tag-row"><span class="tag">400-700 GSM</span><span class="tag">HS 6302</span><span class="tag">0% Duty MY</span></div>
-          <a class="card-link" href="contact.html#rfq">Inquire</a>
-        </article>
+          <article class="card compact">
+            <div class="ic"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg></div>
+            <h3>Home Textiles &amp; Terry Towels</h3>
+            <p>Bath towels (400&ndash;500 GSM), kitchen towels, beach towels, bathrobes, hotel sets, slippers. FOB USD 2.20&ndash;30/unit. 0% duty to Malaysia under MPCEPA (HS 6302).</p>
+            <div class="tag-row"><span class="tag">400&ndash;700 GSM</span><span class="tag">HS 6302</span><span class="tag">0% Duty MY</span></div>
+            <a class="card-link" href="contact.html#rfq">Inquire</a>
+          </article>
 
-        <article class="card compact">
-          <div class="ic"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75-1.5.75a3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0L3 16.5m18-4.5-1.5.75a3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0L3 12"/></svg></div>
-          <h3>Cookware &amp; Kitchenware</h3>
-          <p>SONEX non-stick cookware, pressure cookers, and kitchen sets. 40+ SKUs per proforma, 990+ pieces per container load. Active proforma: USD 21,457.</p>
-          <div class="tag-row"><span class="tag">SONEX</span><span class="tag">Non-stick</span><span class="tag">40ft FCL</span></div>
-          <a class="card-link" href="contact.html#rfq">Inquire</a>
-        </article>
+          <article class="card compact">
+            <div class="ic"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75-1.5.75a3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0L3 16.5m18-4.5-1.5.75a3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0L3 12"/></svg></div>
+            <h3>Cookware &amp; Kitchenware</h3>
+            <p>SONEX non-stick cookware, pressure cookers 3L&ndash;11L, elegant cookers 5L&ndash;7L. 40+ SKUs, 990+ pieces per 40ft FCL. Active proforma: USD 21,457.</p>
+            <div class="tag-row"><span class="tag">SONEX</span><span class="tag">Non-stick</span><span class="tag">PKR 15,000/unit</span></div>
+            <a class="card-link" href="contact.html#rfq">Inquire</a>
+          </article>
 
-        <article class="card compact">
-          <div class="ic"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
-          <h3>Leather Chemicals</h3>
-          <p>Beamhouse, wet-end, finishing, and specialty leather processing inputs for tanneries.</p>
-          <a class="card-link" href="contact.html#rfq">Inquire</a>
-        </article>
+          <article class="card compact">
+            <div class="ic"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"/></svg></div>
+            <h3>Cosmetics &amp; Beauty</h3>
+            <p>28 products: creams, hair oils, hair colours, personal care. Samsol, Olivia, Tibet Snow, Faiza, Stillman&rsquo;s, Bio Amla.</p>
+            <div class="tag-row"><span class="tag">28 SKUs</span><span class="tag">Samsol</span><span class="tag">Tibet Snow</span></div>
+            <a class="card-link" href="contact.html#rfq">Inquire</a>
+          </article>
 
-        <article class="card compact">
-          <div class="ic"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0"/></svg></div>
-          <h3>Leather Products</h3>
-          <p>Small leather goods, accessories, and buyer-specified articles with quality and finish alignment.</p>
-          <a class="card-link" href="contact.html#rfq">Inquire</a>
-        </article>
+          <article class="card compact">
+            <div class="ic"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"/></svg></div>
+            <h3>Sweets, Herbal &amp; Specialty</h3>
+            <p>Rehmat-e-Shereen, Ambala sweets, Marhaba Ispaghol, Hamdard Rooh Afza, Qarshi Jam-e-Shirin, wooden crockery, and supari mixes.</p>
+            <div class="tag-row"><span class="tag">Herbal</span><span class="tag">Sweets</span><span class="tag">Supari</span></div>
+            <a class="card-link" href="contact.html#rfq">Inquire</a>
+          </article>
 
-        <article class="card compact" style="grid-column: 1 / -1; text-align:center;">
-          <div class="ic" style="margin:0 auto 10px;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg></div>
-          <h3>Custom / Buyer-Specified Sourcing</h3>
-          <p>Mixed-category, private-label, or specific buyer requirements. We source, coordinate, and ship across all categories above.</p>
-          <a class="btn primary" href="contact.html#rfq" style="margin-top:12px;">Send a Custom Requirement</a>
-        </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━ SECTION 2: BRAND-WISE ITEMISED SELECTION (Tabs) ━━ -->
+    <section class="section band" id="brand-selection">
+      <div class="container">
+        <div class="section-header"><div><div class="kicker">Brand-wise selection</div><h2>Itemised product &amp; pricing guide</h2></div></div>
+        <p class="section-copy" style="margin-bottom:18px;">Select a brand or category to see itemised products, carton pricing, pieces per carton, and recommended order quantities. All prices in PKR from verified invoices.</p>
+
+        <div class="tab-nav">
+          <button class="tab-btn active" data-tab="shan">Shan</button>
+          <button class="tab-btn" data-tab="national">National</button>
+          <button class="tab-btn" data-tab="laziza">Laziza</button>
+          <button class="tab-btn" data-tab="tapal">Tapal &amp; Tea</button>
+          <button class="tab-btn" data-tab="drinks">Tang &amp; Drinks</button>
+          <button class="tab-btn" data-tab="herbal">Herbal &amp; Health</button>
+          <button class="tab-btn" data-tab="biscuits">Biscuits &amp; Snacks</button>
+          <button class="tab-btn" data-tab="spices">Bulk Spices</button>
+          <button class="tab-btn" data-tab="cosmetics">Cosmetics</button>
+          <button class="tab-btn" data-tab="sonex">SONEX Cookware</button>
+        </div>
+
+        <!-- Shan -->
+        <div class="tab-panel active" id="tab-shan">
+          <div class="brand-row"><span class="brand-badge">Shan</span><span style="font-size:13px;color:var(--muted);">Branded Masalas &amp; Recipe Mixes &bull; Carton 19&times;16&times;12 cm</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Product</th><th>Pack Size</th><th>Pcs/Ctn</th><th>Price/Ctn (PKR)</th><th>MOQ (Ctns)</th><th>C1 Loaded</th><th>C2 Loaded</th></tr></thead>
+              <tbody>
+                <tr><td>Shan Biryani</td><td>100g &times; 2</td><td>240</td><td>15,600</td><td>5</td><td>57</td><td>40</td></tr>
+                <tr><td>Shan Tikka</td><td>100g &times; 2</td><td>240</td><td>15,600</td><td>5</td><td>Incl.</td><td>Incl.</td></tr>
+                <tr><td>Shan Karahi</td><td>100g &times; 2</td><td>240</td><td>15,600</td><td>5</td><td>Incl.</td><td>Incl.</td></tr>
+                <tr><td>Shan Nihari</td><td>100g &times; 2</td><td>240</td><td>15,600</td><td>5</td><td>Incl.</td><td>Incl.</td></tr>
+                <tr style="font-weight:700;background:rgba(190,154,95,0.06);"><td colspan="3">Shan total per container</td><td>889,200</td><td></td><td>57 ctns</td><td>40 ctns</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Shan products are high-demand in Malaysia. 240 pcs per carton = strong shelf coverage per order. Container 1 loaded 13,680 pcs of Shan alone.</p>
+        </div>
+
+        <!-- National -->
+        <div class="tab-panel" id="tab-national">
+          <div class="brand-row"><span class="brand-badge">National</span><span style="font-size:13px;color:var(--muted);">Masalas, Recipe Mixes &amp; Cooking Pastes &bull; Carton 12&times;12 cm</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Product</th><th>Pack Size</th><th>Pcs/Ctn</th><th>Price/Ctn (PKR)</th><th>MOQ (Ctns)</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Achaar Gosht</td><td>100g &times; 2</td><td>100</td><td>8,000</td><td>3</td><td>PKR 310/unit</td></tr>
+                <tr><td>Biryani Standard</td><td>100g &times; 2</td><td>100</td><td>8,000</td><td>3</td><td>PKR 330/unit</td></tr>
+                <tr><td>Biryani Bombay</td><td>100g &times; 2</td><td>100</td><td>8,000</td><td>3</td><td>PKR 245/unit</td></tr>
+                <tr><td>Pulao Masala</td><td>100g &times; 2</td><td>100</td><td>8,000</td><td>3</td><td>PKR 290/unit</td></tr>
+                <tr><td>Qorma Masala</td><td>100g &times; 2</td><td>100</td><td>8,000</td><td>3</td><td>PKR 310/unit</td></tr>
+                <tr><td>Tikka Boti</td><td>100g &times; 2</td><td>100</td><td>8,000</td><td>3</td><td>PKR 299/unit</td></tr>
+                <tr><td>Chicken Masala</td><td>100g &times; 2</td><td>100</td><td>8,000</td><td>3</td><td>PKR 310/unit</td></tr>
+                <tr><td>Fish / Karahi / Nihari</td><td>100g &times; 2</td><td>100</td><td>8,000</td><td>3</td><td>PKR 250&ndash;310/unit</td></tr>
+                <tr style="font-weight:700;background:rgba(190,154,95,0.06);"><td colspan="3">National total C1</td><td>280,000</td><td></td><td>35 ctns &bull; 3,500 pcs</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">National has the widest masala range. 3-carton MOQ per variant keeps variety high even in small orders. 297 SKUs available in the master catalogue.</p>
+        </div>
+
+        <!-- Laziza -->
+        <div class="tab-panel" id="tab-laziza">
+          <div class="brand-row"><span class="brand-badge">Laziza</span><span style="font-size:13px;color:var(--muted);">Kheer Mixes, Custards &amp; Dessert Bases &bull; Carton 15&times;13&times;17 cm</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Product</th><th>Pcs/Ctn</th><th>Price/Ctn (PKR)</th><th>MOQ (Ctns)</th><th>C1 Loaded</th><th>C2 Loaded</th></tr></thead>
+              <tbody>
+                <tr><td>Laziza Kheer Mix</td><td>195</td><td>6,000</td><td>5</td><td>44</td><td>25</td></tr>
+                <tr><td>Laziza Custard</td><td>195</td><td>6,000</td><td>5</td><td>Incl.</td><td>Incl.</td></tr>
+                <tr style="font-weight:700;background:rgba(190,154,95,0.06);"><td>Laziza total</td><td></td><td></td><td></td><td>264,000</td><td>150,000</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Dessert mixes have strong demand in Malaysian South-Asian grocery. 195 pcs per carton means good margin per unit of shelf space.</p>
+        </div>
+
+        <!-- Tapal -->
+        <div class="tab-panel" id="tab-tapal">
+          <div class="brand-row"><span class="brand-badge">Tapal</span><span style="font-size:13px;color:var(--muted);">Tea &amp; Beverages &bull; Carton 17&times;12&times;9 cm</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Product</th><th>Pack Size</th><th>Units/Ctn</th><th>Price/Ctn (PKR)</th><th>MOQ (Ctns)</th><th>Loaded C1/C2</th></tr></thead>
+              <tbody>
+                <tr><td>Tapal Danedar</td><td>900g</td><td>12</td><td>18,540</td><td>5</td><td>25 / 20</td></tr>
+                <tr><td>Tapal Danedar</td><td>450g</td><td>24</td><td>18,840</td><td>5</td><td>Incl.</td></tr>
+                <tr><td>Vital Tea</td><td>900g</td><td>12</td><td>16,320</td><td>5</td><td>Incl.</td></tr>
+                <tr style="font-weight:700;background:rgba(190,154,95,0.06);"><td colspan="3">Tapal total C1 / C2</td><td colspan="3">270,000 / 216,000 PKR</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Tea is a high-value, high-weight category. Tapal Danedar 900g at PKR 1,545/unit commands a premium in Malaysian retail.</p>
+        </div>
+
+        <!-- Tang & Drinks -->
+        <div class="tab-panel" id="tab-drinks">
+          <div class="brand-row"><span class="brand-badge">Tang &amp; Drinks</span><span style="font-size:13px;color:var(--muted);">Powdered Beverages &bull; Carton 12&times;12&times;12 cm</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Product</th><th>Pcs/Ctn</th><th>Price/Ctn (PKR)</th><th>MOQ (Ctns)</th><th>C1 Loaded</th><th>C2 Loaded</th></tr></thead>
+              <tbody>
+                <tr><td>Tang Orange</td><td>300</td><td>7,920</td><td>5</td><td>40</td><td>30</td></tr>
+                <tr><td>Rooh Afza (Hamdard)</td><td>180</td><td>8,000</td><td>5</td><td>Incl. in Herbal</td><td>Incl.</td></tr>
+                <tr><td>Jam-e-Shirin (Qarshi)</td><td>180</td><td>8,000</td><td>5</td><td>Incl. in Herbal</td><td>Incl.</td></tr>
+                <tr style="font-weight:700;background:rgba(190,154,95,0.06);"><td>Tang total C1 / C2</td><td></td><td></td><td></td><td>316,800</td><td>237,600</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Tang at 300 pcs per carton offers the highest piece count per carton in the FMCG mix. Strong impulse-buy category in Malaysian retail.</p>
+        </div>
+
+        <!-- Herbal -->
+        <div class="tab-panel" id="tab-herbal">
+          <div class="brand-row"><span class="brand-badge">Herbal &amp; Health</span><span style="font-size:13px;color:var(--muted);">Marhaba, Hamdard, Qarshi</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th>Pcs/Ctn</th><th>Price/Ctn (PKR)</th><th>MOQ</th><th>C1 / C2</th></tr></thead>
+              <tbody>
+                <tr><td>Ispaghol</td><td>Marhaba</td><td>180</td><td>8,000</td><td>5 ctns</td><td>50 / 30</td></tr>
+                <tr><td>Rooh Afza</td><td>Hamdard</td><td>180</td><td>8,000</td><td>5 ctns</td><td>Incl.</td></tr>
+                <tr><td>Jam-e-Shirin</td><td>Qarshi</td><td>180</td><td>8,000</td><td>5 ctns</td><td>Incl.</td></tr>
+                <tr style="font-weight:700;background:rgba(190,154,95,0.06);"><td colspan="3">Herbal total C1 / C2</td><td colspan="3">400,000 / 240,000 PKR</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Biscuits & Snacks -->
+        <div class="tab-panel" id="tab-biscuits">
+          <div class="brand-row"><span class="brand-badge">Biscuits &amp; Snacks</span><span style="font-size:13px;color:var(--muted);">Continental, Peak Freans, Bisconni, Too Gud</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th>Pcs/Ctn</th><th>Price/Ctn (PKR)</th><th>MOQ</th><th>C1 Loaded</th></tr></thead>
+              <tbody>
+                <tr><td>Continental Biscuits</td><td>Continental</td><td>200</td><td>4,500</td><td>5 ctns</td><td>40 ctns</td></tr>
+                <tr><td>Peak Freans</td><td>EBM</td><td>200</td><td>4,500</td><td>5 ctns</td><td>Incl.</td></tr>
+                <tr><td>Bisconni / Too Gud</td><td>Various</td><td>200</td><td>4,500</td><td>5 ctns</td><td>Incl.</td></tr>
+                <tr style="font-weight:700;background:rgba(190,154,95,0.06);"><td colspan="3">Biscuits total C1</td><td>180,000</td><td></td><td>40 ctns &bull; 8,000 pcs</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Biscuits at PKR 4,500/ctn are the most affordable entry point. High volume, low unit cost makes them excellent container fillers.</p>
+        </div>
+
+        <!-- Bulk Spices -->
+        <div class="tab-panel" id="tab-spices">
+          <div class="brand-row"><span class="brand-badge">Bulk Spices</span><span style="font-size:13px;color:var(--muted);">Loose &amp; Ground &bull; 1 kg packs &bull; Various suppliers</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Spice</th><th>Unit</th><th>Rate (PKR/kg)</th><th>MOQ (kg)</th><th>C1 Loaded</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Anar Dana</td><td>1 kg</td><td>700</td><td>20</td><td>200 kg</td><td>High-demand</td></tr>
+                <tr><td>Black Salt</td><td>1 kg</td><td>150</td><td>20</td><td>200 kg</td><td>Low-cost filler</td></tr>
+                <tr><td>Chat Masala</td><td>1 kg</td><td>700</td><td>20</td><td>20 kg</td><td></td></tr>
+                <tr><td>Red Chilli Powder</td><td>1 kg</td><td>700</td><td>20</td><td>30 kg</td><td>Staple line</td></tr>
+                <tr><td>Javitri (Mace)</td><td>1 kg</td><td>7,000</td><td>10</td><td>20 kg</td><td>Premium spice</td></tr>
+                <tr><td>Dhara Mirch</td><td>1 kg</td><td>700</td><td>20</td><td>30 kg</td><td></td></tr>
+                <tr><td>Haldi / Turmeric</td><td>1 kg</td><td>600</td><td>30</td><td>Incl.</td><td>Staple</td></tr>
+                <tr><td>Zeera / Cumin</td><td>1 kg</td><td>1,200</td><td>20</td><td>Incl.</td><td>Staple</td></tr>
+                <tr style="font-weight:700;background:rgba(190,154,95,0.06);"><td colspan="2">Basic Spices total C1</td><td></td><td></td><td>140 ctns</td><td>2,800 kg &bull; 840,000 PKR</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Bulk spices are sold per kg. Javitri at PKR 7,000/kg is the premium line; black salt at PKR 150/kg is the most affordable. 140 cartons of mixed spices were loaded in Container 1.</p>
+        </div>
+
+        <!-- Cosmetics -->
+        <div class="tab-panel" id="tab-cosmetics">
+          <div class="brand-row"><span class="brand-badge">Cosmetics &amp; Beauty</span><span style="font-size:13px;color:var(--muted);">28 SKUs across 6 brands</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th>Qty (pcs)</th><th>Unit Rate (PKR)</th><th>Total (PKR)</th></tr></thead>
+              <tbody>
+                <tr><td>Samsol Hair Color (Small)</td><td>Samsol</td><td>144</td><td>128</td><td>18,432</td></tr>
+                <tr><td>Samsol Hair Color (Large)</td><td>Samsol</td><td>144</td><td>240</td><td>34,560</td></tr>
+                <tr><td>Archi Original</td><td>Archi</td><td>576</td><td>96</td><td>55,296</td></tr>
+                <tr><td>Tibet Snow</td><td>Tibet</td><td>144</td><td>190</td><td>27,360</td></tr>
+                <tr><td>Olivia Hair Color</td><td>Olivia</td><td>144</td><td>Varies</td><td>Varies</td></tr>
+                <tr><td>Faiza Beauty Cream</td><td>Faiza</td><td>144</td><td>Varies</td><td>Varies</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Cosmetics are low-weight, high-margin items. Archi Original at PKR 96/pc offers the best volume entry; Tibet Snow at PKR 190/pc has strong brand recognition in Malaysia.</p>
+        </div>
+
+        <!-- SONEX -->
+        <div class="tab-panel" id="tab-sonex">
+          <div class="brand-row"><span class="brand-badge">SONEX</span><span style="font-size:13px;color:var(--muted);">Pressure Cookers &amp; Non-Stick Cookware &bull; Container 3 (Dedicated)</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Product</th><th>Range</th><th>Units</th><th>Price/Unit (PKR)</th><th>Weight (KG)</th><th>Container</th></tr></thead>
+              <tbody>
+                <tr><td>SONEX Cooker</td><td>3L &ndash; 11L</td><td>50</td><td>15,000</td><td>5,000</td><td>C3</td></tr>
+                <tr><td>SONEX Elegant Cooker</td><td>5L &ndash; 7L</td><td>40</td><td>15,000</td><td>3,500</td><td>C3</td></tr>
+                <tr style="font-weight:700;background:rgba(190,154,95,0.06);"><td colspan="2">SONEX total C3</td><td>90 units</td><td></td><td>8,500 kg</td><td>1,350,000 PKR</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">SONEX gets a dedicated container (C3) due to weight and volume. Active proforma: USD 21,457 for full 40ft FCL with 990+ pieces. Separate from FMCG containers.</p>
+        </div>
 
       </div>
     </section>
 
+    <!-- ━━ SECTION 3: CONTAINER LOADING GUIDE ━━ -->
+    <section class="section" id="container-guide">
+      <div class="container">
+        <div class="section-header"><div><div class="kicker">Container loading</div><h2>How to fill a container</h2></div></div>
+        <p class="section-copy" style="margin-bottom:22px;">Based on 3 actual containers shipped. Container 1 &amp; 2 are FMCG mixed loads (20ft, 21,000 kg capacity). Container 3 is dedicated SONEX kitchenware.</p>
+
+        <div class="container-viz">
+
+          <div class="container-box">
+            <h4>Container 1 &mdash; FMCG Mixed</h4>
+            <p style="font-size:.85rem;color:var(--muted);margin:0 0 10px;">20ft FCL &bull; Karachi &rarr; Port Klang &bull; Actual load</p>
+            <div class="cap-bar"><div class="cap-fill" style="width:88%;"></div></div>
+            <p style="font-size:.8rem;color:var(--muted);margin:0 0 12px;">~88% capacity utilised &bull; ~7,620 kg &bull; 10 product lines</p>
+            <div class="load-item"><span class="li-label">Basic Spices (140 ctns)</span><span class="li-value">840,000</span></div>
+            <div class="load-item"><span class="li-label">Shan Products (57 ctns)</span><span class="li-value">889,200</span></div>
+            <div class="load-item"><span class="li-label">Tang Drinks (40 ctns)</span><span class="li-value">316,800</span></div>
+            <div class="load-item"><span class="li-label">Herbal Products (50 ctns)</span><span class="li-value">400,000</span></div>
+            <div class="load-item"><span class="li-label">National Masalas (35 ctns)</span><span class="li-value">280,000</span></div>
+            <div class="load-item"><span class="li-label">Tapal Tea (25 ctns)</span><span class="li-value">270,000</span></div>
+            <div class="load-item"><span class="li-label">Laziza Products (44 ctns)</span><span class="li-value">264,000</span></div>
+            <div class="load-item"><span class="li-label">ENO (20 ctns)</span><span class="li-value">240,000</span></div>
+            <div class="load-item"><span class="li-label">Biscuits Mixed (40 ctns)</span><span class="li-value">180,000</span></div>
+            <div class="load-item"><span class="li-label">Knorr Products (15 ctns)</span><span class="li-value">82,500</span></div>
+            <div class="load-item" style="border-top:2px solid var(--accent);padding-top:10px;"><span class="li-label" style="font-weight:700;color:var(--brand);">Total C1 Value</span><span class="li-value" style="font-size:1.1rem;">PKR 3,762,500</span></div>
+          </div>
+
+          <div class="container-box">
+            <h4>Container 2 &mdash; FMCG Replenishment</h4>
+            <p style="font-size:.85rem;color:var(--muted);margin:0 0 10px;">20ft FCL &bull; Karachi &rarr; Port Klang &bull; Actual load</p>
+            <div class="cap-bar"><div class="cap-fill" style="width:78%;"></div></div>
+            <p style="font-size:.8rem;color:var(--muted);margin:0 0 12px;">~78% capacity &bull; ~5,730 kg &bull; 10 product lines</p>
+            <div class="load-item"><span class="li-label">Shan Products (40 ctns)</span><span class="li-value">624,000</span></div>
+            <div class="load-item"><span class="li-label">Tang/Knorr/National (40 ctns)</span><span class="li-value">300,000</span></div>
+            <div class="load-item"><span class="li-label">Tang Drinks (30 ctns)</span><span class="li-value">237,600</span></div>
+            <div class="load-item"><span class="li-label">Herbal Products (30 ctns)</span><span class="li-value">240,000</span></div>
+            <div class="load-item"><span class="li-label">Tapal Tea (20 ctns)</span><span class="li-value">216,000</span></div>
+            <div class="load-item"><span class="li-label">ENO (15 ctns)</span><span class="li-value">180,000</span></div>
+            <div class="load-item"><span class="li-label">Laziza (25 ctns)</span><span class="li-value">150,000</span></div>
+            <div class="load-item"><span class="li-label">Basic Spices (25 ctns)</span><span class="li-value">150,000</span></div>
+            <div class="load-item"><span class="li-label">Knorr Products (12 ctns)</span><span class="li-value">66,000</span></div>
+            <div class="load-item"><span class="li-label">Supari 7up (20 ctns)</span><span class="li-value">60,000</span></div>
+            <div class="load-item" style="border-top:2px solid var(--accent);padding-top:10px;"><span class="li-label" style="font-weight:700;color:var(--brand);">Total C2 Value</span><span class="li-value" style="font-size:1.1rem;">PKR 2,223,600</span></div>
+          </div>
+
+        </div>
+
+        <!-- Container 3 SONEX -->
+        <div class="container-box" style="margin-top:18px;">
+          <h4>Container 3 &mdash; SONEX Cookware (Dedicated)</h4>
+          <p style="font-size:.85rem;color:var(--muted);margin:0 0 10px;">40ft FCL &bull; 990+ pieces &bull; USD 21,457 proforma &bull; 8,500 kg</p>
+          <div class="cap-bar"><div class="cap-fill" style="width:95%;"></div></div>
+          <div style="display:flex;gap:28px;flex-wrap:wrap;margin-top:10px;">
+            <div class="load-item" style="border:none;"><span class="li-label">SONEX Cooker 3L&ndash;11L</span><span class="li-value" style="margin-left:12px;">50 units &bull; 750,000 PKR</span></div>
+            <div class="load-item" style="border:none;"><span class="li-label">SONEX Elegant 5L&ndash;7L</span><span class="li-value" style="margin-left:12px;">40 units &bull; 600,000 PKR</span></div>
+            <div class="load-item" style="border:none;font-weight:700;"><span class="li-label" style="color:var(--brand);">Total C3</span><span class="li-value" style="margin-left:12px;font-size:1.1rem;">PKR 1,350,000</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━ SECTION 4: SUGGESTED LOADS ━━ -->
     <section class="section band">
       <div class="container">
-        <div class="section-header"><div><div class="kicker">Pricing reference</div><h2>FOB Karachi indicative rates</h2></div></div>
+        <div class="section-header"><div><div class="kicker">What &amp; how much to load</div><h2>Suggested container mixes</h2></div></div>
+        <p class="section-copy" style="margin-bottom:22px;">Three recommended container configurations based on our shipment experience. Each is optimised for a different buyer profile.</p>
+
+        <div class="suggest-grid">
+
+          <div class="suggest-card">
+            <h4>Starter FMCG Mix</h4>
+            <div class="sub">20ft FCL &bull; ~350 cartons &bull; Best for new importers</div>
+            <ul>
+              <li>Shan Masalas &mdash; 30 ctns (7,200 pcs)</li>
+              <li>National Masalas &mdash; 20 ctns (2,000 pcs)</li>
+              <li>Laziza Desserts &mdash; 20 ctns (3,900 pcs)</li>
+              <li>Tang Drinks &mdash; 20 ctns (6,000 pcs)</li>
+              <li>Tapal Tea &mdash; 15 ctns (180 units)</li>
+              <li>Biscuits Mixed &mdash; 25 ctns (5,000 pcs)</li>
+              <li>Bulk Spices &mdash; 50 ctns (1,000 kg)</li>
+              <li>Herbal/ENO &mdash; 20 ctns (2,000+ pcs)</li>
+            </ul>
+            <div class="total">Est. value: PKR 2.1M &bull; ~USD 7,500</div>
+          </div>
+
+          <div class="suggest-card">
+            <h4>Full FMCG Load</h4>
+            <div class="sub">20ft FCL &bull; ~460 cartons &bull; Proven C1 configuration</div>
+            <ul>
+              <li>Shan Masalas &mdash; 57 ctns (13,680 pcs)</li>
+              <li>National Masalas &mdash; 35 ctns (3,500 pcs)</li>
+              <li>Laziza Desserts &mdash; 44 ctns (8,580 pcs)</li>
+              <li>Tang Drinks &mdash; 40 ctns (12,000 pcs)</li>
+              <li>Tapal Tea &mdash; 25 ctns (300 units)</li>
+              <li>Biscuits Mixed &mdash; 40 ctns (8,000 pcs)</li>
+              <li>Basic Spices &mdash; 140 ctns (2,800 kg)</li>
+              <li>Herbal Products &mdash; 50 ctns (9,000 pcs)</li>
+              <li>ENO &mdash; 20 ctns (2,000 pcs)</li>
+              <li>Knorr &mdash; 15 ctns (1,800 pcs)</li>
+            </ul>
+            <div class="total">Est. value: PKR 3.76M &bull; ~USD 13,400</div>
+          </div>
+
+          <div class="suggest-card">
+            <h4>Kitchenware Only</h4>
+            <div class="sub">40ft FCL &bull; 990+ pcs &bull; SONEX dedicated</div>
+            <ul>
+              <li>SONEX Pressure Cooker 3L &mdash; 15 units</li>
+              <li>SONEX Pressure Cooker 5L &mdash; 12 units</li>
+              <li>SONEX Pressure Cooker 7L &mdash; 10 units</li>
+              <li>SONEX Pressure Cooker 9L &mdash; 8 units</li>
+              <li>SONEX Pressure Cooker 11L &mdash; 5 units</li>
+              <li>SONEX Elegant 5L &mdash; 20 units</li>
+              <li>SONEX Elegant 7L &mdash; 20 units</li>
+              <li>Non-stick sets &amp; misc &mdash; fill</li>
+            </ul>
+            <div class="total">Est. value: USD 21,457 (proforma)</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━ SECTION 5: BULK BUYING ECONOMICS ━━ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header"><div><div class="kicker">Bulk buying advantage</div><h2>Economics of ordering with INTERACT</h2></div></div>
+
+        <div class="grid cols-3" style="margin-bottom:22px;">
+          <div class="savings-card">
+            <div class="savings-num">8.5%</div>
+            <h4>Below Wholesale</h4>
+            <p>Our sourcing rates are 8.5% below Karachi wholesale market prices through direct manufacturer and distributor agreements.</p>
+          </div>
+          <div class="savings-card">
+            <div class="savings-num">PKR 790K+</div>
+            <h4>Saved Per Container</h4>
+            <p>Average savings of PKR 790,000+ per container versus traditional wholesale procurement channels.</p>
+          </div>
+          <div class="savings-card">
+            <div class="savings-num">34.8%</div>
+            <h4>Avg. Retail Margin MY</h4>
+            <p>Malaysian retailers achieve an average 34.8% margin on Pakistani FMCG products sourced through our channel.</p>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Brand</th><th>Category</th><th>Our Rate/Ctn (PKR)</th><th>Wholesale Rate (PKR)</th><th>Saving/Ctn</th><th>Saving %</th></tr></thead>
+            <tbody>
+              <tr><td>Shan</td><td>Masalas</td><td>15,600</td><td>17,000</td><td>1,400</td><td>8.2%</td></tr>
+              <tr><td>Tapal</td><td>Tea</td><td>10,800</td><td>11,800</td><td>1,000</td><td>8.5%</td></tr>
+              <tr><td>National</td><td>Masalas</td><td>8,000</td><td>8,700</td><td>700</td><td>8.0%</td></tr>
+              <tr><td>Tang</td><td>Drinks</td><td>7,920</td><td>8,700</td><td>780</td><td>9.0%</td></tr>
+              <tr><td>ENO</td><td>Health</td><td>12,000</td><td>13,100</td><td>1,100</td><td>8.4%</td></tr>
+              <tr><td>Laziza</td><td>Desserts</td><td>6,000</td><td>6,600</td><td>600</td><td>9.1%</td></tr>
+              <tr><td>Biscuits</td><td>Snacks</td><td>4,500</td><td>4,900</td><td>400</td><td>8.2%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Exchange rates: 1 USD &asymp; 280 PKR, 1 USD &asymp; 4.25 MYR (March 2026). Pricing from verified invoice history and manufacturer agreements.</p>
+      </div>
+    </section>
+
+    <!-- ━━ SECTION 6: FOB PRICING (Textiles & Cookware) ━━ -->
+    <section class="section band">
+      <div class="container">
+        <div class="section-header"><div><div class="kicker">Textiles &amp; cookware pricing</div><h2>FOB Karachi indicative rates</h2></div></div>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Product</th><th>FOB (USD)</th><th>FOB (MYR)</th><th>Unit</th><th>GSM</th></tr></thead>
             <tbody>
-              <tr><td>Towel Sets (4-pc)</td><td>8.70-10.90</td><td>37-46</td><td>/set</td><td>400</td></tr>
-              <tr><td>Bath Towels (premium)</td><td>27-30</td><td>115-130</td><td>/set</td><td>400-500</td></tr>
-              <tr><td>Kitchen Towels</td><td>2.20-10.90</td><td>9-46</td><td>/set</td><td>-</td></tr>
-              <tr><td>Beach / Kamana</td><td>8.70</td><td>37</td><td>/pc</td><td>600-700</td></tr>
-              <tr><td>Bathrobes (Terry)</td><td>6.50-13.00</td><td>28-55</td><td>/pc</td><td>-</td></tr>
-              <tr><td>Hotel Bathroom Sets</td><td>27.20</td><td>115</td><td>/set</td><td>-</td></tr>
-              <tr><td>Slippers</td><td>1.36-2.18</td><td>5.80-9.20</td><td>/pair</td><td>-</td></tr>
-              <tr><td>SONEX Cookware</td><td>~21,457 per container</td><td>-</td><td>/40ft FCL</td><td>-</td></tr>
+              <tr><td>Towel Sets (4-pc)</td><td>8.70&ndash;10.90</td><td>37&ndash;46</td><td>/set</td><td>400</td></tr>
+              <tr><td>Bath Towels (premium)</td><td>27&ndash;30</td><td>115&ndash;130</td><td>/set</td><td>400&ndash;500</td></tr>
+              <tr><td>Kitchen Towels</td><td>2.20&ndash;10.90</td><td>9&ndash;46</td><td>/set</td><td>&ndash;</td></tr>
+              <tr><td>Beach / Kamana</td><td>8.70</td><td>37</td><td>/pc</td><td>600&ndash;700</td></tr>
+              <tr><td>Bathrobes (Terry)</td><td>6.50&ndash;13.00</td><td>28&ndash;55</td><td>/pc</td><td>&ndash;</td></tr>
+              <tr><td>Hotel Bathroom Sets</td><td>27.20</td><td>115</td><td>/set</td><td>&ndash;</td></tr>
+              <tr><td>Slippers</td><td>1.36&ndash;2.18</td><td>5.80&ndash;9.20</td><td>/pair</td><td>&ndash;</td></tr>
+              <tr><td>SONEX Cookware</td><td>~21,457 per container</td><td>&ndash;</td><td>/40ft FCL</td><td>&ndash;</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="note">Exchange rates: 1 USD = ~280 PKR, 1 USD = ~4.25 MYR (March 2026 indicative). Pricing from verified invoice history and proformas.</p>
+        <p class="note">Textile items qualify for 0% import duty to Malaysia under MPCEPA (HS 6302). Competitors face 5&ndash;20% MFN duty on the same items.</p>
       </div>
     </section>
 
+    <!-- ━━ CTA ━━ -->
     <section class="section">
       <div class="container">
         <div class="quote-band" style="margin-top:0;">
-          <h2>Looking for a specific product?</h2>
-          <p>Share category, destination, quantity, and any packaging or compliance needs. We'll route it to the right sourcing path.</p>
+          <h2>Ready to place an order?</h2>
+          <p>Share your product list, destination, and quantity. We will provide a container loading plan, FOB pricing, and estimated landed cost within 48 hours.</p>
           <a class="btn ghost" href="contact.html#rfq">Request product support</a>
         </div>
       </div>
@@ -131,5 +533,16 @@
     </div>
   </footer>
   <script src="assets/main.js"></script>
+  <script>
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
 </body>
-</html>
+                                                                                                     </html>
