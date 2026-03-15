@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>INTERACT — Contact & RFQ</title>
-  <meta name="description" content="INTERACT public website for buying house, customs clearing, export facilitation, trade support, and RFQ-based business inquiries." />
+  <meta name="description" content="Request a quote from INTERACT — sourcing, customs clearing, export facilitation, and trade support." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,88 +13,91 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">I</span>
-        <span class="brand-copy"><strong>INTERACT</strong><span>Buying House • Customs Clearing • Trade Support</span></span>
-      </a>
+      <a class="brand" href="index.html"><span class="brand-mark">I</span><span class="brand-copy"><strong>INTERACT</strong><span>Buying House &bull; Customs Clearing &bull; Trade Support</span></span></a>
       <button class="nav-toggle" data-nav-toggle aria-label="Open navigation">Menu</button>
       <nav class="site-nav" data-nav>
-        <a href="index.html" class="">Home</a>
-<a href="services.html" class="">Services</a>
-<a href="industries.html" class="">Industries</a>
-<a href="products.html" class="">Products</a>
-<a href="corridors.html" class="">Trade Corridors</a>
-<a href="about.html" class="">About</a>
-<a href="contact.html" class="active">Contact</a>
+        <a href="index.html">Home</a><a href="services.html">Services</a><a href="industries.html">Industries</a><a href="products.html">Products</a><a href="corridors.html">Trade Corridors</a><a href="about.html">About</a><a href="contact.html" class="active">Contact</a>
       </nav>
-      <div class="header-actions">
-        <a class="btn secondary" href="client-login.html">Client Login</a>
-        <a class="btn primary" href="contact.html#rfq">Request a Quote</a>
-      </div>
+      <div class="header-actions"><a class="btn secondary" href="client-login.html">Client Login</a><a class="btn primary" href="contact.html#rfq">Request a Quote</a></div>
     </div>
   </header>
-  <section class="page-hero"><div class="container"><div class="page-hero-box"><span class="eyebrow" style="background:rgba(255,255,255,.16);color:white;">Contact &amp; RFQ</span><h1>Tell Us What You Need</h1><p>Whether you need sourcing support, customs coordination, export facilitation, or route-specific trade support, use the RFQ form below and route the requirement to the relevant team.</p><div class="hero-actions"><a class="btn primary" href="#rfq">Open RFQ Form</a><a class="btn secondary" href="https://wa.me/923002020179" target="_blank" rel="noopener">WhatsApp Us</a></div></div></div></section>
-  <main>
-    
-<section class="section tight"><div class="container split"><div class="card"><div class="kicker">How to use this page</div><h2>RFQ-first contact flow</h2><p>Instead of a generic contact form, the public site uses a business inquiry structure that captures category, route, quantity, packaging, and compliance expectations.</p><div class="tag-row"><span class="tag">Buying house</span><span class="tag">Customs clearance</span><span class="tag">Export support</span><span class="tag">Trade corridor inquiry</span></div><p class="notice">Verified from the current live homepage: Suite #44, 9th Floor, Arkay Square, Karachi • NTN: 2849737-6</p></div><div class="card"><div class="kicker">Direct contact channels</div><h3>Use email or WhatsApp while the public site is still on GitHub Pages</h3><p>RFQs from the current public site can go directly to your live business channels now and later transition to www.interactpak.com.</p><ul><li><a href="mailto:interact@paksaf.com">interact@paksaf.com</a></li><li><a href="https://wa.me/923002020179" target="_blank" rel="noopener">WhatsApp: +92 300 2020179</a></li><li>Production rollout planned for <a href="https://www.interactpak.com" target="_blank" rel="noopener">www.interactpak.com</a></li></ul></div></div></section>
-<section class="section band" id="rfq"><div class="container"><div class="section-header"><div><div class="kicker">Request for quotation</div><h2>Structured business inquiry form</h2></div><p>Collect the information a buying house, customs team, or export coordinator actually needs on first contact.</p></div><div class="card"><form class="form-grid" id="rfq-form">
-<div><label for="name">Name</label><input id="name" name="name" type="text" placeholder="Your name" /></div>
-<div><label for="company">Company</label><input id="company" name="company" type="text" placeholder="Company name" /></div>
-<div><label for="country">Country</label><input id="country" name="country" type="text" placeholder="Destination or origin country" /></div>
-<div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="Email address" /></div>
-<div><label for="whatsapp">WhatsApp</label><input id="whatsapp" name="whatsapp" type="text" placeholder="WhatsApp number" /></div>
-<div><label for="inquiry-type">Inquiry Type</label><select id="inquiry-type" name="inquiry-type"><option>Buying House / Procurement</option><option>Customs Clearing / C&amp;F</option><option>Export Facilitation</option><option>Freight / Shipment Coordination</option><option>Trade Corridor Inquiry</option><option>Other</option></select></div>
-<div><label for="category">Product / Service Needed</label><input id="category" name="category" type="text" placeholder="Category or service" /></div>
-<div><label for="qty">Estimated Quantity</label><input id="qty" name="qty" type="text" placeholder="MOQ, cartons, kg, units, etc." /></div>
-<div><label for="packaging">Packaging Requirement</label><input id="packaging" name="packaging" type="text" placeholder="Retail, bulk, private label, custom" /></div>
-<div><label for="timeline">Target Timeline</label><input id="timeline" name="timeline" type="text" placeholder="Delivery or shipment target" /></div>
-<div class="full"><label for="compliance">Compliance / Certificate Requirement</label><input id="compliance" name="compliance" type="text" placeholder="FTA, HS code, origin, lab report, other notes" /></div>
-<div class="full"><label for="message">Message</label><textarea id="message" name="message" placeholder="Describe your requirement, destination market, and any special notes"></textarea></div>
-<div class="full form-actions-stack"><button type="button" class="btn primary" data-send="email">Send RFQ by Email</button><button type="button" class="btn secondary" data-send="whatsapp">Send RFQ on WhatsApp</button></div>
-</form><p class="note">This form prepares a prefilled email or WhatsApp message to interact@paksaf.com or +92 300 2020179.</p></div></div></section>
-<section class="section"><div class="container split"><div class="card"><div class="kicker">What happens next</div><h3>Suggested routing logic</h3><ul><li>FMCG and packaged goods → category lead</li><li>Leather chemicals → technical commercial desk</li><li>Customs / C&amp;F → clearance team</li><li>Trade corridor inquiries → route coordinator</li><li>Mixed requirements → business development triage</li></ul></div><div class="quote-band"><h2 style="margin-top:0;">Need a route, product, or service discussion?</h2><p>The same RFQ flow can route by email or WhatsApp while the current public version remains on GitHub Pages.</p><div class="hero-actions" style="margin-bottom:0;"><a class="btn ghost" href="services.html">Review services first</a><a class="btn ghost" href="mailto:interact@paksaf.com">Email INTERACT</a></div></div></div></section>
 
+  <section class="page-hero"><div class="container"><div class="page-hero-box">
+    <span class="eyebrow" style="background:rgba(255,255,255,.16);color:white;">Contact &amp; RFQ</span>
+    <h1>Tell Us What You Need</h1>
+    <p>Fill out the RFQ form below, or reach us directly via email or WhatsApp.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#rfq">Open RFQ Form</a>
+      <a class="btn secondary" href="https://wa.me/923002020179" target="_blank" rel="noopener" style="background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.2);">WhatsApp Us</a>
+    </div>
+  </div></div></section>
+
+  <main>
+    <section class="section tight">
+      <div class="container contact-mini-grid">
+        <article class="card compact" style="text-align:center;">
+          <div class="ic" style="margin:0 auto 10px;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg></div>
+          <h3 style="font-size:1rem;">Email</h3>
+          <p><a href="mailto:interact@paksaf.com" style="color:var(--brand);font-weight:600;">interact@paksaf.com</a></p>
+        </article>
+        <article class="card compact" style="text-align:center;">
+          <div class="ic" style="margin:0 auto 10px;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg></div>
+          <h3 style="font-size:1rem;">WhatsApp</h3>
+          <p><a href="https://wa.me/923002020179" target="_blank" rel="noopener" style="color:var(--brand);font-weight:600;">+92 300 2020179</a></p>
+        </article>
+        <article class="card compact" style="text-align:center;">
+          <div class="ic" style="margin:0 auto 10px;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg></div>
+          <h3 style="font-size:1rem;">Office</h3>
+          <p style="font-size:.88rem;">Suite #44, 9th Floor, Arkay Square, Karachi</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="rfq">
+      <div class="container">
+        <div class="section-header"><div><div class="kicker">Request for quotation</div><h2>Structured business inquiry</h2></div></div>
+        <div class="card">
+          <form class="form-grid" id="rfq-form">
+            <div><label for="name">Name</label><input id="name" name="name" type="text" placeholder="Your name" /></div>
+            <div><label for="company">Company</label><input id="company" name="company" type="text" placeholder="Company name" /></div>
+            <div><label for="country">Country</label><input id="country" name="country" type="text" placeholder="Destination or origin country" /></div>
+            <div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="Email address" /></div>
+            <div><label for="whatsapp">WhatsApp</label><input id="whatsapp" name="whatsapp" type="text" placeholder="WhatsApp number" /></div>
+            <div><label for="inquiry-type">Inquiry Type</label>
+              <select id="inquiry-type" name="inquiry-type">
+                <option>Buying House / Procurement</option>
+                <option>Customs Clearing / C&amp;F</option>
+                <option>Export Facilitation</option>
+                <option>Freight / Shipment Coordination</option>
+                <option>Trade Corridor Inquiry</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div><label for="category">Product / Service</label><input id="category" name="category" type="text" placeholder="Category or service" /></div>
+            <div><label for="qty">Estimated Quantity</label><input id="qty" name="qty" type="text" placeholder="MOQ, cartons, kg, units, etc." /></div>
+            <div><label for="packaging">Packaging</label><input id="packaging" name="packaging" type="text" placeholder="Retail, bulk, private label, custom" /></div>
+            <div><label for="timeline">Timeline</label><input id="timeline" name="timeline" type="text" placeholder="Delivery or shipment target" /></div>
+            <div class="full"><label for="compliance">Compliance / Certificates</label><input id="compliance" name="compliance" type="text" placeholder="FTA, HS code, origin, lab report, other" /></div>
+            <div class="full"><label for="message">Message</label><textarea id="message" name="message" placeholder="Describe your requirement, destination market, and any special notes"></textarea></div>
+            <div class="full form-actions-stack">
+              <button type="button" class="btn primary" data-send="email">Send RFQ by Email</button>
+              <button type="button" class="btn secondary" data-send="whatsapp">Send RFQ on WhatsApp</button>
+            </div>
+          </form>
+          <p class="note">This form prepares a prefilled email or WhatsApp message — no data is stored on this site.</p>
+        </div>
+      </div>
+    </section>
   </main>
+
   <footer class="site-footer">
     <div class="container footer-grid">
-      <div>
-        <div class="brand" style="margin-bottom:10px;">
-          <span class="brand-mark">I</span>
-          <span class="brand-copy"><strong>INTERACT</strong><span>Pakistan buying house and trade facilitation partner</span></span>
-        </div>
-        <p>INTERACT supports sourcing, customs-clearing support, export facilitation, and route-aware trade coordination for business inquiries.</p>
-        <p class="notice">Address retained from the current live site: Suite #44, 9th Floor, Arkay Square, Karachi • NTN: 2849737-6</p>
-      </div>
-      <div>
-        <h4>Pages</h4>
-        <ul><li><a href="index.html">Home</a></li>
-<li><a href="services.html">Services</a></li>
-<li><a href="industries.html">Industries</a></li>
-<li><a href="products.html">Products</a></li>
-<li><a href="corridors.html">Trade Corridors</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="contact.html">Contact</a></li></ul>
-      </div>
-      <div>
-        <h4>Business Inquiries</h4>
-        <ul>
-          <li><a href="mailto:interact@paksaf.com">interact@paksaf.com</a></li>
-          <li><a href="https://wa.me/923002020179" target="_blank" rel="noopener">WhatsApp: +92 300 2020179</a></li>
-          <li><a href="client-login.html">Client Login</a></li>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms of Use</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Site Rollout</h4>
-        <ul>
-          <li>Current public presentation on GitHub Pages.</li>
-          <li>Planned production domain: <a href="https://www.interactpak.com" target="_blank" rel="noopener">www.interactpak.com</a></li>
-          <li>Keep shipment, payment, and document detail behind authenticated access.</li>
-        </ul>
-      </div>
+      <div><div class="brand" style="margin-bottom:10px;"><span class="brand-mark">I</span><span class="brand-copy"><strong>INTERACT</strong><span>Pakistan buying house &amp; trade partner</span></span></div><p>Suite #44, 9th Floor, Arkay Square, Karachi</p><p class="notice">NTN: 2849737-6</p></div>
+      <div><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="industries.html">Industries</a></li><li><a href="products.html">Products</a></li><li><a href="corridors.html">Trade Corridors</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Get in Touch</h4><ul><li><a href="mailto:interact@paksaf.com">interact@paksaf.com</a></li><li><a href="https://wa.me/923002020179" target="_blank" rel="noopener">WhatsApp: +92 300 2020179</a></li><li><a href="client-login.html">Client Login</a></li></ul></div>
+      <div><h4>Legal</h4><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Use</a></li></ul></div>
     </div>
   </footer>
   <script src="assets/main.js"></script>
 </body>
-</html>
+  </html>
