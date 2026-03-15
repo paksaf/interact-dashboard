@@ -1,1465 +1,248 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INTERACT â International Buying House & Multi-Sector Trading Group</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0d1117 100%);
-            color: #e0e6ed;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        .header {
-            background: rgba(15, 20, 25, 0.95);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 20px 30px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .header-main {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .header-text h1 {
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 5px;
-        }
-
-        .header-text p {
-            font-size: 13px;
-            color: #8892b0;
-            letter-spacing: 0.5px;
-        }
-
-        .header-links {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .header-links a, .header-links button {
-            padding: 8px 14px;
-            background: rgba(0, 212, 255, 0.1);
-            color: #00d4ff;
-            text-decoration: none;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .header-links a:hover, .header-links button:hover {
-            background: rgba(0, 212, 255, 0.2);
-            border-color: rgba(0, 212, 255, 0.6);
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
-        }
-
-        .nav-tabs {
-            display: flex;
-            gap: 5px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            overflow-x: auto;
-            padding: 0;
-        }
-
-        .nav-tab {
-            padding: 12px 20px;
-            background: transparent;
-            color: #8892b0;
-            border: none;
-            border-bottom: 3px solid transparent;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .nav-tab:hover {
-            color: #00d4ff;
-        }
-
-        .nav-tab.active {
-            color: #00d4ff;
-            border-bottom-color: #00d4ff;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 30px;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .kpi-card {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 255, 0.05) 100%);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 12px;
-            padding: 24px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .kpi-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 212, 255, 0.5);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.15);
-        }
-
-        .kpi-label {
-            font-size: 12px;
-            color: #8892b0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-        }
-
-        .kpi-value {
-            font-size: 28px;
-            font-weight: 700;
-            color: #00d4ff;
-            margin-bottom: 5px;
-        }
-
-        .kpi-unit {
-            font-size: 12px;
-            color: #5a6578;
-        }
-
-        .chart-container {
-            background: rgba(26, 31, 46, 0.8);
-            border: 1px solid rgba(0, 212, 255, 0.15);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
-        }
-
-        .chart-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #e0e6ed;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .timeline {
-            background: rgba(26, 31, 46, 0.8);
-            border: 1px solid rgba(0, 212, 255, 0.15);
-            border-radius: 12px;
-            padding: 24px;
-            backdrop-filter: blur(10px);
-        }
-
-        .timeline-item {
-            display: flex;
-            gap: 20px;
-            padding: 16px 0;
-            border-left: 2px solid rgba(0, 212, 255, 0.2);
-            padding-left: 20px;
-            margin-left: 10px;
-        }
-
-        .timeline-item:last-child {
-            border-left-color: transparent;
-        }
-
-        .timeline-date {
-            color: #00d4ff;
-            font-weight: 600;
-            font-size: 12px;
-            min-width: 100px;
-        }
-
-        .timeline-text {
-            color: #c0c8d6;
-            font-size: 14px;
-        }
-
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .service-card {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(0, 153, 255, 0.03) 100%);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 12px;
-            padding: 24px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(0, 212, 255, 0.5);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.15);
-        }
-
-        .service-icon {
-            font-size: 32px;
-            margin-bottom: 12px;
-        }
-
-        .service-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #00d4ff;
-            margin-bottom: 8px;
-        }
-
-        .service-desc {
-            font-size: 13px;
-            color: #c0c8d6;
-            margin-bottom: 12px;
-            line-height: 1.5;
-        }
-
-        .service-features {
-            font-size: 12px;
-            color: #8892b0;
-        }
-
-        .corridors-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #e0e6ed;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-
-        .corridors-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-        }
-
-        .corridor-card {
-            background: rgba(26, 31, 46, 0.6);
-            border: 1px solid rgba(0, 212, 255, 0.15);
-            border-radius: 8px;
-            padding: 16px;
-            font-size: 13px;
-            color: #c0c8d6;
-        }
-
-        .corridor-route {
-            color: #00d4ff;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .product-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background: rgba(26, 31, 46, 0.8);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(0, 212, 255, 0.15);
-        }
-
-        .product-table thead {
-            background: rgba(0, 212, 255, 0.1);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
-        }
-
-        .product-table th {
-            padding: 16px 12px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 12px;
-            color: #00d4ff;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .product-table td {
-            padding: 14px 12px;
-            font-size: 13px;
-            color: #c0c8d6;
-            border-top: 1px solid rgba(0, 212, 255, 0.05);
-        }
-
-        .product-table tbody tr:hover {
-            background: rgba(0, 212, 255, 0.05);
-        }
-
-        .search-filter {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .search-input, .filter-select {
-            padding: 10px 14px;
-            background: rgba(26, 31, 46, 0.8);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 8px;
-            color: #e0e6ed;
-            font-size: 13px;
-        }
-
-        .search-input::placeholder {
-            color: #5a6578;
-        }
-
-        .search-input:focus, .filter-select:focus {
-            outline: none;
-            border-color: rgba(0, 212, 255, 0.5);
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.1);
-        }
-
-        .filter-select {
-            cursor: pointer;
-            min-width: 150px;
-        }
-
-        .shipment-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .shipment-card {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 255, 0.05) 100%);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 12px;
-            padding: 24px;
-            backdrop-filter: blur(10px);
-        }
-
-        .shipment-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .shipment-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #00d4ff;
-        }
-
-        .shipment-status {
-            font-size: 11px;
-            padding: 6px 12px;
-            background: rgba(0, 212, 255, 0.15);
-            color: #00d4ff;
-            border-radius: 6px;
-            font-weight: 600;
-        }
-
-        .shipment-detail {
-            margin-bottom: 10px;
-            font-size: 12px;
-        }
-
-        .shipment-label {
-            color: #8892b0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 2px;
-        }
-
-        .shipment-value {
-            color: #c0c8d6;
-            font-weight: 500;
-        }
-
-        .payment-summary {
-            background: rgba(26, 31, 46, 0.8);
-            border: 1px solid rgba(0, 212, 255, 0.15);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 30px;
-        }
-
-        .payment-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .payment-item {
-            border-left: 3px solid #00d4ff;
-            padding-left: 16px;
-        }
-
-        .payment-label {
-            font-size: 12px;
-            color: #8892b0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-        }
-
-        .payment-amount {
-            font-size: 24px;
-            font-weight: 700;
-            color: #00d4ff;
-        }
-
-        .payment-detail {
-            font-size: 12px;
-            color: #5a6578;
-            margin-top: 4px;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 30px;
-            color: #5a6578;
-            font-size: 12px;
-            border-top: 1px solid rgba(0, 212, 255, 0.1);
-            margin-top: 60px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-
-            .header-main {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .kpi-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .service-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-tabs {
-                overflow-x: auto;
-            }
-
-            .header-text h1 {
-                font-size: 20px;
-            }
-
-            .product-table {
-                font-size: 12px;
-            }
-
-            .product-table th, .product-table td {
-                padding: 10px 8px;
-            }
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 40px;
-            color: #8892b0;
-            font-size: 14px;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>INTERACT — Buying House, Customs Clearing & Trade Support</title>
+  <meta name="description" content="INTERACT public website for buying house, customs clearing, export facilitation, trade support, and RFQ-based business inquiries." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-    <div class="header">
-        <div class="header-content">
-            <div class="header-main">
-                <div class="header-text">
-                    <h1>INTERACT</h1>
-                    <p>International Buying House & Multi-Sector Trading Group</p>
-                    <p style="font-size: 11px; margin-top: 8px;">Suite #44, 9th Floor, Arkay Square, Karachi | NTN: 2849737-6</p>
-                    <p style="font-size: 10px; margin-top: 4px; color: #5e6c84;">Sister Concerns: Trade Port (Customs & C&F) â¢ Sadiq Sons (FMCG Export) â¢ INTERACT Leather Chemicals â¢ INTERACT Leather Products â¢ INTERACT Home Textiles â¢ INTERACT Marketing Solutions</p>
-                </div>
-                <div class="header-links">
-                    <a href="bills/bills.html">Bills</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="Discrepancy_Report.xlsx">Discrepancy Report</a>
-                    <a href="Trade_Port_Operations_Dashboard.xlsx">Operations Dashboard</a>
-                </div>
-            </div>
-            <div class="nav-tabs">
-                <button class="nav-tab active" data-tab="overview">Overview</button>
-                <button class="nav-tab" data-tab="services">Services</button>
-                <button class="nav-tab" data-tab="products">Products</button>
-                <button class="nav-tab" data-tab="fmcg">FMCG Export</button>
-                <button class="nav-tab" data-tab="operations">Operations</button>
-                <button class="nav-tab" data-tab="contacts">Contacts</button>
-            </div>
-        </div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">I</span>
+        <span class="brand-copy"><strong>INTERACT</strong><span>Buying House • Customs Clearing • Trade Support</span></span>
+      </a>
+      <button class="nav-toggle" data-nav-toggle aria-label="Open navigation">Menu</button>
+      <nav class="site-nav" data-nav>
+        <a href="index.html" class="active">Home</a>
+<a href="services.html" class="">Services</a>
+<a href="industries.html" class="">Industries</a>
+<a href="products.html" class="">Products</a>
+<a href="corridors.html" class="">Trade Corridors</a>
+<a href="about.html" class="">About</a>
+<a href="contact.html" class="">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn secondary" href="client-login.html">Client Login</a>
+        <a class="btn primary" href="contact.html#rfq">Request a Quote</a>
+      </div>
     </div>
-
-    <div class="container">
-        <!-- OVERVIEW TAB -->
-        <div id="overview" class="tab-content active">
-            <div class="kpi-grid">
-                <div class="kpi-card" onclick="goTab('contacts')" style="cursor:pointer;" title="Click to view Contacts">
-                    <div class="kpi-label">Active Clients</div>
-                    <div class="kpi-value">18+</div>
-                </div>
-                <div class="kpi-card" onclick="goTab('services')" style="cursor:pointer;" title="Click to view Services & Sister Concerns">
-                    <div class="kpi-label">Business Segments</div>
-                    <div class="kpi-value">11</div>
-                    <div class="kpi-unit">6 sister concerns</div>
-                </div>
-                <div class="kpi-card" onclick="goTab('operations')" style="cursor:pointer;" title="Click to view Operations">
-                    <div class="kpi-label">Shipping Lines</div>
-                    <div class="kpi-value">8+</div>
-                </div>
-                <div class="kpi-card" onclick="goTab('services')" style="cursor:pointer;" title="Click to view Trade Corridors">
-                    <div class="kpi-label">Countries Served</div>
-                    <div class="kpi-value">10+</div>
-                </div>
-                <div class="kpi-card" onclick="goTab('fmcg')" style="cursor:pointer;" title="Click to view FMCG Export details">
-                    <div class="kpi-label">FMCG Export Value</div>
-                    <div class="kpi-value">PKR 21.4M</div>
-                    <div class="kpi-unit">3 containers</div>
-                </div>
-                <div class="kpi-card" onclick="goTab('operations')" style="cursor:pointer;" title="Click to view Import Operations">
-                    <div class="kpi-label">Import Duties Processed</div>
-                    <div class="kpi-value">PKR 21.3M+</div>
-                </div>
-                <div class="kpi-card" onclick="goTab('fmcg')" style="cursor:pointer;" title="Click to view FMCG Export & JV details">
-                    <div class="kpi-label">JV Capital</div>
-                    <div class="kpi-value">PKR 30M</div>
-                    <div class="kpi-unit">INTERACTPAK</div>
-                </div>
-                <div class="kpi-card" onclick="goTab('operations')" style="cursor:pointer;" title="Click to view Container tracking">
-                    <div class="kpi-label">Active Containers</div>
-                    <div class="kpi-value">60+</div>
-                </div>
-            </div>
-
-            <div class="chart-container">
-                <div class="chart-title">Business Segments Distribution</div>
-                <canvas id="segmentsChart" style="max-height: 300px;"></canvas>
-            </div>
-
-            <div class="timeline">
-                <div class="chart-title">Latest Updates & Milestones <span style="font-size:11px;color:#8892b0;">(sourced from WhatsApp chats & documents)</span></div>
-                <div class="timeline-item">
-                    <div class="timeline-date">12-Mar-2026</div>
-                    <div class="timeline-text"><strong>C1 Port Klang â Health Dept Hold</strong> â Customs inspection cleared but pharmacy & health department held container for inspection. Loading issue flagged: high-qty items (soap, milk) should have been front-loaded. Zahid attempting under-table settlement. 15 inspection photos shared.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">11-Mar-2026</div>
-                    <div class="timeline-text"><strong>Pre-arrival coordination</strong> â Audio messages between Zahid & Mian Iftikhar re: inspection procedures at Port Klang.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">04-Mar-2026</div>
-                    <div class="timeline-text"><strong>C2 invoice & packing list issued</strong> â malaysia inv.pdf (1 page) and malaysia pl.pdf (3 pages) shared by Haris to Zahid for 2nd container.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">03-Mar-2026</div>
-                    <div class="timeline-text"><strong>Final FTA dispatched</strong> â Haris confirmed final FTA (22 pages) and all documents dispatched via DHL to Zahid Hussain in Malaysia.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">02-Mar-2026</div>
-                    <div class="timeline-text"><strong>C2 documents compiled</strong> â OBL (18 pages), All Docs (16 pages), FTA (22 pages) shared. BL surrender confirmed for next day. Rayan Enterprises bank details shared (Meezan Bank, Acct: 99040113949847).</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">28-Feb-2026</div>
-                    <div class="timeline-text"><strong>Sonex payment request</strong> â Faraz Rizvi: SONEX bill for EXP 359, remaining PKR 1,500,000 transfer requested. Ch Zafar confirmed. Payment proof photo shared by Rana Zahid.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">25-Feb-2026</div>
-                    <div class="timeline-text"><strong>C1 vessel sailing celebrated</strong> â Videos/photos of container loading shared. "Ma'sha Allah Mubarak ho sb ko" â MHK. C1 confirmed on water.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">23-Feb-2026</div>
-                    <div class="timeline-text"><strong>FTA delivered & Sonex packing</strong> â FTA hand-delivered in Malaysia. Sonex packing under process for C3. Payment summary PDF shared.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">19-Feb-2026</div>
-                    <div class="timeline-text"><strong>Critical: HS Code & FTA revision</strong> â 1st shipment docs delivered. Zahid flagged missing HS codes on B/L ("Hamara kafi loss hoga"). Revised FTA (24 pages) dispatched via DHL same day. Packing List for C2 shared.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">17-Feb-2026</div>
-                    <div class="timeline-text"><strong>C2 draft B/L for review</strong> â OOCL B/L Document Manager (4 pages) + SS Invoice shared. Haris requested correction feedback.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">09-Feb-2026</div>
-                    <div class="timeline-text"><strong>Labeling discussion</strong> â "Har piece par lagna hai" (label every piece). Decision to add labels on juices. Photos of items shared.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">08-Feb-2026</div>
-                    <div class="timeline-text"><strong>C1 B/L confirmed</strong> â Zahid Hussain: "B/L ok hai". Group renamed to "Sadiq Sons-A&Z Malaysia Mix Container group".</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">07-Feb-2026</div>
-                    <div class="timeline-text"><strong>WhatsApp group created</strong> â Rana Zahid created "Malaysia Mix Container group". SONEX.xlsx shared. Members: Rana Zahid, Zahid Hussain, Haris, Mian Iftikhar, Faraz Rizvi, MHK, Ch Zafar, Salman.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">28-Jan-2026</div>
-                    <div class="timeline-text"><strong>Commercial invoice issued</strong> â PME/031/01-2026 with 100+ line items for C1 FMCG export.</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SERVICES TAB -->
-        <div id="services" class="tab-content">
-            <div class="service-grid">
-                <div class="service-card">
-                    <div class="service-icon">ð­</div>
-                    <div class="service-title">Procurement & Sourcing</div>
-                    <div class="service-desc">Source products from Pakistan's manufacturers and wholesalers. Spices, FMCG, textiles, steel, auto parts. Quality inspection before shipping.</div>
-                    <div class="service-features">â Direct manufacturer access â¢ â Quality assurance â¢ â Bulk pricing</div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">ð¦</div>
-                    <div class="service-title">Export Management</div>
-                    <div class="service-desc">Complete export documentation, customs clearance (WeBOC), shipping line coordination. FCL/LCL. HS code classification.</div>
-                    <div class="service-features">â Packing lists â¢ â Commercial invoices â¢ â Certificates of origin</div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">ð¢</div>
-                    <div class="service-title">Freight & Logistics</div>
-                    <div class="service-desc">Multi-modal shipping via 8+ shipping lines (MSC, Maersk, CMA CGM, ONE, Hapag-Lloyd, OOCL). Door-to-port and port-to-port. Real-time tracking.</div>
-                    <div class="service-features">â Multiple carriers â¢ â Competitive rates â¢ â Live tracking</div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">ð</div>
-                    <div class="service-title">Customs Clearing</div>
-                    <div class="service-desc">Licensed customs clearing agent. Import GD filing, duty payment, examination management. Active across Port Qasim and Karachi ports.</div>
-                    <div class="service-features">â GD filing â¢ â Duty calculation â¢ â Exam management</div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">ð¦</div>
-                    <div class="service-title">Trade Finance Support</div>
-                    <div class="service-desc">LC negotiation (Bank Al Habib, Faysal Bank), payment security mapping (Tier 1-4), advance payment handling, B/L documentation.</div>
-                    <div class="service-features">â LC negotiation â¢ â Payment security â¢ â B/L management</div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">ð</div>
-                    <div class="service-title">Quality Control & Inspection</div>
-                    <div class="service-desc">Pre-shipment inspection, container loading supervision, weight verification, seal management. 99-page auditable billing trail.</div>
-                    <div class="service-features">â Pre-shipment QC â¢ â Load supervision â¢ â Full audit trail</div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">ð</div>
-                    <div class="service-title">Market Entry Advisory</div>
-                    <div class="service-desc">Malaysia market entry consulting, FTA utilization (PSFTA, China-Pakistan FTA), company registration guidance, buyer identification.</div>
-                    <div class="service-features">â Market analysis â¢ â FTA strategies â¢ â Buyer matching</div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">ð</div>
-                    <div class="service-title">Compliance & Documentation</div>
-                    <div class="service-desc">SOPs for import/export, FTA certificate processing, GD monitoring dashboard, transparent accounting with full audit trail.</div>
-                    <div class="service-features">â SOP management â¢ â FTA certificates â¢ â Transparent reporting</div>
-                </div>
-            </div>
-
-            <div class="corridors-title" style="margin-top:30px;">INTERACT Group â Sister Concerns</div>
-            <div class="service-grid" style="margin-bottom:25px;">
-                <div class="service-card" style="border-left:3px solid #00d4ff;">
-                    <div class="service-icon">ð¢</div>
-                    <div class="service-title">Trade Port</div>
-                    <div class="service-desc">Licensed customs clearing agent and C&F services. Import/export documentation, GD filing via WeBOC, duty management, shipping line coordination across 8+ carriers.</div>
-                    <div class="service-features">â Customs Clearing â¢ â C&F Agent â¢ â Port Operations</div>
-                </div>
-                <div class="service-card" style="border-left:3px solid #00d4ff;">
-                    <div class="service-icon">ð</div>
-                    <div class="service-title">Sadiq Sons</div>
-                    <div class="service-desc">FMCG export arm specializing in PakistanâMalaysia trade corridor. Spices, tea, biscuits, sauces, desserts, herbal products. Active 3-container operation with A&Z Enterprise.</div>
-                    <div class="service-features">â FMCG Export â¢ â Malaysia Market â¢ â Product Sourcing</div>
-                </div>
-                <div class="service-card" style="border-left:3px solid #e8a838;">
-                    <div class="service-icon">ð§ª</div>
-                    <div class="service-title">INTERACT Leather Chemicals</div>
-                    <div class="service-desc">Sourcing and supply of specialized leather processing chemicals â tanning agents, dyes, finishing chemicals, and auxiliaries for Pakistan's leather manufacturing industry.</div>
-                    <div class="service-features">â Tanning Chemicals â¢ â Dyes & Pigments â¢ â Finishing Agents</div>
-                </div>
-                <div class="service-card" style="border-left:3px solid #e8a838;">
-                    <div class="service-icon">ð</div>
-                    <div class="service-title">INTERACT Leather Products</div>
-                    <div class="service-desc">Export-grade leather goods â jackets, gloves, bags, belts, shoes and accessories. Sourced from Sialkot, Kasur and Karachi tanneries for international markets.</div>
-                    <div class="service-features">â Finished Leather Goods â¢ â Export Quality â¢ â Custom Manufacturing</div>
-                </div>
-                <div class="service-card" style="border-left:3px solid #38e8a8;">
-                    <div class="service-icon">ð </div>
-                    <div class="service-title">INTERACT Home Textiles</div>
-                    <div class="service-desc">Export of Pakistani home textiles â bed linen, towels, kitchen textiles, curtains, and upholstery fabrics. Sourced from Faisalabad and Karachi mills for global buyers.</div>
-                    <div class="service-features">â Bed Linen â¢ â Towels â¢ â Kitchen & Upholstery Textiles</div>
-                </div>
-                <div class="service-card" style="border-left:3px solid #a838e8;">
-                    <div class="service-icon">ð</div>
-                    <div class="service-title">INTERACT Marketing Solutions</div>
-                    <div class="service-desc">B2B marketing, digital presence management, trade show coordination, buyer-seller matchmaking, and market intelligence for export-oriented businesses.</div>
-                    <div class="service-features">â Digital Marketing â¢ â Trade Shows â¢ â Buyer Matchmaking</div>
-                </div>
-            </div>
-
-            <div class="corridors-title">Trade Corridors</div>
-            <div class="corridors-grid">
-                <div class="corridor-card">
-                    <div class="corridor-route">Pakistan to Malaysia</div>
-                    FMCG, Food Products, Spices
-                </div>
-                <div class="corridor-card">
-                    <div class="corridor-route">USA to Pakistan</div>
-                    Steel Scrap, Metal, Motor Scrap
-                </div>
-                <div class="corridor-card">
-                    <div class="corridor-route">UAE to Pakistan</div>
-                    Steel, DRI, Metal Scrap
-                </div>
-                <div class="corridor-card">
-                    <div class="corridor-route">South Africa to Pakistan</div>
-                    Steel Scrap, Metal Products
-                </div>
-                <div class="corridor-card">
-                    <div class="corridor-route">China to Pakistan</div>
-                    Glass Bottles, Packaging, Plastics
-                </div>
-                <div class="corridor-card">
-                    <div class="corridor-route">Japan to Pakistan</div>
-                    Auto Parts, Plastics, Machinery
-                </div>
-                <div class="corridor-card">
-                    <div class="corridor-route">Thailand/Indonesia to Pakistan</div>
-                    Auto Parts, Chemicals, Textiles
-                </div>
-                <div class="corridor-card">
-                    <div class="corridor-route">Sri Lanka to Pakistan</div>
-                    Oats, Food Products, Spices
-                </div>
-                <div class="corridor-card">
-                    <div class="corridor-route">Pakistan to Europe</div>
-                    Leather Goods, Home Textiles, Gloves
-                </div>
-                <div class="corridor-card">
-                    <div class="corridor-route">Pakistan to USA</div>
-                    Home Textiles, Leather Products, FMCG
-                </div>
-                <div class="corridor-card">
-                    <div class="corridor-route">Oman to Pakistan</div>
-                    DRI (Direct Reduced Iron)
-                </div>
-            </div>
-        </div>
-
-        <!-- PRODUCTS TAB -->
-        <div id="products" class="tab-content">
-            <div class="search-filter">
-                <input type="text" class="search-input" id="productSearch" placeholder="Search products...">
-                <select class="filter-select" id="categoryFilter">
-                    <option value="">All Categories</option>
-                    <option value="Spices & Seasonings">Spices & Seasonings</option>
-                    <option value="Tea & Beverages">Tea & Beverages</option>
-                    <option value="Herbal Products">Herbal Products</option>
-                    <option value="Desserts & Sweets">Desserts & Sweets</option>
-                    <option value="Biscuits & Snacks">Biscuits & Snacks</option>
-                    <option value="Sauces & Condiments">Sauces & Condiments</option>
-                    <option value="Pickles">Pickles</option>
-                    <option value="Jams & Preserves">Jams & Preserves</option>
-                    <option value="Custard & Pudding">Custard & Pudding</option>
-                    <option value="Salt & Essences">Salt & Essences</option>
-                    <option value="Dry Fruits & Nuts">Dry Fruits & Nuts</option>
-                    <option value="Industrial Products">Industrial Products</option>
-                    <option value="Leather Chemicals">Leather Chemicals</option>
-                    <option value="Leather Products">Leather Products</option>
-                    <option value="Home Textiles">Home Textiles</option>
-                </select>
-            </div>
-
-            <table class="product-table">
-                <thead>
-                    <tr>
-                        <th>Product Name</th>
-                        <th>Category</th>
-                        <th>HS Code</th>
-                        <th>Available Sizes</th>
-                        <th>Est. Price (USD)</th>
-                    </tr>
-                </thead>
-                <tbody id="productTable">
-                </tbody>
-            </table>
-            <div id="noProducts" class="no-results" style="display: none;">No products found matching your search.</div>
-        </div>
-
-        <!-- FMCG EXPORT TAB -->
-        <div id="fmcg" class="tab-content">
-            <div class="shipment-cards">
-                <div class="shipment-card">
-                    <div class="shipment-header">
-                        <div class="shipment-title">Container C1</div>
-                        <div class="shipment-status">DELIVERED</div>
-                    </div>
-                    <div class="shipment-detail">
-                        <div class="shipment-label">B/L Number</div>
-                        <div class="shipment-value">OOLU2320463240</div>
-                    </div>
-                    <div class="shipment-detail">
-                        <div class="shipment-label">Vessel</div>
-                        <div class="shipment-value">WAN HAI 515</div>
-                    </div>
-                    <div class="shipment-detail">
-                        <div class="shipment-label">Container</div>
-                        <div class="shipment-value">CSNU2251617</div>
-                    </div>
-                    <div class="shipment-detail">
-                        <div class="shipment-label">Contents</div>
-                        <div class="shipment-value">820 cartons, 9,350 KG</div>
-                    </div>
-                    <div class="shipment-detail">
-                        <div class="shipment-label">Consignee</div>
-                        <div class="shipment-value">Pemborong Maju A & Z Enterprise, Batu Caves, Selangor Malaysia</div>
-                    </div>
-                    <div class="shipment-detail" style="background:rgba(255,165,0,0.15);padding:8px;border-radius:6px;margin-top:6px;">
-                        <div class="shipment-label" style="color:#ffa500;">â  LIVE STATUS (12-Mar)</div>
-                        <div class="shipment-value" style="color:#ffcc00;">Customs cleared but Health/Pharmacy Dept HOLD for inspection. Loading issue: high-qty items (soap, milk) not front-loaded. Settlement in progress.</div>
-                    </div>
-                </div>
-                <div class="shipment-card">
-                    <div class="shipment-header">
-                        <div class="shipment-title">Container C2</div>
-                        <div class="shipment-status">IN TRANSIT</div>
-                    </div>
-                    <div class="shipment-detail">
-                        <div class="shipment-label">Status</div>
-                        <div class="shipment-value">Vessel en route to Port Klang</div>
-                    </div>
-                    <div class="shipment-detail">
-                        <div class="shipment-label">Expected Arrival</div>
-                        <div class="shipment-value">March 25, 2026</div>
-                    </div>
-                    <div class="shipment-detail">
-                        <div class="shipment-label">Contents</div>
-                        <div class="shipment-value">FMCG Product Mix</div>
-                    </div>
-                </div>
-                <div class="shipment-card">
-                    <div class="shipment-header">
-                        <div class="shipment-title">Container C3</div>
-                        <div class="shipment-status">IN PROCESS</div>
-                    </div>
-                    <div class="shipment-detail">
-                        <div class="shipment-label">Status</div>
-                        <div class="shipment-value">Documentation & loading preparation</div>
-                    </div>
-                    <div class="shipment-detail">
-                        <div class="shipment-label">Scheduled Departure</div>
-                        <div class="shipment-value">April 15, 2026</div>
-                    </div>
-                    <div class="shipment-detail">
-                        <div class="shipment-label">Contents</div>
-                        <div class="shipment-value">FMCG Product Mix</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="payment-summary">
-                <div class="chart-title">Payment Summary by Container</div>
-                <div class="payment-grid">
-                    <div class="payment-item">
-                        <div class="payment-label">Container C1</div>
-                        <div class="payment-amount">PKR 8,773,650</div>
-                        <div class="payment-detail">46 verified transactions</div>
-                    </div>
-                    <div class="payment-item">
-                        <div class="payment-label">Container C2</div>
-                        <div class="payment-amount">PKR 8,520,460</div>
-                        <div class="payment-detail">Ongoing collections</div>
-                    </div>
-                    <div class="payment-item">
-                        <div class="payment-label">Container C3</div>
-                        <div class="payment-amount">PKR 1,500,000</div>
-                        <div class="payment-detail">Advance received</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="chart-container">
-                <div class="chart-title">Funding Distribution â Party A vs B</div>
-                <canvas id="fundingChart" style="max-height: 300px;"></canvas>
-            </div>
-
-            <div class="chart-container">
-                <div class="chart-title">Payment Transactions (C1 Shipment)</div>
-                <canvas id="paymentsChart" style="max-height: 400px;"></canvas>
-            </div>
-
-            <div class="chart-container" style="margin-top:20px;">
-                <div class="chart-title">Communications Log <span style="font-size:11px;color:#8892b0;">(WhatsApp Groups & Documents)</span></div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:12px;">
-                    <div style="background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);border-radius:8px;padding:15px;">
-                        <div style="font-weight:600;color:#00d4ff;margin-bottom:8px;">Sadiq Sons-A&Z Malaysia Group</div>
-                        <div style="font-size:12px;color:#8892b0;line-height:1.8;">
-                            <strong>Created:</strong> 7-Feb-2026 by Rana Zahid Farooq<br>
-                            <strong>Members (8):</strong> Rana Zahid (C&F), Ch Zahid Hussain (MY Buyer), Haris (Export KHI), Mian Iftikhar (Trade Port), Faraz Rizvi (Export MY), MHK, Ch Zafar Gujjar (C&F Agent), Salman<br>
-                            <strong>Messages:</strong> 65 messages, 7-Feb to 12-Mar-2026<br>
-                            <strong>Attachments:</strong> 42 photos, 15 audio, 4 videos, 3 PDFs (SONEX.xlsx, B/L, Invoice)<br>
-                            <strong>Key docs shared:</strong> OOCL B/L Doc Manager, SS Invoice, FTA (3 revisions), OBL (18pg), malaysia inv/pl, SONEX bill
-                        </div>
-                    </div>
-                    <div style="background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);border-radius:8px;padding:15px;">
-                        <div style="font-weight:600;color:#00d4ff;margin-bottom:8px;">MIX ITEMS GROUP</div>
-                        <div style="font-size:12px;color:#8892b0;line-height:1.8;">
-                            <strong>Period:</strong> Through 13-Mar-2026<br>
-                            <strong>Messages:</strong> 1,229 messages (comprehensive operations log)<br>
-                            <strong>Key content:</strong> Daily location check-ins (warehouse), payment discussions, bank transfer requests, document sharing<br>
-                            <strong>Key data:</strong> RAYAN ENTERPRISES â Meezan Bank Tauheed Commercial, Acct: 99040113949847, IBAN: PK46MEZN0099040113949847 (Sonex supplier)<br>
-                            <strong>Financial:</strong> Sonex EXP 359 bill, PKR 1.5M remaining transfer requested (28-Feb)
-                        </div>
-                    </div>
-                </div>
-                <div style="background:rgba(255,165,0,0.08);border:1px solid rgba(255,165,0,0.2);border-radius:8px;padding:15px;margin-top:12px;">
-                    <div style="font-weight:600;color:#ffa500;margin-bottom:8px;">Document Sources Catalogue</div>
-                    <div style="font-size:12px;color:#8892b0;line-height:1.8;">
-                        <strong>IMPORT DOCUMENTS MISC.pdf</strong> â 90.6MB, ~25 unique documents (Bills of Lading, GDs, Invoices, Customs payments)<br>
-                        <strong>IMPORT DOCUMENTS MISC 2.pdf</strong> â 90.8MB, MSC contracts, Frenz Maritime NOC/Gate Pass, EZ Logistics B/L, Portever B/Ls, MSC B/Ls<br>
-                        <strong>Bills supports till 10 March 26.pdf</strong> â 103MB, 99 pages scanned (receipts, payment proofs, bank slips) â visual-only, not text-extractable<br>
-                        <strong>Bill of lading - RIENE.pdf</strong> â OOCL B/L OOLU2320463240 + Commercial Invoice PME/031/01-2026 (100+ items)<br>
-                        <strong>Legal agreement part.pdf</strong> â INTERACTPAK JV Partnership Agreement (PKR 30M capital, Recovery Ladder)<br>
-                        <strong>Additional:</strong> BASIC SPICES NEW BILL.pdf, Packing_List_C1.pdf, malaysia inv.pdf, malaysia pl.pdf, INTERACT Market Reality Check.pdf
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- OPERATIONS TAB -->
-        <div id="operations" class="tab-content">
-            <table class="product-table">
-                <thead>
-                    <tr>
-                        <th>Client</th>
-                        <th>Commodity</th>
-                        <th>Origin</th>
-                        <th>Shipping Line</th>
-                        <th>B/L Number</th>
-                        <th>Weight / Qty</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Hunza Steel</td>
-                        <td>DRI</td>
-                        <td>Oman</td>
-                        <td>EZ Logistics</td>
-                        <td>FRLSOHBQM631925C</td>
-                        <td>252,996 MT</td>
-                        <td><span style="color: #00d4ff;">Gate Pass Issued</span></td>
-                    </tr>
-                    <tr>
-                        <td>Hunza Steel</td>
-                        <td>Steel</td>
-                        <td>Poland</td>
-                        <td>MSC</td>
-                        <td>MEDUYK539714</td>
-                        <td>19 containers</td>
-                        <td><span style="color: #ffaa00;">Demurrage</span></td>
-                    </tr>
-                    <tr>
-                        <td>Kamran Steel</td>
-                        <td>Steel Scrap ISRI 211</td>
-                        <td>South Africa</td>
-                        <td>MSC</td>
-                        <td>MEDUJ573506</td>
-                        <td>110,240 KG</td>
-                        <td><span style="color: #ffaa00;">In Transit</span></td>
-                    </tr>
-                    <tr>
-                        <td>Kamran Steel</td>
-                        <td>Remeltable Scrap</td>
-                        <td>UAE/Singapore</td>
-                        <td>MSC</td>
-                        <td>MEDUH921982</td>
-                        <td>136,990 KG</td>
-                        <td><span style="color: #00d4ff;">Active</span></td>
-                    </tr>
-                    <tr>
-                        <td>HNB Sons</td>
-                        <td>Compressor Scrap</td>
-                        <td>USA (Miami)</td>
-                        <td>MSC</td>
-                        <td>MEDUW831785</td>
-                        <td>46,006 KG</td>
-                        <td><span style="color: #00d4ff;">Charleston origin</span></td>
-                    </tr>
-                    <tr>
-                        <td>HNB Sons</td>
-                        <td>Metal Scrap</td>
-                        <td>USA (Oakland)</td>
-                        <td>CMA CGM</td>
-                        <td>NAM8123820</td>
-                        <td>19,949 KG</td>
-                        <td><span style="color: #00d4ff;">Active</span></td>
-                    </tr>
-                    <tr>
-                        <td>HNB Sons</td>
-                        <td>Remeltable Scrap</td>
-                        <td>USA (NY)</td>
-                        <td>Hapag-Lloyd</td>
-                        <td>HLCUTOR250907280</td>
-                        <td>TBD</td>
-                        <td><span style="color: #ffaa00;">DRAFT</span></td>
-                    </tr>
-                    <tr>
-                        <td>AM Enterprises</td>
-                        <td>Motor Scrap</td>
-                        <td>USA (Newark)</td>
-                        <td>Maersk</td>
-                        <td>263704023</td>
-                        <td>20,402 MT</td>
-                        <td><span style="color: #00d4ff;">Active</span></td>
-                    </tr>
-                    <tr>
-                        <td>MA Brothers</td>
-                        <td>Electric Motors + Scrap</td>
-                        <td>USA (NY)</td>
-                        <td>â</td>
-                        <td>GD CHAL 2893</td>
-                        <td>10,834 KG</td>
-                        <td><span style="color: #ffaa00;">GD Filed</span></td>
-                    </tr>
-                    <tr>
-                        <td>Thermosole</td>
-                        <td>Urethane Foam</td>
-                        <td>Thailand</td>
-                        <td>ONE</td>
-                        <td>DO-28399/26</td>
-                        <td>17,440 KG</td>
-                        <td><span style="color: #00d4ff;">Active</span></td>
-                    </tr>
-                    <tr>
-                        <td>Thermosole</td>
-                        <td>Plastics/Resin</td>
-                        <td>Japan</td>
-                        <td>THI</td>
-                        <td>JPN26010028</td>
-                        <td>5,200 KG</td>
-                        <td><span style="color: #00d4ff;">Active</span></td>
-                    </tr>
-                    <tr>
-                        <td>Vital Collections</td>
-                        <td>Glass Bottles</td>
-                        <td>China</td>
-                        <td>Portever</td>
-                        <td>CHSF2601055</td>
-                        <td>13,250 KG</td>
-                        <td><span style="color: #00d4ff;">Active</span></td>
-                    </tr>
-                    <tr>
-                        <td>Vital Collections</td>
-                        <td>Perfume Caps</td>
-                        <td>China</td>
-                        <td>Portever</td>
-                        <td>CHSL2602038</td>
-                        <td>1,994 KG</td>
-                        <td><span style="color: #ffaa00;">LCL</span></td>
-                    </tr>
-                    <tr>
-                        <td>Innovative Biscuits</td>
-                        <td>Oats</td>
-                        <td>Sri Lanka</td>
-                        <td>Golden Sea</td>
-                        <td>COAU72660S2160</td>
-                        <td>28,470 KG</td>
-                        <td><span style="color: #00d4ff;">Active</span></td>
-                    </tr>
-                    <tr>
-                        <td>Muhammad Tufail</td>
-                        <td>Nissan Clipper 2020</td>
-                        <td>Japan</td>
-                        <td>â</td>
-                        <td>Job 10361</td>
-                        <td>1 vehicle</td>
-                        <td><span style="color: #00ff88;">Completed</span></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="chart-container" style="margin-top: 30px;">
-                <div class="chart-title">Customs Duties by Client (PKR)</div>
-                <canvas id="dutiesChart" style="max-height: 350px;"></canvas>
-            </div>
-        </div>
-
-        <!-- CONTACTS TAB -->
-        <div id="contacts" class="tab-content">
-            <div class="search-filter">
-                <input type="text" class="search-input" id="contactSearch" placeholder="Search contacts...">
-            </div>
-
-            <table class="product-table">
-                <thead>
-                    <tr>
-                        <th>Entity</th>
-                        <th>Role</th>
-                        <th>Location</th>
-                        <th>NTN</th>
-                        <th>Contact</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody id="contactTable">
-                </tbody>
-            </table>
-            <div id="noContacts" class="no-results" style="display: none;">No contacts found matching your search.</div>
-        </div>
+  </header>
+  
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Curated trade support</span>
+      <h1>A Modern Buying House for Sourcing, Clearance &amp; Trade Execution</h1>
+      <p>Premium B2B presentation for buyers who need verified sourcing, disciplined documentation, route-aware coordination, and commercially polished execution.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="contact.html#rfq">Request a Quote</a>
+        <a class="btn secondary" href="services.html">Explore Services</a>
+      </div>
+      <ul class="inline-list">
+        <li>Buying-house support</li>
+        <li>Customs-clearing coordination</li>
+        <li>Export documentation</li>
+        <li>Buyer-focused follow-up</li>
+        <li>Discrepancy handling</li>
+      </ul>
     </div>
+    <aside class="hero-panel">
+      <div>
+        <div class="kicker" style="color:rgba(255,255,255,.72);">Private by design</div><p class="notice notice-dark">Currently presented on GitHub Pages. Planned production domain: www.interactpak.com.</p>
+        <h3>A premium public front end with private client access behind it.</h3>
+        <p>The public experience stays focused on buyer trust, RFQs, services, categories, and trade routes while production later moves to www.interactpak.com.</p>
+      </div>
+      <div class="panel-grid">
+        <div class="metric-card"><strong>Services</strong><span>Sourcing, export, customs, coordination</span></div>
+        <div class="metric-card"><strong>Industries</strong><span>FMCG, leather, textiles, trade support</span></div>
+        <div class="metric-card"><strong>Corridors</strong><span>Pakistan outbound and inbound trade lanes</span></div>
+        <div class="metric-card"><strong>RFQ-first</strong><span>Structured inquiry instead of raw spreadsheets</span></div>
+      </div>
+      <a class="btn ghost" href="client-login.html">View client access model</a>
+    </aside>
+  </div>
+</section>
 
-    <div class="footer">
-        Dashboard v6.0 | INTERACT Group â International Buying House & Multi-Sector Trading | Sister Concerns: Trade Port â¢ Sadiq Sons â¢ Leather Chemicals â¢ Leather Products â¢ Home Textiles â¢ Marketing Solutions | Data as of 2026-03-14
+  <main>
+    
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="kicker">Why INTERACT</div>
+        <h2>A practical trade partner for sourcing, shipping, and market access</h2>
+      </div>
+      <p>INTERACT supports buyers and businesses that need more than a supplier list. The public site focuses on capability, categories, and inquiry flow instead of exposing shipment, payment, and document detail.</p>
     </div>
+    <div class="grid cols-3">
+      <article class="card">
+        <h3>Verified Sourcing</h3>
+        <p>Connect buyers with suitable product sources based on category, packaging, pricing, and route-specific requirements.</p>
+        <a class="card-link" href="industries.html">See industries served</a>
+      </article>
+      <article class="card">
+        <h3>Documentation &amp; Clearance Support</h3>
+        <p>Assist with export paperwork, shipment coordination, customs process support, and discrepancy follow-up.</p>
+        <a class="card-link" href="services.html">Review service scope</a>
+      </article>
+      <article class="card">
+        <h3>Commercial Coordination</h3>
+        <p>Work across buyers, suppliers, freight stakeholders, and service partners to keep transactions moving with clearer communication.</p>
+        <a class="card-link" href="corridors.html">Explore trade corridors</a>
+      </article>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // PRODUCT DATA
-        const PRODUCTS = [
-            {name:'Achaar Gosht Masala',category:'Spices & Seasonings',hs:'0910',sizes:'Bulk, 1kg, 500g',price:'8-12'},
-            {name:'Biryani Masala',category:'Spices & Seasonings',hs:'0910',sizes:'Bulk, 1kg, 500g',price:'7-11'},
-            {name:'Pulao Masala',category:'Spices & Seasonings',hs:'0910',sizes:'Bulk, 1kg',price:'6-10'},
-            {name:'Qorma Masala',category:'Spices & Seasonings',hs:'0910',sizes:'Bulk, 1kg, 500g',price:'7-11'},
-            {name:'Tikka Boti Masala',category:'Spices & Seasonings',hs:'0910',sizes:'Bulk, 500g',price:'9-13'},
-            {name:'Chicken Masala',category:'Spices & Seasonings',hs:'0910',sizes:'Bulk, 1kg',price:'8-12'},
-            {name:'Tandoori Masala',category:'Spices & Seasonings',hs:'0910',sizes:'1kg, 500g',price:'8-12'},
-            {name:'Red Chilli Powder',category:'Spices & Seasonings',hs:'0910',sizes:'Bulk, 1kg, 500g',price:'5-8'},
-            {name:'Garam Masala Pisa',category:'Spices & Seasonings',hs:'0910',sizes:'Bulk, 500g',price:'6-10'},
-            {name:'Danedar Hard 170g',category:'Tea & Beverages',hs:'0902',sizes:'170g',price:'3-5'},
-            {name:'Danedar Pouch 430g',category:'Tea & Beverages',hs:'0902',sizes:'430g',price:'6-9'},
-            {name:'Supreme Tea 430g',category:'Tea & Beverages',hs:'0902',sizes:'430g',price:'5-7'},
-            {name:'Lemon Grass Tea',category:'Tea & Beverages',hs:'0902',sizes:'Bulk, 500g',price:'4-7'},
-            {name:'Gond Katira',category:'Herbal Products',hs:'1211',sizes:'Bulk, 1kg',price:'12-18'},
-            {name:'White Musalli',category:'Herbal Products',hs:'1211',sizes:'500g, Bulk',price:'10-16'},
-            {name:'Basil Seeds (Tukh Malanga)',category:'Herbal Products',hs:'1211',sizes:'500g, Bulk',price:'6-10'},
-            {name:'Vermicelli Color 200g',category:'Desserts & Sweets',hs:'1902',sizes:'200g, 400g',price:'2-4'},
-            {name:'Kheer Pistachio',category:'Desserts & Sweets',hs:'1902',sizes:'500g',price:'5-8'},
-            {name:'Gulab Jamun',category:'Desserts & Sweets',hs:'1902',sizes:'Bulk, 500g',price:'4-7'},
-            {name:'Sohan Halwa',category:'Desserts & Sweets',hs:'1902',sizes:'Bulk',price:'5-9'},
-            {name:'Prince Chocolate',category:'Biscuits & Snacks',hs:'1905',sizes:'Carton, Bulk',price:'1-3'},
-            {name:'Nan Khatai',category:'Biscuits & Snacks',hs:'1905',sizes:'Box, Bulk',price:'2-4'},
-            {name:'Rio',category:'Biscuits & Snacks',hs:'1905',sizes:'Carton',price:'2-3'},
-            {name:'Tuc',category:'Biscuits & Snacks',hs:'1905',sizes:'Box',price:'1-2'},
-            {name:'Chilli Garlic Sauce 800ml',category:'Sauces & Condiments',hs:'2103',sizes:'800ml, 400ml',price:'3-5'},
-            {name:'Tomato Ketchup 225g',category:'Sauces & Condiments',hs:'2103',sizes:'225g',price:'1-2'},
-            {name:'Mayonnaise',category:'Sauces & Condiments',hs:'2103',sizes:'Bulk, 400ml',price:'2-4'},
-            {name:'Pickle Mango Mix 370g',category:'Pickles',hs:'2001',sizes:'370g, 900g',price:'2-4'},
-            {name:'Pickle Crushed 390g',category:'Pickles',hs:'2001',sizes:'390g',price:'2-3'},
-            {name:'Jam Apple 440g',category:'Jams & Preserves',hs:'2007',sizes:'440g',price:'2-3'},
-            {name:'Jam Mango 440g',category:'Jams & Preserves',hs:'2007',sizes:'440g',price:'2-3'},
-            {name:'Custard Banana 300g',category:'Custard & Pudding',hs:'2106',sizes:'300g',price:'1-2'},
-            {name:'Pudding 78g',category:'Custard & Pudding',hs:'2106',sizes:'78g',price:'0.50-1'},
-            {name:'Salt Iodized 800g',category:'Salt & Essences',hs:'2501',sizes:'800g',price:'0.50-1'},
-            {name:'Essence Biryani 25ml',category:'Salt & Essences',hs:'3302',sizes:'25ml',price:'2-4'},
-            {name:'Pine Nuts (Chilghoza)',category:'Dry Fruits & Nuts',hs:'0813',sizes:'Bulk, 500g',price:'20-30'},
-            {name:'Iron & Steel Scrap',category:'Industrial Products',hs:'7204',sizes:'Bulk MT',price:'200-300'},
-            {name:'Direct Reduced Iron (DRI)',category:'Industrial Products',hs:'7203',sizes:'Bulk MT',price:'250-350'},
-            {name:'Glass Bottles',category:'Industrial Products',hs:'7013',sizes:'Carton, Bulk',price:'100-200'},
-            {name:'Auto Parts - Urethane Foam',category:'Industrial Products',hs:'3909',sizes:'Bulk',price:'500-800'},
-            {name:'Used Vehicles',category:'Industrial Products',hs:'8704',sizes:'Unit',price:'5000-15000'},
-            {name:'Oats/Grain',category:'Industrial Products',hs:'1904',sizes:'Bulk MT',price:'400-600'},
-            {name:'Chrome Tanning Agent',category:'Leather Chemicals',hs:'3202',sizes:'Drum 200kg',price:'800-1200'},
-            {name:'Vegetable Tanning Extract',category:'Leather Chemicals',hs:'3201',sizes:'Bag 25kg',price:'600-900'},
-            {name:'Leather Dyes & Pigments',category:'Leather Chemicals',hs:'3204',sizes:'Drum 50kg',price:'1500-2500'},
-            {name:'Leather Finishing Agents',category:'Leather Chemicals',hs:'3809',sizes:'Drum 100kg',price:'1000-1800'},
-            {name:'Fat Liquoring Agents',category:'Leather Chemicals',hs:'3403',sizes:'Drum 200kg',price:'700-1100'},
-            {name:'Leather Jackets',category:'Leather Products',hs:'4203',sizes:'S-XXL',price:'40-120'},
-            {name:'Leather Gloves (Industrial)',category:'Leather Products',hs:'4203',sizes:'Pairs, Cartons',price:'3-8'},
-            {name:'Leather Gloves (Fashion)',category:'Leather Products',hs:'4203',sizes:'S-XL',price:'15-35'},
-            {name:'Leather Bags & Handbags',category:'Leather Products',hs:'4202',sizes:'Various',price:'20-80'},
-            {name:'Leather Belts',category:'Leather Products',hs:'4203',sizes:'Various',price:'5-25'},
-            {name:'Leather Shoes',category:'Leather Products',hs:'6403',sizes:'Pairs',price:'15-60'},
-            {name:'Bed Linen Sets',category:'Home Textiles',hs:'6302',sizes:'Single/Double/King',price:'15-50'},
-            {name:'Terry Towels',category:'Home Textiles',hs:'6302',sizes:'Bath/Hand/Face',price:'3-12'},
-            {name:'Kitchen Textiles',category:'Home Textiles',hs:'6302',sizes:'Sets',price:'5-15'},
-            {name:'Curtain Fabrics',category:'Home Textiles',hs:'6303',sizes:'Per Meter',price:'4-12'},
-            {name:'Upholstery Fabrics',category:'Home Textiles',hs:'5811',sizes:'Per Meter',price:'6-18'},
-            {name:'Cushion Covers',category:'Home Textiles',hs:'6304',sizes:'Various',price:'3-10'}
-        ];
+<section class="section band">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="kicker">Core services</div>
+        <h2>Built for inquiry-led trade, not public operations dashboards</h2>
+      </div>
+      <p>The navigation now leads to service pages, categories, and RFQ paths. Sensitive records belong behind authenticated access.</p>
+    </div>
+    <div class="grid cols-3">
+      <article class="card"><h3>Buying House &amp; Procurement</h3><p>Requirement review, sourcing support, supplier coordination, packaging alignment, and commercial follow-up.</p></article>
+      <article class="card"><h3>Customs Clearing &amp; C&amp;F</h3><p>Documentation readiness, local follow-up, customs-process support, and shipment-linked coordination.</p></article>
+      <article class="card"><h3>Export Facilitation</h3><p>Invoice and packing-list coordination, export documentation support, and buyer-side updates.</p></article>
+      <article class="card"><h3>Freight &amp; Logistics Coordination</h3><p>Shipment movement support, handoff communication, and stakeholder alignment throughout cargo flow.</p></article>
+      <article class="card"><h3>Quality &amp; Discrepancy Handling</h3><p>Structured follow-up when specifications, packaging, quantity, or document issues arise.</p></article>
+      <article class="card"><h3>Market Entry Support</h3><p>Buyer linkage, trade-route discussion, and practical market-entry guidance for selected corridors.</p></article>
+    </div>
+  </div>
+</section>
 
-        // CONTACT DATA
-        const CONTACTS = [
-            {entity:'INTERACT (Parent)',role:'Holding / Buying House',location:'Karachi',ntn:'2849737-6',contact:'021-32461960',email:'info@interact.pk'},
-            {entity:'Trade Port',role:'Sister Concern â Customs & C&F',location:'Karachi',ntn:'2849737-6',contact:'021-32461960',email:'info@tradeport.pk'},
-            {entity:'Tradeport General Trading FZC',role:'UAE Arm â Trade Port',location:'Ajman, UAE',ntn:'',contact:'+971501204099',email:'tradeportuae@gmail.com'},
-            {entity:'Hunza Steel',role:'Steel/DRI Importer',location:'Lahore',ntn:'8295548-5',contact:'03015678901',email:'hunza@steel.pk'},
-            {entity:'Kamran Steel',role:'Steel Importer',location:'Lahore',ntn:'0786550-3',contact:'03001234567',email:'kamran@steel.pk'},
-            {entity:'HNB Sons',role:'Metal Scrap Importer',location:'Gujranwala',ntn:'7130760-6',contact:'03213000004',email:'hnbsonsimportexport@gmail.com'},
-            {entity:'MA Brothers Metal',role:'Metal/Motor Importer',location:'Gujranwala',ntn:'4427370',contact:'03215678901',email:'mabrothers@metal.pk'},
-            {entity:'Thermosole Industries',role:'Auto Parts Importer',location:'Lahore',ntn:'',contact:'03001111111',email:'thermosole@auto.pk'},
-            {entity:'Vital Collections',role:'Glass/Perfume Importer',location:'Karachi',ntn:'4834432',contact:'03219999999',email:'vital@collections.pk'},
-            {entity:'Innovative Biscuits',role:'Food/FMCG Manufacturer',location:'Lahore',ntn:'',contact:'03005555555',email:'innovative@biscuits.pk'},
-            {entity:'Sadiq Sons',role:'Sister Concern â FMCG Export',location:'Karachi',ntn:'',contact:'03007777777',email:'sadiq@sons.pk'},
-            {entity:'INTERACT Leather Chemicals',role:'Sister Concern â Leather Chemicals',location:'Karachi',ntn:'',contact:'',email:'leather.chemicals@interact.pk'},
-            {entity:'INTERACT Leather Products',role:'Sister Concern â Leather Goods Export',location:'Sialkot/Karachi',ntn:'',contact:'',email:'leather.products@interact.pk'},
-            {entity:'INTERACT Home Textiles',role:'Sister Concern â Home Textiles Export',location:'Faisalabad/Karachi',ntn:'',contact:'',email:'hometextiles@interact.pk'},
-            {entity:'INTERACT Marketing Solutions',role:'Sister Concern â B2B Marketing',location:'Karachi',ntn:'',contact:'',email:'marketing@interact.pk'},
-            {entity:'Pemborong Maju A&Z',role:'Malaysia Buyer',location:'Batu Caves, Selangor',ntn:'',contact:'+60389876543',email:'pembmaju@gmail.my'},
-            {entity:'Muzaffar Hussain',role:'Founder â INTERACT Group',location:'Karachi',ntn:'',contact:'03008888888',email:'muzaffar@interact.pk'},
-            {entity:'Rana Zahid Farooq',role:'Partner â Trade Port / INTERACT',location:'Karachi',ntn:'',contact:'0300-8236346',email:'rana@tradeport.pk'},
-            {entity:'Frenz Maritime',role:'Port Agent',location:'Karachi',ntn:'G777521',contact:'+92-21-32514542',email:'frenz@maritime.pk'},
-            {entity:'MSC Agency Pakistan',role:'Shipping Line',location:'Karachi',ntn:'',contact:'+92-21-32461234',email:'msc@agency.pk'},
-            {entity:'OOCL Pakistan',role:'Shipping Line',location:'Karachi',ntn:'',contact:'+92-21-32458888',email:'oocl@pakistan.pk'},
-            {entity:'Toyota Tsusho',role:'Supplier - Auto Parts',location:'Singapore',ntn:'',contact:'+65-6234-1111',email:'toyota@tsusho.sg'},
-            {entity:'Eagle Trans Shipping',role:'Shipper - Scrap',location:'Hoboken, NJ USA',ntn:'',contact:'+1-201-555-0123',email:'eagle@transshipping.com'},
-            {entity:'Guangzhou Shunyang',role:'Supplier - Glass',location:'Guangzhou, China',ntn:'',contact:'+86-20-8765-4321',email:'shunyang@glass.cn'},
-            {entity:'Maersk Line Pakistan',role:'Shipping Line',location:'Karachi',ntn:'',contact:'+92-21-32467890',email:'maersk@pakistan.pk'},
-            {entity:'CMA CGM Pakistan',role:'Shipping Line',location:'Karachi',ntn:'',contact:'+92-21-32465555',email:'cmacgm@pakistan.pk'},
-            {entity:'Hapag-Lloyd Pakistan',role:'Shipping Line',location:'Karachi',ntn:'',contact:'+92-21-32462222',email:'hapag@pakistan.pk'},
-            {entity:'ONE (Ocean Network Express)',role:'Shipping Line',location:'Singapore',ntn:'',contact:'+65-6776-8888',email:'one@shipping.sg'},
-            {entity:'Golden Sea Shipping',role:'Shipping Line',location:'Singapore',ntn:'',contact:'+65-6776-3333',email:'goldensea@shipping.sg'},
-            {entity:'Portever Logistics',role:'Freight Forwarder',location:'Shanghai, China',ntn:'',contact:'+86-21-6888-8888',email:'portever@logistics.cn'},
-            {entity:'EZ Logistics',role:'Freight Forwarder',location:'Dubai, UAE',ntn:'',contact:'+971-4-333-5555',email:'ezlogistics@uae.ae'},
-            {entity:'Bank Al Habib',role:'Trade Finance Partner',location:'Karachi',ntn:'',contact:'0800-22222',email:'tradefinance@bah.com.pk'},
-            {entity:'Faysal Bank',role:'Trade Finance Partner',location:'Karachi',ntn:'',contact:'0800-33333',email:'lc@faysalbank.com.pk'},
-            {entity:'Karachi Port Authority',role:'Port Operator',location:'Karachi',ntn:'',contact:'021-3452-5000',email:'info@kpt.gov.pk'},
-            {entity:'Port Qasim Authority',role:'Port Operator',location:'Karachi',ntn:'',contact:'021-3450-4444',email:'info@pqa.gov.pk'},
-            {entity:'Customs House Karachi',role:'Customs Authority',location:'Karachi',ntn:'',contact:'021-3452-6666',email:'customs@karachi.gov.pk'},
-            {entity:'Securities and Exchange Commission',role:'Regulatory',location:'Karachi',ntn:'',contact:'021-32461234',email:'info@secp.gov.pk'},
-            {entity:'Ministry of Commerce',role:'Government',location:'Islamabad',ntn:'',contact:'051-9201234',email:'info@commerce.gov.pk'},
-            {entity:'Myanmar Export Consultant',role:'Trade Advisor',location:'Bangkok, Thailand',ntn:'',contact:'+66-2-222-2222',email:'advisor@myanmar.th'},
-            {entity:'Malaysia Trade Board',role:'Market Intelligence',location:'Kuala Lumpur',ntn:'',contact:'+60-3-2719-3000',email:'trade@miti.gov.my'},
-            {entity:'Singapore Shipping Corp',role:'Freight Services',location:'Singapore',ntn:'',contact:'+65-6376-1234',email:'shipping@singcorp.sg'},
-            {entity:'Hong Kong Trade Center',role:'Trade Services',location:'Hong Kong',ntn:'',contact:'+852-2847-7777',email:'services@hktc.hk'},
-            {entity:'London Metal Exchange',role:'Commodity Reference',location:'London, UK',ntn:'',contact:'+44-20-7264-5555',email:'info@lme.co.uk'},
-            {entity:'Dubai Customs',role:'Customs Authority',location:'Dubai, UAE',ntn:'',contact:'+971-4-308-6666',email:'customs@dubaicustoms.ae'},
-            {entity:'Port Klang Authority',role:'Port Operator',location:'Port Klang, Malaysia',ntn:'',contact:'+60-3-3168-1111',email:'info@pkaa.gov.my'}
-        ];
+<section class="section highlight">
+  <div class="container split">
+    <div class="card">
+      <div class="kicker">Industries</div>
+      <h2>Clear verticals instead of mixed business lines</h2>
+      <p>The public site is segmented into sector-specific pages so buyers can reach the right commercial path faster.</p>
+      <div class="tag-row">
+        <span class="tag">FMCG &amp; Packaged Goods</span>
+        <span class="tag">Leather Chemicals</span>
+        <span class="tag">Leather Products</span>
+        <span class="tag">Home Textiles</span>
+        <span class="tag">Trade Support Services</span>
+      </div>
+      <a class="card-link" href="industries.html">Open industry pages</a>
+    </div>
+    <div class="card">
+      <div class="kicker">Product categories</div>
+      <h2>Category-led sourcing instead of empty product tables</h2>
+      <p>Each category page is framed as a B2B sourcing catalogue with buyer types, product-family examples, support model, and RFQ entry points.</p>
+      <div class="tag-row">
+        <span class="tag">Spices &amp; Grocery</span>
+        <span class="tag">Beverages &amp; Staples</span>
+        <span class="tag">Leather Inputs</span>
+        <span class="tag">Custom Sourcing</span>
+      </div>
+      <a class="card-link" href="products.html">See product categories</a>
+    </div>
+  </div>
+</section>
 
-        // FUNDING DATA
-        const FUNDING = {'Party A':13794110,'Party B':4500000};
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="kicker">How we work</div>
+        <h2>Structured flow from requirement to follow-up</h2>
+      </div>
+      <p>The public site explains the process in commercial terms while the secure portal handles the transaction detail later.</p>
+    </div>
+    <div class="steps">
+      <article class="step"><h3>Requirement review</h3><p>Understand product, market, quantity, packaging, and the type of service needed.</p></article>
+      <article class="step"><h3>Source matching</h3><p>Identify the suitable category, sourcing path, or operational support model.</p></article>
+      <article class="step"><h3>Documentation &amp; coordination</h3><p>Support paperwork flow, stakeholder communication, and execution readiness.</p></article>
+      <article class="step"><h3>Shipment &amp; process support</h3><p>Coordinate practical follow-through across sourcing, logistics, customs, and buyer communication.</p></article>
+      <article class="step"><h3>Resolution &amp; continuity</h3><p>Handle updates, issue escalation, and ongoing trade coordination where required.</p></article>
+    </div>
+    <div class="quote-band">
+      <div class="kicker" style="color:rgba(255,255,255,.72);">Public-site rule</div>
+      <h2 style="margin-top:8px;">No container-level payments, B/L references, WhatsApp logs, or bank details on public pages</h2>
+      <p>Those items now belong in a private client portal with authenticated access and server-side protection.</p>
+      <a class="btn ghost" href="client-login.html">See client portal guidance</a>
+    </div>
+  </div>
+</section>
 
-        // PAYMENT TRANSACTIONS
-        const TBL_PAYMENTS = [
-            {date:'2026-01-15',amount:500000,party:'A',txn:'TT001'},{date:'2026-01-16',amount:250000,party:'B',txn:'TT002'},
-            {date:'2026-01-18',amount:750000,party:'A',txn:'TT003'},{date:'2026-01-20',amount:300000,party:'A',txn:'TT004'},
-            {date:'2026-01-22',amount:600000,party:'A',txn:'TT005'},{date:'2026-01-25',amount:400000,party:'B',txn:'TT006'},
-            {date:'2026-01-28',amount:850000,party:'A',txn:'TT007'},{date:'2026-02-01',amount:450000,party:'A',txn:'TT008'},
-            {date:'2026-02-03',amount:550000,party:'A',txn:'TT009'},{date:'2026-02-05',amount:350000,party:'B',txn:'TT010'},
-            {date:'2026-02-08',amount:700000,party:'A',txn:'TT011'},{date:'2026-02-10',amount:480000,party:'A',txn:'TT012'},
-            {date:'2026-02-12',amount:620000,party:'A',txn:'TT013'},{date:'2026-02-15',amount:300000,party:'A',txn:'TT014'},
-            {date:'2026-02-18',amount:520000,party:'B',txn:'TT015'},{date:'2026-02-20',amount:680000,party:'A',txn:'TT016'},
-            {date:'2026-02-22',amount:450000,party:'A',txn:'TT017'},{date:'2026-02-25',amount:560000,party:'A',txn:'TT018'},
-            {date:'2026-02-27',amount:380000,party:'A',txn:'TT019'},{date:'2026-03-01',amount:720000,party:'A',txn:'TT020'},
-            {date:'2026-03-03',amount:490000,party:'B',txn:'TT021'},{date:'2026-03-05',amount:640000,party:'A',txn:'TT022'},
-            {date:'2026-03-07',amount:410000,party:'A',txn:'TT023'},{date:'2026-03-09',amount:550000,party:'A',txn:'TT024'},
-            {date:'2026-03-11',amount:380000,party:'A',txn:'TT025'},{date:'2026-03-13',amount:610000,party:'A',txn:'TT026'},
-            {date:'2026-01-17',amount:320000,party:'A',txn:'TT027'},{date:'2026-01-19',amount:440000,party:'B',txn:'TT028'},
-            {date:'2026-01-21',amount:580000,party:'A',txn:'TT029'},{date:'2026-01-23',amount:360000,party:'A',txn:'TT030'},
-            {date:'2026-01-26',amount:700000,party:'A',txn:'TT031'},{date:'2026-01-29',amount:490000,party:'B',txn:'TT032'},
-            {date:'2026-02-02',amount:620000,party:'A',txn:'TT033'},{date:'2026-02-04',amount:370000,party:'A',txn:'TT034'},
-            {date:'2026-02-07',amount:520000,party:'A',txn:'TT035'},{date:'2026-02-09',amount:640000,party:'A',txn:'TT036'},
-            {date:'2026-02-11',amount:450000,party:'B',txn:'TT037'},{date:'2026-02-14',amount:580000,party:'A',txn:'TT038'},
-            {date:'2026-02-17',amount:340000,party:'A',txn:'TT039'},{date:'2026-02-19',amount:720000,party:'A',txn:'TT040'},
-            {date:'2026-02-21',amount:500000,party:'A',txn:'TT041'},{date:'2026-02-24',amount:380000,party:'B',txn:'TT042'},
-            {date:'2026-02-26',amount:610000,party:'A',txn:'TT043'},{date:'2026-02-28',amount:420000,party:'A',txn:'TT044'},
-            {date:'2026-03-02',amount:560000,party:'A',txn:'TT045'},{date:'2026-03-04',amount:350000,party:'A',txn:'TT046'},
-            {date:'2026-03-06',amount:680000,party:'B',txn:'TT047'},{date:'2026-03-08',amount:490000,party:'A',txn:'TT048'},
-            {date:'2026-03-10',amount:520000,party:'A',txn:'TT049'},{date:'2026-03-12',amount:630000,party:'A',txn:'TT050'}
-        ];
+<section class="section band">
+  <div class="container split">
+    <div>
+      <div class="kicker">Trade corridors</div>
+      <h2>Route-aware commercial support</h2>
+      <p class="section-copy">Corridor pages present route capability without turning the public site into a shipment tracker.</p>
+      <div class="grid" style="margin-top:18px;">
+        <article class="card"><h3>Pakistan → Malaysia</h3><p>Packaged goods, buyer coordination, documentation flow, and execution support.</p></article>
+        <article class="card"><h3>Pakistan → USA / Europe</h3><p>Presentation-sensitive categories such as textiles, leather goods, and selected consumer products.</p></article>
+        <article class="card"><h3>Asia / GCC / Africa → Pakistan</h3><p>Import-side sourcing, documentation, customs coordination, and inbound support.</p></article>
+      </div>
+    </div>
+    <div class="card">
+      <div class="kicker">Ready for action</div>
+      <h3>Tell us what you need</h3>
+      <p>Whether the requirement starts with a product, a trade route, or a service need, the site now routes visitors into a structured RFQ flow.</p>
+      <ul>
+        <li>Product category or service needed</li>
+        <li>Origin and destination market</li>
+        <li>Quantity, packaging, and timeline</li>
+        <li>Compliance or documentation notes</li>
+      </ul>
+      <a class="btn primary" style="margin-top:18px;" href="contact.html#rfq">Start an RFQ</a>
+    </div>
+  </div>
+</section>
 
-        // TAB SWITCHING
-        document.querySelectorAll('.nav-tab').forEach(tab => {
-            tab.addEventListener('click', function(e) {
-                const tabName = this.getAttribute('data-tab');
-                switchTab(tabName, e);
-            });
-        });
-
-        function switchTab(tabName, e) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
-            document.getElementById(tabName).classList.add('active');
-            if (e && e.target) e.target.classList.add('active');
-            else document.querySelector(`.nav-tab[data-tab="${tabName}"]`)?.classList.add('active');
-            if (tabName === 'overview') setTimeout(() => initSegmentsChart(), 100);
-            else if (tabName === 'fmcg') setTimeout(() => {initFundingChart();initPaymentsChart();}, 100);
-            else if (tabName === 'operations') setTimeout(() => initDutiesChart(), 100);
-            else if (tabName === 'products') setTimeout(() => renderProducts(), 100);
-            else if (tabName === 'contacts') setTimeout(() => renderContacts(), 100);
-        }
-
-        function goTab(tabName) {
-            switchTab(tabName, null);
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-
-        // PRODUCTS TABLE
-        function renderProducts(filter = '', category = '') {
-            const tbody = document.getElementById('productTable');
-            const noResults = document.getElementById('noProducts');
-            let filtered = PRODUCTS;
-            if (category) filtered = filtered.filter(p => p.category === category);
-            if (filter) {
-                const lowerFilter = filter.toLowerCase();
-                filtered = filtered.filter(p => p.name.toLowerCase().includes(lowerFilter));
-            }
-            tbody.innerHTML = '';
-            if (filtered.length === 0) {
-                noResults.style.display = 'block';
-            } else {
-                noResults.style.display = 'none';
-                filtered.forEach(product => {
-                    const row = tbody.insertRow();
-                    row.innerHTML = `<td>${product.name}</td><td>${product.category}</td><td>${product.hs}</td><td>${product.sizes}</td><td>$${product.price}</td>`;
-                });
-            }
-        }
-
-        document.getElementById('productSearch').addEventListener('input', function() {
-            renderProducts(this.value, document.getElementById('categoryFilter').value);
-        });
-        document.getElementById('categoryFilter').addEventListener('change', function() {
-            renderProducts(document.getElementById('productSearch').value, this.value);
-        });
-
-        // CONTACTS TABLE
-        function renderContacts(filter = '') {
-            const tbody = document.getElementById('contactTable');
-            const noResults = document.getElementById('noContacts');
-            let filtered = CONTACTS;
-            if (filter) {
-                const lowerFilter = filter.toLowerCase();
-                filtered = filtered.filter(c => c.entity.toLowerCase().includes(lowerFilter) || c.role.toLowerCase().includes(lowerFilter) || c.email.toLowerCase().includes(lowerFilter));
-            }
-            tbody.innerHTML = '';
-            if (filtered.length === 0) {
-                noResults.style.display = 'block';
-            } else {
-                noResults.style.display = 'none';
-                filtered.forEach(contact => {
-                    const row = tbody.insertRow();
-                    row.innerHTML = `<td>${contact.entity}</td><td>${contact.role}</td><td>${contact.location}</td><td>${contact.ntn || 'â'}</td><td>${contact.contact}</td><td>${contact.email}</td>`;
-                });
-            }
-        }
-
-        document.getElementById('contactSearch').addEventListener('input', function() {
-            renderContacts(this.value);
-        });
-
-        // CHARTS
-        function initSegmentsChart() {
-            const ctx = document.getElementById('segmentsChart')?.getContext('2d');
-            if (!ctx) return;
-            new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Trade Port â Customs & C&F', 'Sadiq Sons â FMCG Export', 'Steel Scrap Import', 'Auto Parts Import', 'Glass/Perfume Import', 'DRI Import', 'Food Import', 'Leather Chemicals', 'Leather Products', 'Home Textiles', 'Marketing Solutions'],
-                    datasets: [{
-                        data: [25, 18, 15, 8, 6, 6, 4, 5, 5, 5, 3],
-                        backgroundColor: ['rgba(0, 212, 255, 0.8)','rgba(0, 153, 255, 0.8)','rgba(100, 200, 255, 0.8)','rgba(50, 170, 255, 0.8)','rgba(0, 212, 200, 0.8)','rgba(100, 150, 255, 0.8)','rgba(0, 180, 255, 0.8)','rgba(232, 168, 56, 0.8)','rgba(210, 140, 40, 0.8)','rgba(56, 232, 168, 0.8)','rgba(168, 56, 232, 0.8)'],
-                        borderColor: 'rgba(26, 31, 46, 0.8)',
-                        borderWidth: 2
-                    }]
-                },
-                options: {responsive: true, maintainAspectRatio: true, plugins: {legend: {position: 'right', labels: {color: '#c0c8d6', padding: 15, font: {size: 12}}}}}
-            });
-        }
-
-        function initFundingChart() {
-            const ctx = document.getElementById('fundingChart')?.getContext('2d');
-            if (!ctx) return;
-            const data = Object.entries(FUNDING);
-            new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: data.map(d => d[0]),
-                    datasets: [{
-                        data: data.map(d => d[1]),
-                        backgroundColor: ['rgba(0, 212, 255, 0.8)','rgba(100, 150, 255, 0.8)'],
-                        borderColor: 'rgba(26, 31, 46, 0.8)',
-                        borderWidth: 2
-                    }]
-                },
-                options: {responsive: true, plugins: {legend: {labels: {color: '#c0c8d6', padding: 15, font: {size: 12}}}}}
-            });
-        }
-
-        function initPaymentsChart() {
-            const ctx = document.getElementById('paymentsChart')?.getContext('2d');
-            if (!ctx) return;
-            const sortedPayments = [...TBL_PAYMENTS].sort((a, b) => new Date(a.date) - new Date(b.date));
-            const dates = sortedPayments.map(p => p.date.substring(5));
-            const amounts = sortedPayments.map(p => p.amount);
-            const colors = sortedPayments.map(p => p.party === 'A' ? 'rgba(0, 212, 255, 0.8)' : 'rgba(100, 150, 255, 0.8)');
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: dates,
-                    datasets: [{label: 'Payment Amount (PKR)',data: amounts,backgroundColor: colors,borderColor: 'rgba(0, 212, 255, 0.3)',borderWidth: 1}]
-                },
-                options: {responsive: true, plugins: {legend: {labels: {color: '#c0c8d6', font: {size: 12}}}}, scales: {y: {ticks: {color: '#8892b0'}, grid: {color: 'rgba(0, 212, 255, 0.1)'}}, x: {ticks: {color: '#8892b0', maxRotation: 45, minRotation: 0}, grid: {display: false}}}}
-            });
-        }
-
-        function initDutiesChart() {
-            const ctx = document.getElementById('dutiesChart')?.getContext('2d');
-            if (!ctx) return;
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Hunza Steel', 'Vital Collections', 'MA Brothers Metal', 'Spectrum Metals'],
-                    datasets: [{
-                        label: 'Customs Duties (PKR)',
-                        data: [14016188, 4642656, 2329007, 88650],
-                        backgroundColor: ['rgba(0, 212, 255, 0.8)','rgba(0, 153, 255, 0.8)','rgba(100, 200, 255, 0.8)','rgba(50, 170, 255, 0.8)'],
-                        borderColor: 'rgba(0, 212, 255, 0.3)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {indexAxis: 'y', responsive: true, plugins: {legend: {labels: {color: '#c0c8d6', font: {size: 12}}}}, scales: {x: {ticks: {color: '#8892b0'}, grid: {color: 'rgba(0, 212, 255, 0.1)'}}, y: {ticks: {color: '#8892b0'}, grid: {display: false}}}}
-            });
-        }
-
-        renderProducts();
-        renderContacts();
-        initSegmentsChart();
-    </script>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:10px;">
+          <span class="brand-mark">I</span>
+          <span class="brand-copy"><strong>INTERACT</strong><span>Pakistan buying house and trade facilitation partner</span></span>
+        </div>
+        <p>INTERACT supports sourcing, customs-clearing support, export facilitation, and route-aware trade coordination for business inquiries.</p>
+        <p class="notice">Address retained from the current live site: Suite #44, 9th Floor, Arkay Square, Karachi • NTN: 2849737-6</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <ul><li><a href="index.html">Home</a></li>
+<li><a href="services.html">Services</a></li>
+<li><a href="industries.html">Industries</a></li>
+<li><a href="products.html">Products</a></li>
+<li><a href="corridors.html">Trade Corridors</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li></ul>
+      </div>
+      <div>
+        <h4>Business Inquiries</h4>
+        <ul>
+          <li><a href="mailto:interact@paksaf.com">interact@paksaf.com</a></li>
+          <li><a href="https://wa.me/923002020179" target="_blank" rel="noopener">WhatsApp: +92 300 2020179</a></li>
+          <li><a href="client-login.html">Client Login</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site Rollout</h4>
+        <ul>
+          <li>Current public presentation on GitHub Pages.</li>
+          <li>Planned production domain: <a href="https://www.interactpak.com" target="_blank" rel="noopener">www.interactpak.com</a></li>
+          <li>Keep shipment, payment, and document detail behind authenticated access.</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/main.js"></script>
 </body>
 </html>
