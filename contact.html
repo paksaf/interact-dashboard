@@ -1,243 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feedback & Inquiries - Sadiq Sons & A&Z Trading</title>
-<style>
-:root {
-  --bg: #0f1724; --card: #1a2332; --hdr: #0a1628;
-  --t1: #e8ecf1; --t2: #8899aa; --tw: #fff;
-  --a1: #00d4aa; --a2: #ff6b6b; --a3: #4ecdc4; --a4: #ffd93d;
-  --a5: #6c5ce7; --a6: #a29bfe; --a7: #fd79a8; --a8: #00b894;
-  --bdr: rgba(255,255,255,0.06); --r: 12px; --g: 14px;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',-apple-system,sans-serif;background:var(--bg);color:var(--t1);line-height:1.5;min-height:100vh}
-.wrap{max-width:1000px;margin:0 auto;padding:var(--g)}
-
-.hdr{background:linear-gradient(135deg,#0a1628,#1a2f4e,#0d2137);padding:24px 28px;border-radius:var(--r);margin-bottom:var(--g);border:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
-.hdr h1{font-size:20px;font-weight:700;background:linear-gradient(90deg,var(--a1),var(--a3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hdr .sub{font-size:12px;color:var(--t2);margin-top:3px}
-.hdr a{color:var(--a1);text-decoration:none;font-size:13px;border:1px solid var(--a1);padding:6px 14px;border-radius:6px;transition:all .2s}
-.hdr a:hover{background:var(--a1);color:#0f1724}
-
-/* Contact channels */
-.channels{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--g);margin-bottom:24px}
-.ch-card{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:28px 24px;text-align:center;position:relative;overflow:hidden;transition:all .2s}
-.ch-card:hover{border-color:rgba(0,212,170,.3);transform:translateY(-2px)}
-.ch-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-.ch-card.wa::before{background:linear-gradient(90deg,#25d366,#128c7e)}
-.ch-card.em::before{background:linear-gradient(90deg,var(--a5),var(--a6))}
-.ch-card.ph::before{background:linear-gradient(90deg,var(--a4),var(--a9))}
-.ch-card .ch-icon{font-size:42px;margin-bottom:12px}
-.ch-card h3{font-size:16px;color:var(--tw);margin-bottom:4px}
-.ch-card p{color:var(--t2);font-size:13px;margin-bottom:16px;line-height:1.5}
-.ch-card .ch-detail{color:var(--t1);font-size:14px;font-weight:500;margin-bottom:16px;word-break:break-all}
-.ch-btn{display:inline-block;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;transition:all .2s;border:none;cursor:pointer}
-.ch-btn:hover{opacity:.9;transform:scale(1.02)}
-.btn-wa{background:#25d366;color:#fff}
-.btn-em{background:linear-gradient(135deg,var(--a5),var(--a6));color:#fff}
-.btn-ph{background:linear-gradient(135deg,var(--a4),#e8a317);color:#0f1724}
-
-/* Inquiry form */
-.form-section{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:28px;margin-bottom:24px}
-.form-section h2{font-size:18px;color:var(--tw);margin-bottom:6px}
-.form-section .form-sub{color:var(--t2);font-size:13px;margin-bottom:20px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-.form-row.full{grid-template-columns:1fr}
-.form-group{display:flex;flex-direction:column;gap:5px}
-.form-group label{font-size:11px;color:var(--t2);text-transform:uppercase;letter-spacing:.5px}
-.form-group input,.form-group select,.form-group textarea{padding:10px 14px;border:1px solid rgba(255,255,255,.12);border-radius:8px;background:rgba(255,255,255,.06);color:var(--tw);font-size:13px;font-family:inherit;outline:none;transition:border .2s}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--a1)}
-.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(136,153,170,.6)}
-.form-group select option{background:var(--card);color:var(--t1)}
-.form-group textarea{min-height:120px;resize:vertical}
-.submit-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:6px}
-.submit-btn{padding:12px 28px;border:none;border-radius:8px;background:linear-gradient(135deg,var(--a1),var(--a3));color:#0f1724;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
-.submit-btn:hover{opacity:.9;transform:scale(1.02)}
-.submit-note{color:var(--t2);font-size:11px}
-
-/* Success message */
-.success-msg{display:none;background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.3);border-radius:8px;padding:16px 20px;margin-top:14px;color:var(--a1);font-size:13px}
-
-/* Info bar */
-.info-bar{background:linear-gradient(135deg,rgba(0,212,170,.06),rgba(78,205,196,.04));border:1px solid rgba(0,212,170,.15);border-radius:var(--r);padding:18px 22px;margin-bottom:24px}
-.info-bar p{color:var(--t2);font-size:12px;line-height:1.7}
-.info-bar strong{color:var(--a1)}
-
-.footer{text-align:center;color:var(--t2);font-size:11px;padding:24px 0 16px;border-top:1px solid var(--bdr);margin-top:20px}
-
-@media(max-width:600px){
-  .form-row{grid-template-columns:1fr}
-  .channels{grid-template-columns:1fr}
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>INTERACT — Contact & RFQ</title>
+  <meta name="description" content="INTERACT public website for buying house, customs clearing, export facilitation, trade support, and RFQ-based business inquiries." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-<div class="wrap">
-
-  <div class="hdr">
-    <div>
-      <h1>&#128172; Feedback & Inquiries</h1>
-      <div class="sub">Sadiq Sons & A&Z Trading &mdash; Pakistan &rarr; Malaysia FMCG Export</div>
-    </div>
-    <a href="dashboard.html">&larr; Back to Dashboard</a>
-  </div>
-
-  <div class="info-bar">
-    <p>We value transparency and open communication. Whether you have questions about shipments, pricing, documentation, or want to explore new business opportunities &mdash; reach out through any channel below. <strong>Response within 24 hours guaranteed.</strong></p>
-  </div>
-
-  <!-- CONTACT CHANNELS -->
-  <div class="channels">
-
-    <div class="ch-card wa">
-      <div class="ch-icon">&#128172;</div>
-      <h3>WhatsApp</h3>
-      <p>Quick inquiries, order updates, and real-time support</p>
-      <div class="ch-detail">+92 300 2020 179</div>
-      <a class="ch-btn btn-wa" href="https://wa.me/923002020179?text=Hi%20INTERACT%20Team%2C%20I%20have%20an%20inquiry%20regarding%20the%20Pakistan-Malaysia%20FMCG%20export%20venture." target="_blank">&#128172; Chat on WhatsApp</a>
-    </div>
-
-    <div class="ch-card em">
-      <div class="ch-icon">&#9993;&#65039;</div>
-      <h3>Email</h3>
-      <p>Detailed inquiries, documentation requests, and formal correspondence</p>
-      <div class="ch-detail">interact@paksaf.com</div>
-      <a class="ch-btn btn-em" href="mailto:interact@paksaf.com?subject=Inquiry%20-%20Pakistan%20Malaysia%20FMCG%20Export&body=Dear%20INTERACT%20Team%2C%0A%0AI%20would%20like%20to%20inquire%20about%3A%0A%0A" target="_blank">&#9993;&#65039; Send Email</a>
-    </div>
-
-    <div class="ch-card ph">
-      <div class="ch-icon">&#128222;</div>
-      <h3>Phone Call</h3>
-      <p>Urgent matters, real-time discussions, and partnership talks</p>
-      <div class="ch-detail">+92 300 2020 179</div>
-      <a class="ch-btn btn-ph" href="tel:+923002020179">&#128222; Call Now</a>
-    </div>
-
-  </div>
-
-  <!-- INQUIRY FORM -->
-  <div class="form-section">
-    <h2>&#128221; Send an Inquiry</h2>
-    <p class="form-sub">Fill out the form below and we'll get back to you via your preferred channel.</p>
-
-    <form id="inquiryForm" onsubmit="return submitForm(event)">
-      <div class="form-row">
-        <div class="form-group">
-          <label>Your Name *</label>
-          <input type="text" id="fName" placeholder="Full name" required>
-        </div>
-        <div class="form-group">
-          <label>Company / Organization</label>
-          <input type="text" id="fCompany" placeholder="Company name (optional)">
-        </div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">I</span>
+        <span class="brand-copy"><strong>INTERACT</strong><span>Buying House • Customs Clearing • Trade Support</span></span>
+      </a>
+      <button class="nav-toggle" data-nav-toggle aria-label="Open navigation">Menu</button>
+      <nav class="site-nav" data-nav>
+        <a href="index.html" class="">Home</a>
+<a href="services.html" class="">Services</a>
+<a href="industries.html" class="">Industries</a>
+<a href="products.html" class="">Products</a>
+<a href="corridors.html" class="">Trade Corridors</a>
+<a href="about.html" class="">About</a>
+<a href="contact.html" class="active">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn secondary" href="client-login.html">Client Login</a>
+        <a class="btn primary" href="contact.html#rfq">Request a Quote</a>
       </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label>Email *</label>
-          <input type="email" id="fEmail" placeholder="your@email.com" required>
-        </div>
-        <div class="form-group">
-          <label>Phone / WhatsApp</label>
-          <input type="tel" id="fPhone" placeholder="+60 xxx xxx xxxx">
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label>Inquiry Type</label>
-          <select id="fType">
-            <option value="general">General Inquiry</option>
-            <option value="pricing">Pricing & Quotation</option>
-            <option value="shipment">Shipment Status</option>
-            <option value="documentation">Documentation Request</option>
-            <option value="partnership">Partnership / New Business</option>
-            <option value="complaint">Complaint / Issue</option>
-            <option value="feedback">Feedback & Suggestion</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Preferred Response Channel</label>
-          <select id="fChannel">
-            <option value="whatsapp">WhatsApp</option>
-            <option value="email">Email</option>
-            <option value="phone">Phone Call</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row full">
-        <div class="form-group">
-          <label>Your Message *</label>
-          <textarea id="fMessage" placeholder="Please describe your inquiry in detail..." required></textarea>
-        </div>
-      </div>
-
-      <div class="submit-row">
-        <button type="submit" class="submit-btn">&#128640; Send via WhatsApp</button>
-        <span class="submit-note">Your inquiry will be sent directly to our WhatsApp for fastest response.</span>
-      </div>
-    </form>
-
-    <div class="success-msg" id="successMsg">
-      &#9989; Your inquiry has been prepared! A WhatsApp message window should open shortly. If it doesn't, please message us directly at <strong>+92 300 2020 179</strong>.
     </div>
-  </div>
+  </header>
+  <section class="page-hero"><div class="container"><div class="page-hero-box"><span class="eyebrow" style="background:rgba(255,255,255,.16);color:white;">Contact &amp; RFQ</span><h1>Tell Us What You Need</h1><p>Whether you need sourcing support, customs coordination, export facilitation, or route-specific trade support, use the RFQ form below and route the requirement to the relevant team.</p><div class="hero-actions"><a class="btn primary" href="#rfq">Open RFQ Form</a><a class="btn secondary" href="https://wa.me/923002020179" target="_blank" rel="noopener">WhatsApp Us</a></div></div></div></section>
+  <main>
+    
+<section class="section tight"><div class="container split"><div class="card"><div class="kicker">How to use this page</div><h2>RFQ-first contact flow</h2><p>Instead of a generic contact form, the public site uses a business inquiry structure that captures category, route, quantity, packaging, and compliance expectations.</p><div class="tag-row"><span class="tag">Buying house</span><span class="tag">Customs clearance</span><span class="tag">Export support</span><span class="tag">Trade corridor inquiry</span></div><p class="notice">Verified from the current live homepage: Suite #44, 9th Floor, Arkay Square, Karachi • NTN: 2849737-6</p></div><div class="card"><div class="kicker">Direct contact channels</div><h3>Use email or WhatsApp while the public site is still on GitHub Pages</h3><p>RFQs from the current public site can go directly to your live business channels now and later transition to www.interactpak.com.</p><ul><li><a href="mailto:interact@paksaf.com">interact@paksaf.com</a></li><li><a href="https://wa.me/923002020179" target="_blank" rel="noopener">WhatsApp: +92 300 2020179</a></li><li>Production rollout planned for <a href="https://www.interactpak.com" target="_blank" rel="noopener">www.interactpak.com</a></li></ul></div></div></section>
+<section class="section band" id="rfq"><div class="container"><div class="section-header"><div><div class="kicker">Request for quotation</div><h2>Structured business inquiry form</h2></div><p>Collect the information a buying house, customs team, or export coordinator actually needs on first contact.</p></div><div class="card"><form class="form-grid" id="rfq-form">
+<div><label for="name">Name</label><input id="name" name="name" type="text" placeholder="Your name" /></div>
+<div><label for="company">Company</label><input id="company" name="company" type="text" placeholder="Company name" /></div>
+<div><label for="country">Country</label><input id="country" name="country" type="text" placeholder="Destination or origin country" /></div>
+<div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="Email address" /></div>
+<div><label for="whatsapp">WhatsApp</label><input id="whatsapp" name="whatsapp" type="text" placeholder="WhatsApp number" /></div>
+<div><label for="inquiry-type">Inquiry Type</label><select id="inquiry-type" name="inquiry-type"><option>Buying House / Procurement</option><option>Customs Clearing / C&amp;F</option><option>Export Facilitation</option><option>Freight / Shipment Coordination</option><option>Trade Corridor Inquiry</option><option>Other</option></select></div>
+<div><label for="category">Product / Service Needed</label><input id="category" name="category" type="text" placeholder="Category or service" /></div>
+<div><label for="qty">Estimated Quantity</label><input id="qty" name="qty" type="text" placeholder="MOQ, cartons, kg, units, etc." /></div>
+<div><label for="packaging">Packaging Requirement</label><input id="packaging" name="packaging" type="text" placeholder="Retail, bulk, private label, custom" /></div>
+<div><label for="timeline">Target Timeline</label><input id="timeline" name="timeline" type="text" placeholder="Delivery or shipment target" /></div>
+<div class="full"><label for="compliance">Compliance / Certificate Requirement</label><input id="compliance" name="compliance" type="text" placeholder="FTA, HS code, origin, lab report, other notes" /></div>
+<div class="full"><label for="message">Message</label><textarea id="message" name="message" placeholder="Describe your requirement, destination market, and any special notes"></textarea></div>
+<div class="full form-actions-stack"><button type="button" class="btn primary" data-send="email">Send RFQ by Email</button><button type="button" class="btn secondary" data-send="whatsapp">Send RFQ on WhatsApp</button></div>
+</form><p class="note">This form prepares a prefilled email or WhatsApp message to interact@paksaf.com or +92 300 2020179.</p></div></div></section>
+<section class="section"><div class="container split"><div class="card"><div class="kicker">What happens next</div><h3>Suggested routing logic</h3><ul><li>FMCG and packaged goods → category lead</li><li>Leather chemicals → technical commercial desk</li><li>Customs / C&amp;F → clearance team</li><li>Trade corridor inquiries → route coordinator</li><li>Mixed requirements → business development triage</li></ul></div><div class="quote-band"><h2 style="margin-top:0;">Need a route, product, or service discussion?</h2><p>The same RFQ flow can route by email or WhatsApp while the current public version remains on GitHub Pages.</p><div class="hero-actions" style="margin-bottom:0;"><a class="btn ghost" href="services.html">Review services first</a><a class="btn ghost" href="mailto:interact@paksaf.com">Email INTERACT</a></div></div></div></section>
 
-  <div class="footer">
-    INTERACT &mdash; Sadiq Sons & A&Z Trading Venture &copy; 2025-2026 &mdash; Pakistan &rarr; Malaysia FMCG Exports<br>
-    WhatsApp & Phone: +92 300 2020 179 &nbsp;|&nbsp; Email: interact@paksaf.com
-  </div>
-
-</div>
-
-<script>
-function submitForm(e) {
-  e.preventDefault();
-  const name = document.getElementById('fName').value.trim();
-  const company = document.getElementById('fCompany').value.trim();
-  const email = document.getElementById('fEmail').value.trim();
-  const phone = document.getElementById('fPhone').value.trim();
-  const type = document.getElementById('fType').selectedOptions[0].text;
-  const channel = document.getElementById('fChannel').selectedOptions[0].text;
-  const message = document.getElementById('fMessage').value.trim();
-
-  // Build WhatsApp message
-  let waMsg = `*New Inquiry - INTERACT Portal*\n\n`;
-  waMsg += `*Name:* ${name}\n`;
-  if (company) waMsg += `*Company:* ${company}\n`;
-  waMsg += `*Email:* ${email}\n`;
-  if (phone) waMsg += `*Phone:* ${phone}\n`;
-  waMsg += `*Type:* ${type}\n`;
-  waMsg += `*Preferred Response:* ${channel}\n\n`;
-  waMsg += `*Message:*\n${message}`;
-
-  const encoded = encodeURIComponent(waMsg);
-  const waUrl = `https://wa.me/923002020179?text=${encoded}`;
-
-  // Open WhatsApp
-  window.open(waUrl, '_blank');
-
-  // Show success
-  document.getElementById('successMsg').style.display = 'block';
-
-  // Also prepare mailto fallback
-  const subject = encodeURIComponent(`[${type}] Inquiry from ${name}`);
-  const body = encodeURIComponent(`Name: ${name}\nCompany: ${company || 'N/A'}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\nType: ${type}\nPreferred Response: ${channel}\n\nMessage:\n${message}`);
-
-  // Store mailto link in case WhatsApp doesn't open
-  document.getElementById('successMsg').innerHTML = `
-    &#9989; Your inquiry has been prepared! A WhatsApp window should open shortly.<br><br>
-    <strong>Didn't open?</strong> Try these alternatives:<br>
-    <a href="${waUrl}" target="_blank" style="color:var(--a1)">&#128172; Open WhatsApp manually</a> &nbsp;|&nbsp;
-    <a href="mailto:interact@paksaf.com?subject=${subject}&body=${body}" style="color:var(--a5)">&#9993;&#65039; Send via Email instead</a>
-  `;
-
-  return false;
-}
-</script>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:10px;">
+          <span class="brand-mark">I</span>
+          <span class="brand-copy"><strong>INTERACT</strong><span>Pakistan buying house and trade facilitation partner</span></span>
+        </div>
+        <p>INTERACT supports sourcing, customs-clearing support, export facilitation, and route-aware trade coordination for business inquiries.</p>
+        <p class="notice">Address retained from the current live site: Suite #44, 9th Floor, Arkay Square, Karachi • NTN: 2849737-6</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <ul><li><a href="index.html">Home</a></li>
+<li><a href="services.html">Services</a></li>
+<li><a href="industries.html">Industries</a></li>
+<li><a href="products.html">Products</a></li>
+<li><a href="corridors.html">Trade Corridors</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li></ul>
+      </div>
+      <div>
+        <h4>Business Inquiries</h4>
+        <ul>
+          <li><a href="mailto:interact@paksaf.com">interact@paksaf.com</a></li>
+          <li><a href="https://wa.me/923002020179" target="_blank" rel="noopener">WhatsApp: +92 300 2020179</a></li>
+          <li><a href="client-login.html">Client Login</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site Rollout</h4>
+        <ul>
+          <li>Current public presentation on GitHub Pages.</li>
+          <li>Planned production domain: <a href="https://www.interactpak.com" target="_blank" rel="noopener">www.interactpak.com</a></li>
+          <li>Keep shipment, payment, and document detail behind authenticated access.</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/main.js"></script>
 </body>
 </html>
