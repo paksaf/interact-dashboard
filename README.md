@@ -1,39 +1,34 @@
-# INTERACT Group — International Buying House & Multi-Sector Trading
+# INTERACT Public Website Rebuild
 
-Interactive operations dashboard for INTERACT Group, a Pakistan-based international buying house and multi-sector trading company.
+This bundle is a static INTERACT public-site build based on the review of the current live homepage.
 
-## Sister Concerns
+## Included pages
+- index.html
+- services.html
+- industries.html
+- products.html
+- corridors.html
+- about.html
+- contact.html
+- client-login.html
+- privacy.html
+- terms.html
 
-| Company | Segment |
-|---------|---------|
-| **Trade Port** | Customs Clearing & C&F Agent |
-| **Sadiq Sons** | FMCG Export (Pakistan → Malaysia) |
-| **INTERACT Leather Chemicals** | Leather Processing Chemicals |
-| **INTERACT Leather Products** | Leather Goods Export |
-| **INTERACT Home Textiles** | Home Textiles Export |
-| **INTERACT Marketing Solutions** | B2B Marketing Services |
+## What changed
+- Removed public-facing shipment, payment, and communications exposure
+- Rebuilt around services, industries, product categories, trade corridors, and RFQ flow
+- Replaced empty product-table pattern with category-led sourcing cards
+- Added About / brand architecture guidance and client portal guidance
 
-## Dashboard Features
+## Before going live
+1. Connect the RFQ form to your CRM or inbox.
+2. Add real contact methods you want published publicly.
+3. Move all client records behind authenticated backend access.
+4. Replace privacy and terms draft sections with legal copy.
+5. Add sanitized case studies, licenses, and public trust assets.
 
-- **Overview** — KPI cards (clickable), business segments chart, live timeline from WhatsApp communications
-- **Services** — 8 service offerings + 6 sister concern cards + 11 trade corridors
-- **Products** — 60+ searchable products with HS codes across FMCG, leather, textiles, industrial
-- **FMCG Export** — Container tracking (C1/C2/C3), payment summary, communications log, funding charts
-- **Operations** — 15-row import operations table, customs duties chart
-- **Contacts** — 50+ searchable directory of clients, shipping lines, agents, banks, government bodies
 
-## Files
-
-- index.html — Main dashboard (v6.0)
-- bills/bills.html — Bills & payments tracker
-- contact.html — Contact directory page
-- Trade_Port_Operations_Dashboard.xlsx — 12-sheet Excel workbook (549 rows)
-- Discrepancy_Report.xlsx — Payment discrepancy analysis
-
-## Deployment
-
-This site is designed for GitHub Pages. Enable Pages from Settings → Pages → Source: main branch.
-
----
-
-*Dashboard v6.0 | Data as of 2026-03-14*
+Live inquiry channels configured in the build:
+- Email: interact@paksaf.com
+- WhatsApp: +92 300 2020179
+- Planned production domain: www.interactpak.com
