@@ -42,6 +42,10 @@ img { max-width: 100%; display: block; }
   background: rgba(247, 244, 238, 0.72);
   border-bottom: 1px solid rgba(16, 24, 40, 0.05);
   transition: box-shadow .3s ease, background .3s ease;
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  isolation: isolate;
 }
 .site-header.scrolled {
   background: rgba(247, 244, 238, 0.92);
@@ -95,6 +99,10 @@ img { max-width: 100%; display: block; }
   border-bottom: 1px solid rgba(16, 24, 40, 0.05);
   overflow-x: auto; -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  isolation: isolate;
 }
 .page-subnav::-webkit-scrollbar { display: none; }
 .page-subnav .container {
