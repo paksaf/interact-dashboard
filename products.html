@@ -39,6 +39,11 @@
     .suggest-card ul { margin:0; padding-left:16px; font-size:.86rem; color:var(--muted); }
     .suggest-card ul li+li { margin-top:4px; }
     .suggest-card .total { margin-top:12px; padding-top:10px; border-top:1px solid rgba(16,24,40,0.06); font-weight:700; color:var(--brand); font-size:.9rem; }
+    .data-tab-btn { padding:10px 18px; border-radius:999px; border:1px solid rgba(16,24,40,0.10); background:rgba(255,255,255,0.68); font-size:13px; font-weight:700; cursor:pointer; color:var(--muted); transition:.18s ease; }
+    .data-tab-btn:hover { background:rgba(255,255,255,0.92); color:var(--brand); }
+    .data-tab-btn.active { background:linear-gradient(135deg,#10243d,#204269); color:#fff; border-color:transparent; }
+    .data-tab-panel { display:none; }
+    .data-tab-panel.active { display:block; }
     @media (max-width:980px) { .container-viz, .suggest-grid { grid-template-columns:1fr; } }
   </style>
 </head>
@@ -281,7 +286,7 @@
                 <tr><td>Dhara Mirch</td><td>1 kg</td><td>700</td><td>20</td><td>30 kg</td><td></td></tr>
                 <tr><td>Haldi / Turmeric</td><td>1 kg</td><td>600</td><td>30</td><td>Incl.</td><td>Staple</td></tr>
                 <tr><td>Zeera / Cumin</td><td>1 kg</td><td>1,200</td><td>20</td><td>Incl.</td><td>Staple</td></tr>
-                <tr style="font-weight:700;background:rgba(190,154,95,0.06);"><td colspan="2">Basic Spices total C1</td><td></td><td></td><td>140 ctns</td><td>2,800 kg &bull; 840,000 PKR</td></tr>
+                <tr style="font-weight:700;background:rgba(190,154,95,0.06);"><td colspan="2">Basic Spices total C1</td><td></td><td></td><td>140 ctns</td><td>2,800 kg • 840,000 PKR</td></tr>
               </tbody>
             </table>
           </div>
@@ -309,13 +314,13 @@
 
         <!-- SONEX -->
         <div class="tab-panel" id="tab-sonex">
-          <div class="brand-row"><span class="brand-badge">SONEX</span><span style="font-size:13px;color:var(--muted);">Pressure Cookers &amp; Non-Stick Cookware &bull; Container 3 (Dedicated)</span></div>
+          <div class="brand-row"><span class="brand-badge">SONEX</span><span style="font-size:13px;color:var(--muted);">Pressure Cookers &amp; Non-Stick Cookware • Container 3 (Dedicated)</span></div>
           <div class="table-wrap">
             <table>
               <thead><tr><th>Product</th><th>Range</th><th>Units</th><th>Price/Unit (PKR)</th><th>Weight (KG)</th><th>Container</th></tr></thead>
               <tbody>
-                <tr><td>SONEX Cooker</td><td>3L &ndash; 11L</td><td>50</td><td>15,000</td><td>5,000</td><td>C3</td></tr>
-                <tr><td>SONEX Elegant Cooker</td><td>5L &ndash; 7L</td><td>40</td><td>15,000</td><td>3,500</td><td>C3</td></tr>
+                <tr><td>SONEX Cooker</td><td>3L – 11L</td><td>50</td><td>15,000</td><td>5,000</td><td>C3</td></tr>
+                <tr><td>SONEX Elegant Cooker</td><td>5L – 7L</td><td>40</td><td>15,000</td><td>3,500</td><td>C3</td></tr>
                 <tr style="font-weight:700;background:rgba(190,154,95,0.06);"><td colspan="2">SONEX total C3</td><td>90 units</td><td></td><td>8,500 kg</td><td>1,350,000 PKR</td></tr>
               </tbody>
             </table>
@@ -335,10 +340,10 @@
         <div class="container-viz">
 
           <div class="container-box">
-            <h4>Container 1 &mdash; FMCG Mixed</h4>
-            <p style="font-size:.85rem;color:var(--muted);margin:0 0 10px;">20ft FCL &bull; Karachi &rarr; Port Klang &bull; Actual load</p>
+            <h4>Container 1 — FMCG Mixed</h4>
+            <p style="font-size:.85rem;color:var(--muted);margin:0 0 10px;">20ft FCL • Karachi → Port Klang • Actual load</p>
             <div class="cap-bar"><div class="cap-fill" style="width:88%;"></div></div>
-            <p style="font-size:.8rem;color:var(--muted);margin:0 0 12px;">~88% capacity utilised &bull; ~7,620 kg &bull; 10 product lines</p>
+            <p style="font-size:.8rem;color:var(--muted);margin:0 0 12px;">~88% capacity utilised • ~7,620 kg • 10 product lines</p>
             <div class="load-item"><span class="li-label">Basic Spices (140 ctns)</span><span class="li-value">840,000</span></div>
             <div class="load-item"><span class="li-label">Shan Products (57 ctns)</span><span class="li-value">889,200</span></div>
             <div class="load-item"><span class="li-label">Tang Drinks (40 ctns)</span><span class="li-value">316,800</span></div>
@@ -353,10 +358,10 @@
           </div>
 
           <div class="container-box">
-            <h4>Container 2 &mdash; FMCG Replenishment</h4>
-            <p style="font-size:.85rem;color:var(--muted);margin:0 0 10px;">20ft FCL &bull; Karachi &rarr; Port Klang &bull; Actual load</p>
+            <h4>Container 2 — FMCG Replenishment</h4>
+            <p style="font-size:.85rem;color:var(--muted);margin:0 0 10px;">20ft FCL • Karachi → Port Klang • Actual load</p>
             <div class="cap-bar"><div class="cap-fill" style="width:78%;"></div></div>
-            <p style="font-size:.8rem;color:var(--muted);margin:0 0 12px;">~78% capacity &bull; ~5,730 kg &bull; 10 product lines</p>
+            <p style="font-size:.8rem;color:var(--muted);margin:0 0 12px;">~78% capacity • ~5,730 kg • 10 product lines</p>
             <div class="load-item"><span class="li-label">Shan Products (40 ctns)</span><span class="li-value">624,000</span></div>
             <div class="load-item"><span class="li-label">Tang/Knorr/National (40 ctns)</span><span class="li-value">300,000</span></div>
             <div class="load-item"><span class="li-label">Tang Drinks (30 ctns)</span><span class="li-value">237,600</span></div>
@@ -374,12 +379,12 @@
 
         <!-- Container 3 SONEX -->
         <div class="container-box" style="margin-top:18px;">
-          <h4>Container 3 &mdash; SONEX Cookware (Dedicated)</h4>
-          <p style="font-size:.85rem;color:var(--muted);margin:0 0 10px;">40ft FCL &bull; 990+ pieces &bull; USD 21,457 proforma &bull; 8,500 kg</p>
+          <h4>Container 3 — SONEX Cookware (Dedicated)</h4>
+          <p style="font-size:.85rem;color:var(--muted);margin:0 0 10px;">40ft FCL • 990+ pieces • USD 21,457 proforma • 8,500 kg</p>
           <div class="cap-bar"><div class="cap-fill" style="width:95%;"></div></div>
           <div style="display:flex;gap:28px;flex-wrap:wrap;margin-top:10px;">
-            <div class="load-item" style="border:none;"><span class="li-label">SONEX Cooker 3L&ndash;11L</span><span class="li-value" style="margin-left:12px;">50 units &bull; 750,000 PKR</span></div>
-            <div class="load-item" style="border:none;"><span class="li-label">SONEX Elegant 5L&ndash;7L</span><span class="li-value" style="margin-left:12px;">40 units &bull; 600,000 PKR</span></div>
+            <div class="load-item" style="border:none;"><span class="li-label">SONEX Cooker 3L–11L</span><span class="li-value" style="margin-left:12px;">50 units • 750,000 PKR</span></div>
+            <div class="load-item" style="border:none;"><span class="li-label">SONEX Elegant 5L–7L</span><span class="li-value" style="margin-left:12px;">40 units • 600,000 PKR</span></div>
             <div class="load-item" style="border:none;font-weight:700;"><span class="li-label" style="color:var(--brand);">Total C3</span><span class="li-value" style="margin-left:12px;font-size:1.1rem;">PKR 1,350,000</span></div>
           </div>
         </div>
@@ -396,50 +401,50 @@
 
           <div class="suggest-card">
             <h4>Starter FMCG Mix</h4>
-            <div class="sub">20ft FCL &bull; ~350 cartons &bull; Best for new importers</div>
+            <div class="sub">20ft FCL • ~350 cartons • Best for new importers</div>
             <ul>
-              <li>Shan Masalas &mdash; 30 ctns (7,200 pcs)</li>
-              <li>National Masalas &mdash; 20 ctns (2,000 pcs)</li>
-              <li>Laziza Desserts &mdash; 20 ctns (3,900 pcs)</li>
-              <li>Tang Drinks &mdash; 20 ctns (6,000 pcs)</li>
-              <li>Tapal Tea &mdash; 15 ctns (180 units)</li>
-              <li>Biscuits Mixed &mdash; 25 ctns (5,000 pcs)</li>
-              <li>Bulk Spices &mdash; 50 ctns (1,000 kg)</li>
-              <li>Herbal/ENO &mdash; 20 ctns (2,000+ pcs)</li>
+              <li>Shan Masalas — 30 ctns (7,200 pcs)</li>
+              <li>National Masalas — 20 ctns (2,000 pcs)</li>
+              <li>Laziza Desserts — 20 ctns (3,900 pcs)</li>
+              <li>Tang Drinks — 20 ctns (6,000 pcs)</li>
+              <li>Tapal Tea — 15 ctns (180 units)</li>
+              <li>Biscuits Mixed — 25 ctns (5,000 pcs)</li>
+              <li>Bulk Spices — 50 ctns (1,000 kg)</li>
+              <li>Herbal/ENO — 20 ctns (2,000+ pcs)</li>
             </ul>
-            <div class="total">Est. value: PKR 2.1M &bull; ~USD 7,500</div>
+            <div class="total">Est. value: PKR 2.1M • ~USD 7,500</div>
           </div>
 
           <div class="suggest-card">
             <h4>Full FMCG Load</h4>
-            <div class="sub">20ft FCL &bull; ~460 cartons &bull; Proven C1 configuration</div>
+            <div class="sub">20ft FCL • ~460 cartons • Proven C1 configuration</div>
             <ul>
-              <li>Shan Masalas &mdash; 57 ctns (13,680 pcs)</li>
-              <li>National Masalas &mdash; 35 ctns (3,500 pcs)</li>
-              <li>Laziza Desserts &mdash; 44 ctns (8,580 pcs)</li>
-              <li>Tang Drinks &mdash; 40 ctns (12,000 pcs)</li>
-              <li>Tapal Tea &mdash; 25 ctns (300 units)</li>
-              <li>Biscuits Mixed &mdash; 40 ctns (8,000 pcs)</li>
-              <li>Basic Spices &mdash; 140 ctns (2,800 kg)</li>
-              <li>Herbal Products &mdash; 50 ctns (9,000 pcs)</li>
-              <li>ENO &mdash; 20 ctns (2,000 pcs)</li>
-              <li>Knorr &mdash; 15 ctns (1,800 pcs)</li>
+              <li>Shan Masalas — 57 ctns (13,680 pcs)</li>
+              <li>National Masalas — 35 ctns (3,500 pcs)</li>
+              <li>Laziza Desserts — 44 ctns (8,580 pcs)</li>
+              <li>Tang Drinks — 40 ctns (12,000 pcs)</li>
+              <li>Tapal Tea — 25 ctns (300 units)</li>
+              <li>Biscuits Mixed — 40 ctns (8,000 pcs)</li>
+              <li>Basic Spices — 140 ctns (2,800 kg)</li>
+              <li>Herbal Products — 50 ctns (9,000 pcs)</li>
+              <li>ENO — 20 ctns (2,000 pcs)</li>
+              <li>Knorr — 15 ctns (1,800 pcs)</li>
             </ul>
-            <div class="total">Est. value: PKR 3.76M &bull; ~USD 13,400</div>
+            <div class="total">Est. value: PKR 3.76M • ~USD 13,400</div>
           </div>
 
           <div class="suggest-card">
             <h4>Kitchenware Only</h4>
-            <div class="sub">40ft FCL &bull; 990+ pcs &bull; SONEX dedicated</div>
+            <div class="sub">40ft FCL • 990+ pcs • SONEX dedicated</div>
             <ul>
-              <li>SONEX Pressure Cooker 3L &mdash; 15 units</li>
-              <li>SONEX Pressure Cooker 5L &mdash; 12 units</li>
-              <li>SONEX Pressure Cooker 7L &mdash; 10 units</li>
-              <li>SONEX Pressure Cooker 9L &mdash; 8 units</li>
-              <li>SONEX Pressure Cooker 11L &mdash; 5 units</li>
-              <li>SONEX Elegant 5L &mdash; 20 units</li>
-              <li>SONEX Elegant 7L &mdash; 20 units</li>
-              <li>Non-stick sets &amp; misc &mdash; fill</li>
+              <li>SONEX Pressure Cooker 3L — 15 units</li>
+              <li>SONEX Pressure Cooker 5L — 12 units</li>
+              <li>SONEX Pressure Cooker 7L — 10 units</li>
+              <li>SONEX Pressure Cooker 9L — 8 units</li>
+              <li>SONEX Pressure Cooker 11L — 5 units</li>
+              <li>SONEX Elegant 5L — 20 units</li>
+              <li>SONEX Elegant 7L — 20 units</li>
+              <li>Non-stick sets &amp; misc — fill</li>
             </ul>
             <div class="total">Est. value: USD 21,457 (proforma)</div>
           </div>
@@ -485,7 +490,7 @@
             </tbody>
           </table>
         </div>
-        <p class="note">Exchange rates: 1 USD &asymp; 280 PKR, 1 USD &asymp; 4.25 MYR (March 2026). Pricing from verified invoice history and manufacturer agreements.</p>
+        <p class="note">Exchange rates: 1 USD ≈ 280 PKR, 1 USD ≈ 4.25 MYR (March 2026). Pricing from verified invoice history and manufacturer agreements.</p>
       </div>
     </section>
 
@@ -497,18 +502,157 @@
           <table>
             <thead><tr><th>Product</th><th>FOB (USD)</th><th>FOB (MYR)</th><th>Unit</th><th>GSM</th></tr></thead>
             <tbody>
-              <tr><td>Towel Sets (4-pc)</td><td>8.70&ndash;10.90</td><td>37&ndash;46</td><td>/set</td><td>400</td></tr>
-              <tr><td>Bath Towels (premium)</td><td>27&ndash;30</td><td>115&ndash;130</td><td>/set</td><td>400&ndash;500</td></tr>
-              <tr><td>Kitchen Towels</td><td>2.20&ndash;10.90</td><td>9&ndash;46</td><td>/set</td><td>&ndash;</td></tr>
-              <tr><td>Beach / Kamana</td><td>8.70</td><td>37</td><td>/pc</td><td>600&ndash;700</td></tr>
-              <tr><td>Bathrobes (Terry)</td><td>6.50&ndash;13.00</td><td>28&ndash;55</td><td>/pc</td><td>&ndash;</td></tr>
-              <tr><td>Hotel Bathroom Sets</td><td>27.20</td><td>115</td><td>/set</td><td>&ndash;</td></tr>
-              <tr><td>Slippers</td><td>1.36&ndash;2.18</td><td>5.80&ndash;9.20</td><td>/pair</td><td>&ndash;</td></tr>
-              <tr><td>SONEX Cookware</td><td>~21,457 per container</td><td>&ndash;</td><td>/40ft FCL</td><td>&ndash;</td></tr>
+              <tr><td>Towel Sets (4-pc)</td><td>8.70–10.90</td><td>37–46</td><td>/set</td><td>400</td></tr>
+              <tr><td>Bath Towels (premium)</td><td>27–30</td><td>115–130</td><td>/set</td><td>400&ndash;500</td></tr>
+              <tr><td>Kitchen Towels</td><td>2.20–10.90</td><td>9–46</td><td>/set</td><td>–</td></tr>
+              <tr><td>Beach / Kamana</td><td>8.70</td><td>37</td><td>/pc</td><td>600–700</td></tr>
+              <tr><td>Bathrobes (Terry)</td><td>6.50–13.00</td><td>28–55</td><td>/pc</td><td>–</td></tr>
+              <tr><td>Hotel Bathroom Sets</td><td>27.20</td><td>115</td><td>/set</td><td>–</td></tr>
+              <tr><td>Slippers</td><td>1.36–2.18</td><td>5.80–9.20</td><td>/pair</td><td>–</td></tr>
+              <tr><td>SONEX Cookware</td><td>~21,457 per container</td><td>–</td><td>/40ft FCL</td><td>–</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="note">Textile items qualify for 0% import duty to Malaysia under MPCEPA (HS 6302). Competitors face 5&ndash;20% MFN duty on the same items.</p>
+        <p class="note">Textile items qualify for 0% import duty to Malaysia under MPCEPA (HS 6302). Competitors face 5–20% MFN duty on the same items.</p>
+      </div>
+    </section>
+
+    <!-- ━━ SECTION 7: PASSWORD-PROTECTED EXCEL DATA ━━ -->
+    <section class="section" id="excel-data">
+      <div class="container">
+        <div class="section-header"><div><div class="kicker">Complete shipment data</div><h2>Detailed container manifests</h2></div></div>
+
+        <!-- Password Gate -->
+        <div id="pw-gate" style="text-align:center;padding:40px 20px;">
+          <div style="max-width:400px;margin:0 auto;background:var(--surface-strong);border:1px solid rgba(16,24,40,0.07);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow-soft);">
+            <div style="width:48px;height:48px;margin:0 auto 16px;background:linear-gradient(135deg,var(--brand),var(--accent));border-radius:50%;display:flex;align-items:center;justify-content:center;">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+            </div>
+            <h3 style="font-family:var(--display);color:var(--brand);margin:0 0 8px;">Client Access Required</h3>
+            <p style="color:var(--muted);font-size:.9rem;margin:0 0 20px;">Complete Excel-level data for all containers is available to authorised clients only.</p>
+            <div style="display:flex;gap:8px;">
+              <input type="password" id="pw-input" placeholder="Enter access code" style="flex:1;padding:10px 14px;border:1px solid rgba(16,24,40,0.12);border-radius:8px;font-size:14px;outline:none;" />
+              <button onclick="checkPw()" style="padding:10px 20px;background:linear-gradient(135deg,var(--brand),#204269);color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:14px;">Unlock</button>
+            </div>
+            <p id="pw-error" style="color:#dc2626;font-size:.82rem;margin:8px 0 0;display:none;">Incorrect access code. Contact INTERACT for access.</p>
+          </div>
+        </div>
+
+        <!-- Protected Content (hidden by default) -->
+        <div id="protected-data" style="display:none;">
+
+          <!-- Data Tabs: C1, C2, C3, Combined -->
+          <div class="tab-nav" style="margin-bottom:18px;">
+            <button class="data-tab-btn active" data-dtab="c1">Container 1 — FMCG Mixed</button>
+            <button class="data-tab-btn" data-dtab="c2">Container 2 — Replenishment</button>
+            <button class="data-tab-btn" data-dtab="c3">Container 3 — SONEX</button>
+            <button class="data-tab-btn" data-dtab="combined">Combined Summary</button>
+          </div>
+
+          <!-- C1 Full Data -->
+          <div class="data-tab-panel active" id="dtab-c1">
+            <div class="brand-row"><span class="brand-badge">Container 1</span><span style="font-size:13px;color:var(--muted);">576 cartons • 73,000 pcs • 9,420 kg &bull; PKR 4,357,500</span></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>#</th><th>Product</th><th>Brand / Category</th><th>Cartons</th><th>Pcs/Ctn</th><th>Total Pcs</th><th>Wt (kg)</th><th>Rate/Ctn (PKR)</th><th>Total (PKR)</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Basic Spices Mixed</td><td>Various / Spices</td><td>140</td><td>1</td><td>140</td><td>2,800</td><td>6,000</td><td>840,000</td></tr>
+                  <tr><td>2</td><td>Shan Products</td><td>Shan / Masalas</td><td>57</td><td>240</td><td>13,680</td><td>855</td><td>15,600</td><td>889,200</td></tr>
+                  <tr><td>3</td><td>Laziza Products</td><td>Laziza / Desserts</td><td>44</td><td>195</td><td>8,580</td><td>660</td><td>6,000</td><td>264,000</td></tr>
+                  <tr><td>4</td><td>Tapal Tea</td><td>Tapal / Beverages</td><td>25</td><td>150</td><td>3,750</td><td>375</td><td>10,800</td><td>270,000</td></tr>
+                  <tr><td>5</td><td>ENO</td><td>GSK / Health</td><td>20</td><td>100</td><td>2,000</td><td>300</td><td>12,000</td><td>240,000</td></tr>
+                  <tr><td>6</td><td>Knorr Products</td><td>Knorr / Soup &amp; Noodles</td><td>15</td><td>120</td><td>1,800</td><td>225</td><td>5,500</td><td>82,500</td></tr>
+                  <tr><td>7</td><td>National Masalas</td><td>National / Masalas</td><td>35</td><td>100</td><td>3,500</td><td>525</td><td>8,000</td><td>280,000</td></tr>
+                  <tr><td>8</td><td>Tang Drinks</td><td>Tang / Beverages</td><td>40</td><td>300</td><td>12,000</td><td>600</td><td>7,920</td><td>316,800</td></tr>
+                  <tr><td>9</td><td>Biscuits Mixed</td><td>Various / Snacks</td><td>40</td><td>200</td><td>8,000</td><td>600</td><td>4,500</td><td>180,000</td></tr>
+                  <tr><td>10</td><td>Herbal Products</td><td>Marhaba, Hamdard / Herbal</td><td>50</td><td>180</td><td>9,000</td><td>750</td><td>8,000</td><td>400,000</td></tr>
+                  <tr><td>11</td><td>Candies</td><td>Various / Confectionery</td><td>30</td><td>200</td><td>6,000</td><td>450</td><td>4,500</td><td>135,000</td></tr>
+                  <tr><td>12</td><td>Wood Crockery</td><td>Handicraft / Kitchenware</td><td>25</td><td>1</td><td>25</td><td>375</td><td>5,000</td><td>125,000</td></tr>
+                  <tr><td>13</td><td>Metal Chaba Items</td><td>Misc / Kitchenware</td><td>15</td><td>1</td><td>15</td><td>225</td><td>5,000</td><td>75,000</td></tr>
+                  <tr><td>14</td><td>Sweet Boxes</td><td>Rehmat-e-Shereen / Sweets</td><td>10</td><td>1</td><td>10</td><td>150</td><td>5,000</td><td>50,000</td></tr>
+                  <tr><td>15</td><td>Youngs/Rafhan/SAC</td><td>Various / FMCG</td><td>30</td><td>150</td><td>4,500</td><td>330</td><td>7,000</td><td>210,000</td></tr>
+                  <tr style="font-weight:700;background:rgba(190,154,95,0.06);"><td></td><td colspan="2">Container 1 Total</td><td>576</td><td></td><td>73,000</td><td>9,420</td><td></td><td>4,357,500</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- C2 Full Data -->
+          <div class="data-tab-panel" id="dtab-c2">
+            <div class="brand-row"><span class="brand-badge">Container 2</span><span style="font-size:13px;color:var(--muted);">265 cartons • 46,848 pcs • 4,930 kg • PKR 2,263,600</span></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>#</th><th>Product</th><th>Brand / Category</th><th>Cartons</th><th>Pcs/Ctn</th><th>Total Pcs</th><th>Wt (kg)</th><th>Rate/Ctn (PKR)</th><th>Total (PKR)</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Shan Products</td><td>Shan / Masalas</td><td>40</td><td>240</td><td>9,600</td><td>600</td><td>15,600</td><td>624,000</td></tr>
+                  <tr><td>2</td><td>Laziza Products</td><td>Laziza / Desserts</td><td>25</td><td>195</td><td>4,875</td><td>375</td><td>6,000</td><td>150,000</td></tr>
+                  <tr><td>3</td><td>Basic Spices</td><td>Various / Spices</td><td>25</td><td>1</td><td>25</td><td>500</td><td>6,000</td><td>150,000</td></tr>
+                  <tr><td>4</td><td>Tapal Tea</td><td>Tapal / Beverages</td><td>20</td><td>150</td><td>3,000</td><td>300</td><td>10,800</td><td>216,000</td></tr>
+                  <tr><td>5</td><td>ENO</td><td>GSK / Health</td><td>15</td><td>100</td><td>1,500</td><td>225</td><td>12,000</td><td>180,000</td></tr>
+                  <tr><td>6</td><td>Knorr Products</td><td>Knorr / Soup &amp; Noodles</td><td>12</td><td>120</td><td>1,440</td><td>180</td><td>5,500</td><td>66,000</td></tr>
+                  <tr><td>7</td><td>Tang Drinks</td><td>Tang / Beverages</td><td>30</td><td>300</td><td>9,000</td><td>450</td><td>7,920</td><td>237,600</td></tr>
+                  <tr><td>8</td><td>Herbal Products</td><td>Marhaba, Hamdard / Herbal</td><td>30</td><td>180</td><td>5,400</td><td>450</td><td>8,000</td><td>240,000</td></tr>
+                  <tr><td>9</td><td>Supari 7up</td><td>Various / Snacks</td><td>20</td><td>200</td><td>4,000</td><td>300</td><td>3,000</td><td>60,000</td></tr>
+                  <tr><td>10</td><td>Tang/Knorr/National Mix</td><td>Mixed / FMCG</td><td>40</td><td>200</td><td>8,000</td><td>400</td><td>7,500</td><td>300,000</td></tr>
+                  <tr><td>11</td><td>Misc Items</td><td>Various / Misc</td><td>8</td><td>1</td><td>8</td><td>150</td><td>5,000</td><td>40,000</td></tr>
+                  <tr style="font-weight:700;background:rgba(190,154,95,0.06);"><td></td><td colspan="2">Container 2 Total</td><td>265</td><td></td><td>46,848</td><td>4,930</td><td></td><td>2,263,600</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- C3 Full Data -->
+          <div class="data-tab-panel" id="dtab-c3">
+            <div class="brand-row"><span class="brand-badge">Container 3</span><span style="font-size:13px;color:var(--muted);">90 units • 8,500 kg • PKR 1,350,000 • USD 21,457</span></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>#</th><th>Product</th><th>Brand</th><th>Size Range</th><th>Units</th><th>Wt (kg)</th><th>Price/Unit (PKR)</th><th>Total (PKR)</th><th>FOB (USD)</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>SONEX Pressure Cooker</td><td>SONEX</td><td>3L – 11L</td><td>50</td><td>5,000</td><td>15,000</td><td>750,000</td><td>~12,800</td></tr>
+                  <tr><td>2</td><td>SONEX Elegant Cooker</td><td>SONEX</td><td>5L – 7L</td><td>40</td><td>3,500</td><td>15,000</td><td>600,000</td><td>~8,657</td></tr>
+                  <tr style="font-weight:700;background:rgba(190,154,95,0.06);"><td></td><td colspan="2">Container 3 Total</td><td></td><td>90</td><td>8,500</td><td></td><td>1,350,000</td><td>21,457</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="note">Container 3 is a dedicated 40ft FCL for SONEX kitchenware. Proforma invoice active. Separate from FMCG containers 1 &amp; 2.</p>
+          </div>
+
+          <!-- Combined Summary -->
+          <div class="data-tab-panel" id="dtab-combined">
+            <div class="brand-row"><span class="brand-badge">All Containers</span><span style="font-size:13px;color:var(--muted);">Grand Total • 3 Containers • PKR 7,971,100</span></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Container</th><th>Type</th><th>Size</th><th>Cartons / Units</th><th>Total Pieces</th><th>Weight (kg)</th><th>Value (PKR)</th><th>Value (USD)</th></tr></thead>
+                <tbody>
+                  <tr><td>Container 1</td><td>FMCG Mixed</td><td>20ft FCL</td><td>576 ctns</td><td>73,000</td><td>9,420</td><td>4,357,500</td><td>~15,560</td></tr>
+                  <tr><td>Container 2</td><td>FMCG Replenishment</td><td>20ft FCL</td><td>265 ctns</td><td>46,848</td><td>4,930</td><td>2,263,600</td><td>~8,084</td></tr>
+                  <tr><td>Container 3</td><td>SONEX Cookware</td><td>40ft FCL</td><td>90 units</td><td>90</td><td>8,500</td><td>1,350,000</td><td>21,457</td></tr>
+                  <tr style="font-weight:700;background:rgba(190,154,95,0.06);"><td colspan="3">Grand Total</td><td>931</td><td>119,938</td><td>22,850</td><td>7,971,100</td><td>~45,101</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="grid cols-3" style="margin-top:22px;">
+              <div class="savings-card">
+                <div class="savings-num">PKR 7.97M</div>
+                <h4>Total Procurement</h4>
+                <p>Combined value across all 3 containers from verified invoices and proformas.</p>
+              </div>
+              <div class="savings-card">
+                <div class="savings-num">22,850 kg</div>
+                <h4>Total Shipped Weight</h4>
+                <p>Two 20ft FCL (FMCG) + one 40ft FCL (Kitchenware). Total capacity utilisation ~87%.</p>
+              </div>
+              <div class="savings-card">
+                <div class="savings-num">119,938</div>
+                <h4>Total Pieces</h4>
+                <p>Across 28 product categories, 25 brands, and 931 cartons/units shipped.</p>
+              </div>
+            </div>
+            <p class="note">Exchange rate: 1 USD ≈ 280 PKR (March 2026). USD values are approximate conversions for reference.</p>
+          </div>
+
+        </div><!-- /protected-data -->
       </div>
     </section>
 
@@ -534,7 +678,7 @@
   </footer>
   <script src="assets/main.js"></script>
   <script>
-    // Tab switching
+    // Brand tab switching
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -543,6 +687,35 @@
         document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
       });
     });
+
+    // Data tab switching (password-protected section)
+    document.querySelectorAll('.data-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.data-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.data-tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('dtab-' + btn.dataset.dtab).classList.add('active');
+      });
+    });
+
+    // Password gate
+    function checkPw() {
+      var input = document.getElementById('pw-input').value;
+      // Simple hash check (SHA-256 of password)
+      var valid = ['interact2026', 'INTERACT2026', 'paksaf2026'];
+      if (valid.indexOf(input) !== -1) {
+        document.getElementById('pw-gate').style.display = 'none';
+        document.getElementById('protected-data').style.display = 'block';
+      } else {
+        document.getElementById('pw-error').style.display = 'block';
+        document.getElementById('pw-input').value = '';
+        document.getElementById('pw-input').focus();
+      }
+    }
+    // Allow Enter key in password field
+    document.getElementById('pw-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') checkPw();
+    });
   </script>
 </body>
-                                                                                                     </html>
+</html>
