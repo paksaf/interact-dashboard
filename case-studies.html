@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>INTERACT â Case Studies</title>
+  <meta name="description" content="Real case studies from INTERACT export operations: FMCG market entry, replenishment cycles, SONEX cookware, home textiles to KSA, MPCEPA duty advantage, and full-service engagement." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    /* ââ Case Study Tabs ââ */
+    .cs-tab-nav { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:24px; }
+    .cs-tab-btn {
+      padding:11px 20px; border-radius:999px; border:1px solid var(--line);
+      background:var(--surface); font-size:13px; font-weight:700; cursor:pointer;
+      color:var(--muted); transition:all .2s ease; font-family:var(--sans);
+    }
+    .cs-tab-btn:hover { background:var(--surface-strong); color:var(--brand); border-color:var(--accent-line); }
+    .cs-tab-btn.active {
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#fff; border-color:transparent; box-shadow:0 4px 14px rgba(18,37,63,0.18);
+    }
+    .cs-panel { display:none; }
+    .cs-panel.active { display:block; }
+
+    /* ââ Case Header ââ */
+    .cs-header { display:flex; align-items:flex-start; gap:18px; margin-bottom:24px; }
+    .cs-num {
+      flex-shrink:0; width:56px; height:56px; border-radius:16px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-3));
+      color:var(--accent); font-family:var(--display); font-weight:700; font-size:22px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .cs-header-text h3 { font-family:var(--display); font-size:1.35rem; color:var(--brand); margin:0 0 4px; }
+    .cs-header-text p { font-size:.9rem; color:var(--muted); margin:0; line-height:1.5; }
+
+    /* ââ Metric Strip ââ */
+    .metric-strip { display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:12px; margin-bottom:24px; }
+    .metric-card {
+      background:var(--surface-strong); border:1px solid var(--line); border-radius:var(--radius-sm);
+      padding:16px; text-align:center;
+    }
+    .metric-card .m-num { font-family:var(--display); font-size:1.4rem; font-weight:700; color:var(--brand); }
+    .metric-card .m-label { font-size:.75rem; color:var(--muted); margin-top:2px; font-weight:600; text-transform:uppercase; letter-spacing:.5px; }
+
+    /* ââ Two-Column Detail ââ */
+    .cs-detail-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:24px; }
+    @media (max-width:768px) { .cs-detail-grid { grid-template-columns:1fr; } }
+    .cs-detail-box {
+      background:var(--surface-strong); border:1px solid var(--line); border-radius:var(--radius-sm);
+      padding:20px; position:relative;
+    }
+    .cs-detail-box::before {
+      content:''; position:absolute; left:0; top:0; bottom:0; width:4px;
+      border-radius:var(--radius-sm) 0 0 var(--radius-sm);
+      background:linear-gradient(180deg,var(--brand),var(--accent));
+    }
+    .cs-detail-box h4 { font-family:var(--display); font-size:1rem; color:var(--brand); margin:0 0 10px; }
+    .cs-detail-box p, .cs-detail-box li { font-size:.88rem; color:var(--muted); line-height:1.6; }
+    .cs-detail-box ul { padding-left:18px; margin:8px 0 0; }
+    .cs-detail-box li { margin-bottom:5px; }
+
+    /* ââ Data Table (compact) ââ */
+    .cs-table { width:100%; border-collapse:collapse; font-size:.82rem; margin-bottom:18px; }
+    .cs-table th {
+      background:var(--brand); color:#fff; padding:10px 12px; text-align:left;
+      font-weight:700; font-size:.78rem; text-transform:uppercase; letter-spacing:.3px;
+    }
+    .cs-table th.r { text-align:right; }
+    .cs-table td { padding:9px 12px; border-bottom:1px solid var(--line); color:var(--text); }
+    .cs-table td.r { text-align:right; font-variant-numeric:tabular-nums; }
+    .cs-table tr:nth-child(even) td { background:rgba(245,241,232,0.5); }
+    .cs-table tr.total td { background:var(--accent-soft); font-weight:700; color:var(--brand); border-top:2px solid var(--accent); }
+    .cs-table tr.highlight td { background:rgba(31,106,97,0.08); color:var(--success); font-weight:700; }
+
+    /* ââ KPI Row ââ */
+    .kpi-row { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:14px; margin-bottom:24px; }
+    .kpi-card {
+      background:var(--surface-strong); border:1px solid var(--line); border-radius:var(--radius-sm);
+      padding:18px; border-left:4px solid var(--success);
+    }
+    .kpi-card .k-num { font-family:var(--display); font-size:1.3rem; font-weight:700; color:var(--success); }
+    .kpi-card .k-label { font-size:.82rem; font-weight:700; color:var(--brand); margin:3px 0 5px; }
+    .kpi-card .k-desc { font-size:.78rem; color:var(--muted); line-height:1.45; }
+
+    /* ââ Insight Box ââ */
+    .cs-insight {
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#fff; border-radius:var(--radius-sm); padding:20px 24px; margin-bottom:18px;
+    }
+    .cs-insight h4 { font-family:var(--display); color:var(--accent); margin:0 0 8px; font-size:.95rem; }
+    .cs-insight p { font-size:.88rem; line-height:1.6; margin:0; opacity:.9; }
+
+    /* ââ Comparison highlight ââ */
+    .cs-vs { color:var(--success); font-weight:700; }
+
+    /* ââ Scorecard ââ */
+    .score-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:22px; }
+    @media (max-width:640px) { .score-grid { grid-template-columns:1fr; } }
+    .score-item {
+      display:flex; align-items:flex-start; gap:12px; padding:14px 16px;
+      background:var(--surface-strong); border:1px solid var(--line); border-radius:var(--radius-sm);
+    }
+    .score-badge {
+      flex-shrink:0; width:44px; height:44px; border-radius:12px;
+      background:linear-gradient(135deg,var(--success),#28896E);
+      color:#fff; font-family:var(--display); font-weight:700; font-size:.9rem;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .score-badge.gold { background:linear-gradient(135deg,var(--accent),#d4b87a); }
+    .score-item h5 { font-size:.85rem; color:var(--brand); margin:0 0 3px; }
+    .score-item p { font-size:.78rem; color:var(--muted); margin:0; line-height:1.45; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html"><span class="brand-mark">I</span><span class="brand-copy"><strong>INTERACT</strong><span>Buying House &bull; Customs Clearing &bull; Trade Support</span></span></a>
+      <button class="nav-toggle" data-nav-toggle aria-label="Open navigation">Menu</button>
+      <nav class="site-nav" data-nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="industries.html">Industries</a>
+        <a href="products.html">Products</a>
+        <a href="corridors.html">Trade Corridors</a>
+        <a href="case-studies.html" class="active">Case Studies</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions"><a class="btn secondary" href="client-login.html">Client Login</a><a class="btn primary" href="contact.html#rfq">Request a Quote</a></div>
+    </div>
+  </header>
+
+  <section class="page-hero"><div class="container"><div class="page-hero-box">
+    <span class="eyebrow" style="background:rgba(255,255,255,.16);color:white;">Case Studies</span>
+    <h1>Real Operations, Real Results</h1>
+    <p>Six case studies drawn from verified shipment data. PKR 7.97M total procurement across 3 containers, 119,938 pieces shipped, and 0% MPCEPA duty advantage.</p>
+    <div class="hero-actions"><a class="btn primary" href="contact.html#rfq">Discuss Your Requirements</a></div>
+  </div></div></section>
+
+  <main>
+
+    <!-- ââ SUMMARY STRIP ââ -->
+    <section class="section">
+      <div class="container">
+        <div class="metric-strip">
+          <div class="metric-card"><div class="m-num">PKR 7.97M</div><div class="m-label">Total Procurement</div></div>
+          <div class="metric-card"><div class="m-num">119,938</div><div class="m-label">Pieces Shipped</div></div>
+          <div class="metric-card"><div class="m-num">22,850 kg</div><div class="m-label">Total Weight</div></div>
+          <div class="metric-card"><div class="m-num">0%</div><div class="m-label">MPCEPA Duty</div></div>
+          <div class="metric-card"><div class="m-num">6/6</div><div class="m-label">Services Deployed</div></div>
+          <div class="metric-card"><div class="m-num">462K+</div><div class="m-label">Textile Pcs (KSA)</div></div>
+        </div>
+
+        <!-- ââ TABS ââ -->
+        <div class="cs-tab-nav">
+          <button class="cs-tab-btn active" data-cs="cs1">01 &mdash; FMCG Market Entry</button>
+          <button class="cs-tab-btn" data-cs="cs2">02 &mdash; FMCG Replenishment</button>
+          <button class="cs-tab-btn" data-cs="cs3">03 &mdash; SONEX Cookware</button>
+          <button class="cs-tab-btn" data-cs="cs4">04 &mdash; Textiles to KSA</button>
+          <button class="cs-tab-btn" data-cs="cs5">05 &mdash; MPCEPA Duty Edge</button>
+          <button class="cs-tab-btn" data-cs="cs6">06 &mdash; Full-Service Engagement</button>
+        </div>
+
+        <!-- âââââââââââ CS1: FMCG MARKET ENTRY ââââââââââ -->
+        <div class="cs-panel active" id="cs1">
+          <div class="cs-header">
+            <div class="cs-num">01</div>
+            <div class="cs-header-text">
+              <h3>FMCG Market Entry for Malaysian Importer</h3>
+              <p>Container 1: First full mixed-load shipment to establish Pakistani FMCG presence in Malaysian retail distribution</p>
+            </div>
+          </div>
+
+          <div class="metric-strip">
+            <div class="metric-card"><div class="m-num">576</div><div class="m-label">Cartons Shipped</div></div>
+            <div class="metric-card"><div class="m-num">73,000</div><div class="m-label">Total Pieces</div></div>
+            <div class="metric-card"><div class="m-num">9,420 kg</div><div class="m-label">Weight</div></div>
+            <div class="metric-card"><div class="m-num">PKR 4.36M</div><div class="m-label">Procurement Value</div></div>
+            <div class="metric-card"><div class="m-num">88%</div><div class="m-label">Capacity Used</div></div>
+            <div class="metric-card"><div class="m-num">~42 days</div><div class="m-label">Lead Time</div></div>
+          </div>
+
+          <div class="cs-detail-grid">
+            <div class="cs-detail-box">
+              <h4>Objective &amp; Expectations</h4>
+              <p><strong>Client:</strong> Malaysian grocery importer seeking Pakistani FMCG brands for Kuala Lumpur retail distribution.</p>
+              <p><strong>Objective:</strong> Curate and ship a diversified trial container covering 10+ product categories from verified Pakistani brands.</p>
+              <p><strong>Expectation:</strong> Single point of contact for sourcing, documentation, customs clearance, and freight booking. Container loaded, documented, and cleared in under 45 days.</p>
+            </div>
+            <div class="cs-detail-box">
+              <h4>Deliverables Required</h4>
+              <ul>
+                <li>Identify and negotiate with 15+ suppliers across FMCG categories</li>
+                <li>Prepare commercial invoices, packing lists, and certificates of origin</li>
+                <li>Coordinate customs clearance at Karachi port (HS classification &times; 15 lines)</li>
+                <li>Book 20ft FCL sea freight (Karachi &rarr; Port Klang)</li>
+                <li>Pre-shipment quality checks across all product lines</li>
+                <li>Issue MPCEPA Certificate of Origin for zero-duty clearance</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="cs-table">
+              <thead><tr><th>Product</th><th>Brand / Category</th><th class="r">Cartons</th><th class="r">Total Pcs</th><th class="r">Weight</th><th class="r">Rate/Ctn (PKR)</th><th class="r">Total (PKR)</th></tr></thead>
+              <tbody>
+                <tr><td>Basic Spices Mixed</td><td>Various / Spices</td><td class="r">140</td><td class="r">140</td><td class="r">2,800 kg</td><td class="r">6,000</td><td class="r">840,000</td></tr>
+                <tr><td>Shan Products</td><td>Shan / Masalas</td><td class="r">57</td><td class="r">13,680</td><td class="r">855 kg</td><td class="r">15,600</td><td class="r">889,200</td></tr>
+                <tr><td>Herbal Products</td><td>Marhaba, Hamdard</td><td class="r">50</td><td class="r">9,000</td><td class="r">750 kg</td><td class="r">8,000</td><td class="r">400,000</td></tr>
+                <tr><td>Laziza Products</td><td>Laziza / Desserts</td><td class="r">44</td><td class="r">8,580</td><td class="r">660 kg</td><td class="r">6,000</td><td class="r">264,000</td></tr>
+                <tr><td>Tang Drinks</td><td>Tang / Beverages</td><td class="r">40</td><td class="r">12,000</td><td class="r">600 kg</td><td class="r">7,920</td><td class="r">316,800</td></tr>
+                <tr><td>Biscuits Mixed</td><td>Various / Snacks</td><td class="r">40</td><td class="r">8,000</td><td class="r">600 kg</td><td class="r">4,500</td><td class="r">180,000</td></tr>
+                <tr><td>National Masalas</td><td>National / Masalas</td><td class="r">35</td><td class="r">3,500</td><td class="r">525 kg</td><td class="r">8,000</td><td class="r">280,000</td></tr>
+                <tr><td>Youngs/Rafhan/SAC</td><td>Various / FMCG</td><td class="r">30</td><td class="r">4,500</td><td class="r">330 kg</td><td class="r">7,000</td><td class="r">210,000</td></tr>
+                <tr><td>Candies</td><td>Various / Confection</td><td class="r">30</td><td class="r">6,000</td><td class="r">450 kg</td><td class="r">4,500</td><td class="r">135,000</td></tr>
+                <tr><td>Tapal Tea</td><td>Tapal / Beverages</td><td class="r">25</td><td class="r">3,750</td><td class="r">375 kg</td><td class="r">10,800</td><td class="r">270,000</td></tr>
+                <tr><td>Wood Crockery</td><td>Handicraft</td><td class="r">25</td><td class="r">25</td><td class="r">375 kg</td><td class="r">5,000</td><td class="r">125,000</td></tr>
+                <tr><td>ENO</td><td>GSK / Health</td><td class="r">20</td><td class="r">2,000</td><td class="r">300 kg</td><td class="r">12,000</td><td class="r">240,000</td></tr>
+                <tr><td>Knorr Products</td><td>Knorr / Soup</td><td class="r">15</td><td class="r">1,800</td><td class="r">225 kg</td><td class="r">5,500</td><td class="r">82,500</td></tr>
+                <tr><td>Metal Chaba Items</td><td>Misc / Kitchen</td><td class="r">15</td><td class="r">15</td><td class="r">225 kg</td><td class="r">5,000</td><td class="r">75,000</td></tr>
+                <tr><td>Sweet Boxes</td><td>Rehmat-e-Shereen</td><td class="r">10</td><td class="r">10</td><td class="r">150 kg</td><td class="r">5,000</td><td class="r">50,000</td></tr>
+                <tr class="total"><td colspan="2">Container 1 Total</td><td class="r">576</td><td class="r">73,000</td><td class="r">9,420 kg</td><td></td><td class="r">4,357,500</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="kpi-row">
+            <div class="kpi-card"><div class="k-num">8.5%</div><div class="k-label">Below Wholesale</div><div class="k-desc">Procurement savings vs Karachi wholesale through direct manufacturer agreements</div></div>
+            <div class="kpi-card"><div class="k-num">PKR 370K+</div><div class="k-label">Savings on C1</div><div class="k-desc">Estimated savings on Container 1 vs wholesale procurement channels</div></div>
+            <div class="kpi-card"><div class="k-num">34.8%</div><div class="k-label">Retail Margin (MY)</div><div class="k-desc">Average margin achieved by Malaysian retailers on these FMCG products</div></div>
+            <div class="kpi-card"><div class="k-num">~USD 0.23</div><div class="k-label">Cost per Piece Landed</div><div class="k-desc">All-in landed cost including freight, handling, and zero MPCEPA duty</div></div>
+          </div>
+
+          <div class="cs-insight">
+            <h4>Result vs Cost</h4>
+            <p>Total procurement PKR 4.36M (~USD 15,560) + logistics ~USD 1,440 = total landed cost ~USD 17,000 for 73,000 pieces. At 34.8% Malaysian retail margin, estimated retail revenue of ~USD 26,100 &mdash; delivering strong ROI on a first-time trial shipment. INTERACT's 8.5% procurement advantage and 0% MPCEPA duty made this viable against Indian and Chinese FMCG alternatives that face 5&ndash;20% import duty.</p>
+          </div>
+        </div>
+
+        <!-- âââââââââââ CS2: FMCG REPLENISHMENT âââââââââââ -->
+        <div class="cs-panel" id="cs2">
+          <div class="cs-header">
+            <div class="cs-num">02</div>
+            <div class="cs-header-text">
+              <h3>FMCG Replenishment &mdash; Fast-Cycle Restocking</h3>
+              <p>Container 2: Data-driven reorder based on Container 1 sell-through, optimised for faster turnaround and higher-velocity SKUs</p>
+            </div>
+          </div>
+
+          <div class="metric-strip">
+            <div class="metric-card"><div class="m-num">265</div><div class="m-label">Cartons</div></div>
+            <div class="metric-card"><div class="m-num">46,848</div><div class="m-label">Total Pieces</div></div>
+            <div class="metric-card"><div class="m-num">4,930 kg</div><div class="m-label">Weight</div></div>
+            <div class="metric-card"><div class="m-num">PKR 2.26M</div><div class="m-label">Value</div></div>
+            <div class="metric-card"><div class="m-num">~28 days</div><div class="m-label">Lead Time</div></div>
+            <div class="metric-card"><div class="m-num">~USD 0.21</div><div class="m-label">Cost/Piece Landed</div></div>
+          </div>
+
+          <div class="cs-detail-grid">
+            <div class="cs-detail-box">
+              <h4>Objective &amp; Approach</h4>
+              <p><strong>Objective:</strong> Replenish fast-moving SKUs from C1 while adjusting quantities based on sell-through data. Reduce lead time by 30% through pre-established supplier relationships.</p>
+              <p><strong>Key Difference vs C1:</strong> Smaller container (265 vs 576 ctns) focused on proven sellers. Shan maintained at high volume; low performers like Sweet Boxes dropped. New items (Supari 7up) added based on market feedback.</p>
+            </div>
+            <div class="cs-detail-box">
+              <h4>C1 vs C2 &mdash; Learning Curve</h4>
+              <ul>
+                <li>Cartons: 576 &rarr; 265 <span class="cs-vs">(&minus;54%, focused load)</span></li>
+                <li>Lead Time: ~42 days &rarr; ~28 days <span class="cs-vs">(&minus;33% faster)</span></li>
+                <li>Cost/Piece: USD 0.23 &rarr; USD 0.21 <span class="cs-vs">(&minus;9% improvement)</span></li>
+                <li>Product Lines: 15 &rarr; 11 <span class="cs-vs">(cut underperformers)</span></li>
+                <li>Shan Value Share: 20% &rarr; 28% <span class="cs-vs">(doubled down on winner)</span></li>
+                <li>Repeat Rate: 9 of 11 items from C1</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="cs-table">
+              <thead><tr><th>Product</th><th>Brand / Category</th><th class="r">Ctns</th><th class="r">Total Pcs</th><th class="r">Wt (kg)</th><th class="r">Rate/Ctn</th><th class="r">Total (PKR)</th></tr></thead>
+              <tbody>
+                <tr><td>Shan Products</td><td>Shan / Masalas</td><td class="r">40</td><td class="r">9,600</td><td class="r">600</td><td class="r">15,600</td><td class="r">624,000</td></tr>
+                <tr><td>Tang/Knorr/National Mix</td><td>Mixed / FMCG</td><td class="r">40</td><td class="r">8,000</td><td class="r">400</td><td class="r">7,500</td><td class="r">300,000</td></tr>
+                <tr><td>Herbal Products</td><td>Marhaba, Hamdard</td><td class="r">30</td><td class="r">5,400</td><td class="r">450</td><td class="r">8,000</td><td class="r">240,000</td></tr>
+                <tr><td>Tang Drinks</td><td>Tang / Beverages</td><td class="r">30</td><td class="r">9,000</td><td class="r">450</td><td class="r">7,920</td><td class="r">237,600</td></tr>
+                <tr><td>Laziza Products</td><td>Laziza / Desserts</td><td class="r">25</td><td class="r">4,875</td><td class="r">375</td><td class="r">6,000</td><td class="r">150,000</td></tr>
+                <tr><td>Basic Spices</td><td>Various / Spices</td><td class="r">25</td><td class="r">25</td><td class="r">500</td><td class="r">6,000</td><td class="r">150,000</td></tr>
+                <tr><td>Tapal Tea</td><td>Tapal / Beverages</td><td class="r">20</td><td class="r">3,000</td><td class="r">300</td><td class="r">10,800</td><td class="r">216,000</td></tr>
+                <tr><td>Supari 7up</td><td>Various / Snacks</td><td class="r">20</td><td class="r">4,000</td><td class="r">300</td><td class="r">3,000</td><td class="r">60,000</td></tr>
+                <tr><td>ENO</td><td>GSK / Health</td><td class="r">15</td><td class="r">1,500</td><td class="r">225</td><td class="r">12,000</td><td class="r">180,000</td></tr>
+                <tr><td>Knorr Products</td><td>Knorr / Soup</td><td class="r">12</td><td class="r">1,440</td><td class="r">180</td><td class="r">5,500</td><td class="r">66,000</td></tr>
+                <tr><td>Misc Items</td><td>Various / Misc</td><td class="r">8</td><td class="r">8</td><td class="r">150</td><td class="r">5,000</td><td class="r">40,000</td></tr>
+                <tr class="total"><td colspan="2">Container 2 Total</td><td class="r">265</td><td class="r">46,848</td><td class="r">4,930</td><td></td><td class="r">2,263,600</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="cs-insight">
+            <h4>Key Insight</h4>
+            <p>The replenishment cycle demonstrates INTERACT&rsquo;s ability to use real sell-through data to optimise the next container. Shan, Tang, and Herbal products proved to be the core pillars &mdash; together representing 49% of C2 value. Lead time improved 33% because supplier relationships and customs codes were already established from C1.</p>
+          </div>
+        </div>
+
+        <!-- âââââââââââ CS3: SONEX COOKWARE âââââââââââ -->
+        <div class="cs-panel" id="cs3">
+          <div class="cs-header">
+            <div class="cs-num">03</div>
+            <div class="cs-header-text">
+              <h3>SONEX Cookware &mdash; Single-Brand Container Launch</h3>
+              <p>Container 3: Dedicated 40ft FCL of SONEX pressure cookers and cookware for the Malaysian kitchenware market</p>
+            </div>
+          </div>
+
+          <div class="metric-strip">
+            <div class="metric-card"><div class="m-num">90</div><div class="m-label">Units</div></div>
+            <div class="metric-card"><div class="m-num">8,500 kg</div><div class="m-label">Weight</div></div>
+            <div class="metric-card"><div class="m-num">PKR 1.35M</div><div class="m-label">Value</div></div>
+            <div class="metric-card"><div class="m-num">USD 21,457</div><div class="m-label">FOB Proforma</div></div>
+            <div class="metric-card"><div class="m-num">95%</div><div class="m-label">Capacity Used</div></div>
+            <div class="metric-card"><div class="m-num">40ft FCL</div><div class="m-label">Container Size</div></div>
+          </div>
+
+          <div class="cs-detail-grid">
+            <div class="cs-detail-box">
+              <h4>Objective &amp; Strategy</h4>
+              <p><strong>Objective:</strong> Launch SONEX brand in Malaysia through a dedicated cookware container. Different logistics profile from FMCG &mdash; heavy (8,500 kg), high-value single brand, requires 40ft FCL.</p>
+              <p><strong>Why Separate:</strong> Weight-to-volume ratio makes mixing with FMCG impractical. Cookware needs dedicated stacking and protection. Single brand simplifies customs classification to one HS code.</p>
+              <p><strong>Services Used:</strong> Sourcing (manufacturer liaison), Export Docs (proforma, packing list), Freight (40ft FCL booking), Quality (pre-shipment pressure rating inspection).</p>
+            </div>
+            <div class="cs-detail-box">
+              <h4>Container 3 Manifest</h4>
+              <table class="cs-table" style="margin-bottom:0;">
+                <thead><tr><th>Product</th><th class="r">Units</th><th class="r">Weight</th><th class="r">Value (PKR)</th><th class="r">FOB (USD)</th></tr></thead>
+                <tbody>
+                  <tr><td>SONEX Pressure Cooker 3L&ndash;11L</td><td class="r">50</td><td class="r">5,000 kg</td><td class="r">750,000</td><td class="r">~12,800</td></tr>
+                  <tr><td>SONEX Elegant Cooker 5L&ndash;7L</td><td class="r">40</td><td class="r">3,500 kg</td><td class="r">600,000</td><td class="r">~8,657</td></tr>
+                  <tr class="total"><td>Total C3</td><td class="r">90</td><td class="r">8,500 kg</td><td class="r">1,350,000</td><td class="r">21,457</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="kpi-row">
+            <div class="kpi-card" style="border-left-color:var(--accent);"><div class="k-num" style="color:var(--accent);">~12%</div><div class="k-label">Below Distributor</div><div class="k-desc">Manufacturer-direct via sister concern eliminates middlemen</div></div>
+            <div class="kpi-card" style="border-left-color:var(--accent);"><div class="k-num" style="color:var(--accent);">~40%</div><div class="k-label">Faster Customs</div><div class="k-desc">Single HS code reduced processing time vs mixed cookware containers</div></div>
+            <div class="kpi-card" style="border-left-color:var(--accent);"><div class="k-num" style="color:var(--accent);">SIRIM Ready</div><div class="k-label">Quality Assured</div><div class="k-desc">Pressure cooker safety ratings verified pre-shipment for Malaysian compliance</div></div>
+            <div class="kpi-card" style="border-left-color:var(--accent);"><div class="k-num" style="color:var(--accent);">95%</div><div class="k-label">Load Efficiency</div><div class="k-desc">Competitors average only 70-80% due to poor stacking coordination</div></div>
+          </div>
+
+          <div class="cs-insight">
+            <h4>Competitive Advantage</h4>
+            <p>INTERACT&rsquo;s sister concern relationship with SONEX eliminated middlemen (saving ~12% on unit pricing). Single-brand customs classification cut processing time ~40%. Pre-shipment pressure rating inspection ensures Malaysian SIRIM compliance &mdash; a step competitors shipping via trading houses routinely skip.</p>
+          </div>
+        </div>
+
+        <!-- âââââââââââ CS4: HOME TEXTILES TO KSA âââââââââââ -->
+        <div class="cs-panel" id="cs4">
+          <div class="cs-header">
+            <div class="cs-num">04</div>
+            <div class="cs-header-text">
+              <h3>Home Textiles to KSA &mdash; Scale Export Operations</h3>
+              <p>462,000+ pieces across 6 invoices: terry towels, bathrobes, hotel bathroom sets, and slippers to Saudi Arabia</p>
+            </div>
+          </div>
+
+          <div class="metric-strip">
+            <div class="metric-card"><div class="m-num">462K+</div><div class="m-label">Pieces Shipped</div></div>
+            <div class="metric-card"><div class="m-num">6</div><div class="m-label">Invoices Completed</div></div>
+            <div class="metric-card"><div class="m-num">400&ndash;700 GSM</div><div class="m-label">Quality Range</div></div>
+            <div class="metric-card"><div class="m-num">USD 1.80&ndash;3.40</div><div class="m-label">Landed Cost / kg</div></div>
+            <div class="metric-card"><div class="m-num">0</div><div class="m-label">Invoice Rejections</div></div>
+            <div class="metric-card"><div class="m-num">6/6</div><div class="m-label">Services Used</div></div>
+          </div>
+
+          <div class="cs-detail-grid">
+            <div class="cs-detail-box">
+              <h4>Product Range (FOB Karachi)</h4>
+              <table class="cs-table" style="margin:0;">
+                <thead><tr><th>Product</th><th class="r">FOB (USD)</th><th class="r">FOB (MYR)</th><th>Unit</th><th class="r">GSM</th></tr></thead>
+                <tbody>
+                  <tr><td>Towel Sets (4-pc)</td><td class="r">8.70&ndash;10.90</td><td class="r">37&ndash;46</td><td>/set</td><td class="r">400</td></tr>
+                  <tr><td>Bath Towels (premium)</td><td class="r">27&ndash;30</td><td class="r">115&ndash;130</td><td>/set</td><td class="r">400-500</td></tr>
+                  <tr><td>Kitchen Towels</td><td class="r">2.20&ndash;10.90</td><td class="r">9&ndash;46</td><td>/set</td><td class="r">&ndash;</td></tr>
+                  <tr><td>Beach / Kamana</td><td class="r">8.70</td><td class="r">37</td><td>/pc</td><td class="r">600-700</td></tr>
+                  <tr><td>Bathrobes (Terry)</td><td class="r">6.50&ndash;13.00</td><td class="r">28&ndash;55</td><td>/pc</td><td class="r">&ndash;</td></tr>
+                  <tr><td>Hotel Bathroom Sets</td><td class="r">27.20</td><td class="r">115</td><td>/set</td><td class="r">&ndash;</td></tr>
+                  <tr><td>Slippers</td><td class="r">1.36&ndash;2.18</td><td class="r">5.80&ndash;9.20</td><td>/pair</td><td class="r">&ndash;</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="cs-detail-box">
+              <h4>Services Deployed</h4>
+              <ul>
+                <li><strong>Sourcing:</strong> Verified Pakistani textile mills, GSM specification alignment</li>
+                <li><strong>Quality:</strong> GSM testing (400&ndash;700 range), softness and absorbency verified</li>
+                <li><strong>Export Docs:</strong> Commercial invoices across 6 separate orders to KSA</li>
+                <li><strong>Customs:</strong> HS classification for textile categories, COO issuance</li>
+                <li><strong>Freight:</strong> Multiple shipments coordinated to Saudi Arabian ports</li>
+                <li><strong>Discrepancy Handling:</strong> Issue resolution on specification deviations</li>
+              </ul>
+              <p style="margin-top:12px;"><strong>MPCEPA Note:</strong> HS 6302 cotton terry qualifies for 0% duty to Malaysia. Competitors from India, China, Bangladesh face 5&ndash;20% MFN duty on the same products.</p>
+            </div>
+          </div>
+
+          <div class="cs-insight">
+            <h4>Competitor Comparison</h4>
+            <p><strong>vs Indian exporters:</strong> Indian towels are competitive on price but face 5% KSA duty. INTERACT&rsquo;s Pakistan origin delivers equivalent quality with better margins. <strong>vs Chinese exporters:</strong> China leads on volume but Pakistani towels (400-700 GSM) are preferred in Gulf markets for softness. <strong>vs Direct mill buying:</strong> Buying from 3-4 mills means 3-4 invoices and quality checks. INTERACT consolidates into a single point of contact with standardised documentation.</p>
+          </div>
+        </div>
+
+        <!-- âââââââââââ CS5: MPCEPA DUTY ADVANTAGE âââââââââââ -->
+        <div class="cs-panel" id="cs5">
+          <div class="cs-header">
+            <div class="cs-num">05</div>
+            <div class="cs-header-text">
+              <h3>MPCEPA Zero-Duty &mdash; Structural Cost Advantage</h3>
+              <p>Pakistan-Malaysia FTA gives INTERACT 0% import duty vs 5&ndash;20% for India, China, Bangladesh, and Turkey on the Malaysia corridor</p>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="cs-table">
+              <thead><tr><th>Origin Country</th><th class="r">MFN Duty Rate</th><th>FTA Benefit</th><th class="r">Effective Duty</th><th class="r">Duty on USD 15K Container</th></tr></thead>
+              <tbody>
+                <tr class="highlight"><td>Pakistan (INTERACT)</td><td class="r">5&ndash;20%</td><td>MPCEPA 0%</td><td class="r">0%</td><td class="r">USD 0</td></tr>
+                <tr><td>India</td><td class="r">5&ndash;20%</td><td>None</td><td class="r">5&ndash;20%</td><td class="r">USD 750&ndash;3,000</td></tr>
+                <tr><td>China</td><td class="r">5&ndash;20%</td><td>Limited</td><td class="r">5&ndash;15%</td><td class="r">USD 750&ndash;2,250</td></tr>
+                <tr><td>Bangladesh</td><td class="r">5&ndash;20%</td><td>LDC preference</td><td class="r">0&ndash;5%</td><td class="r">USD 0&ndash;750</td></tr>
+                <tr><td>Turkey</td><td class="r">5&ndash;20%</td><td>None</td><td class="r">5&ndash;20%</td><td class="r">USD 750&ndash;3,000</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="section-header" style="margin-top:28px;"><div><div class="kicker">Karachi &rarr; Kuala Lumpur</div><h2>Full Landed Cost Breakdown</h2></div></div>
+          <div class="table-wrap">
+            <table class="cs-table">
+              <thead><tr><th>Cost Component</th><th class="r">Estimated Amount</th><th>Handled By</th></tr></thead>
+              <tbody>
+                <tr><td>Sea Freight (40ft FCL, KHI &rarr; Port Klang)</td><td class="r">USD 800&ndash;1,200</td><td>INTERACT</td></tr>
+                <tr><td>Transit Time</td><td class="r">8&ndash;12 days</td><td>Carrier (OOCL)</td></tr>
+                <tr><td>Local Haulage Karachi (factory &rarr; port)</td><td class="r">USD 100&ndash;150</td><td>INTERACT</td></tr>
+                <tr><td>Port Handling &amp; Documentation (Karachi)</td><td class="r">USD 150&ndash;200</td><td>Trade Port (C&amp;F)</td></tr>
+                <tr><td>Port Klang Terminal Handling</td><td class="r">USD 200&ndash;250</td><td>MY Agent</td></tr>
+                <tr><td>Inland Transport (Port Klang &rarr; KL)</td><td class="r">USD 80&ndash;120</td><td>MY Agent</td></tr>
+                <tr><td>Insurance (0.3% CIF value)</td><td class="r">~USD 50&ndash;100</td><td>INTERACT</td></tr>
+                <tr class="highlight"><td>MPCEPA Preferential Duty (HS 6302)</td><td class="r">0% (zero under FTA)</td><td>Auto via CO</td></tr>
+                <tr><td>Malaysia Sales Tax (SST)</td><td class="r">10%</td><td>MY Import</td></tr>
+                <tr><td>Customs Clearance &amp; Agent Fees (MY)</td><td class="r">USD 100&ndash;150</td><td>MY Agent</td></tr>
+                <tr class="total"><td>Total per 40ft Container</td><td class="r">USD 1,480&ndash;2,170</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="cs-insight">
+            <h4>Bottom Line</h4>
+            <p>On a USD 15,000 FMCG container, INTERACT saves the Malaysian importer USD 750&ndash;3,000 in duty costs alone &mdash; before any procurement savings. MPCEPA applies to HS 6302 (cotton terry), most FMCG food items, and selected cookware. Certificate of Origin issued by INTERACT for every shipment.</p>
+          </div>
+        </div>
+
+        <!-- âââââââââââ CS6: FULL-SERVICE ENGAGEMENT âââââââââââ -->
+        <div class="cs-panel" id="cs6">
+          <div class="cs-header">
+            <div class="cs-num">06</div>
+            <div class="cs-header-text">
+              <h3>Full-Service Engagement &mdash; 3 Containers, All Services</h3>
+              <p>The complete INTERACT operation: PKR 7.97M across FMCG, cookware, and all 6 service lines deployed simultaneously</p>
+            </div>
+          </div>
+
+          <div class="metric-strip">
+            <div class="metric-card"><div class="m-num">PKR 7.97M</div><div class="m-label">Total Procurement</div></div>
+            <div class="metric-card"><div class="m-num">119,938</div><div class="m-label">Total Pieces</div></div>
+            <div class="metric-card"><div class="m-num">22,850 kg</div><div class="m-label">Total Weight</div></div>
+            <div class="metric-card"><div class="m-num">3</div><div class="m-label">Containers</div></div>
+            <div class="metric-card"><div class="m-num">25+</div><div class="m-label">Brands Covered</div></div>
+            <div class="metric-card"><div class="m-num">6/6</div><div class="m-label">Services Used</div></div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="cs-table">
+              <thead><tr><th>Container</th><th>Type</th><th>Size</th><th class="r">Cartons/Units</th><th class="r">Total Pieces</th><th class="r">Weight</th><th class="r">Value (PKR)</th><th class="r">~USD</th></tr></thead>
+              <tbody>
+                <tr><td>Container 1</td><td>FMCG Mixed</td><td>20ft FCL</td><td class="r">576 ctns</td><td class="r">73,000</td><td class="r">9,420 kg</td><td class="r">4,357,500</td><td class="r">15,560</td></tr>
+                <tr><td>Container 2</td><td>FMCG Replenishment</td><td>20ft FCL</td><td class="r">265 ctns</td><td class="r">46,848</td><td class="r">4,930 kg</td><td class="r">2,263,600</td><td class="r">8,084</td></tr>
+                <tr><td>Container 3</td><td>SONEX Cookware</td><td>40ft FCL</td><td class="r">90 units</td><td class="r">90</td><td class="r">8,500 kg</td><td class="r">1,350,000</td><td class="r">21,457</td></tr>
+                <tr class="total"><td colspan="3">Grand Total</td><td class="r">931</td><td class="r">119,938</td><td class="r">22,850 kg</td><td class="r">7,971,100</td><td class="r">45,101</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="section-header" style="margin-top:24px;"><div><div class="kicker">Service deployment</div><h2>What was deployed per container</h2></div></div>
+          <div class="table-wrap">
+            <table class="cs-table">
+              <thead><tr><th>Service</th><th>C1: FMCG Mixed</th><th>C2: Restock</th><th>C3: SONEX</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Buying House</strong></td><td>15 suppliers identified</td><td>9 suppliers (repeat)</td><td>1 manufacturer direct</td></tr>
+                <tr><td><strong>Customs Clearing</strong></td><td>HS classification &times; 15</td><td>Expedited (repeat codes)</td><td>Single HS code</td></tr>
+                <tr><td><strong>Export Docs</strong></td><td>Full doc set &times; 15 lines</td><td>Streamlined reissue</td><td>Proforma + PL</td></tr>
+                <tr><td><strong>Freight</strong></td><td>20ft FCL booked</td><td>20ft FCL booked</td><td>40ft FCL (heavy)</td></tr>
+                <tr><td><strong>Quality</strong></td><td>Pre-ship check &times; 15</td><td>Spot checks (known)</td><td>Pressure rating test</td></tr>
+                <tr><td><strong>Market Entry</strong></td><td>MPCEPA CO issued</td><td>MPCEPA CO (repeat)</td><td>MPCEPA CO issued</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- SCORECARD -->
+          <div class="section-header" style="margin-top:24px;"><div><div class="kicker">Customer verdict</div><h2>INTERACT Scorecard</h2></div></div>
+          <div class="score-grid">
+            <div class="score-item"><div class="score-badge">9/10</div><div><h5>Sourcing Depth</h5><p>25+ brands across FMCG, cookware, textiles. Direct manufacturer access via sister concerns.</p></div></div>
+            <div class="score-item"><div class="score-badge">9/10</div><div><h5>Documentation Quality</h5><p>Full manifests, invoices, packing lists, COO for every container. Password-protected client portal.</p></div></div>
+            <div class="score-item"><div class="score-badge">9/10</div><div><h5>Cost Competitiveness</h5><p>8.5% below wholesale + 0% MPCEPA duty = structural advantage no competitor can match.</p></div></div>
+            <div class="score-item"><div class="score-badge">8/10</div><div><h5>Logistics Execution</h5><p>3 containers shipped successfully. 88-95% capacity utilisation. OOCL carrier, 8-12 day transit.</p></div></div>
+            <div class="score-item"><div class="score-badge">10/10</div><div><h5>Transparency &amp; Data</h5><p>Full line-item pricing, weight, carton counts on website. Unmatched for a buying house.</p></div></div>
+            <div class="score-item"><div class="score-badge">8/10</div><div><h5>Speed &amp; Responsiveness</h5><p>42-day initial lead time improved to 28 days by C2. WhatsApp + email. 48-hour quotes.</p></div></div>
+            <div class="score-item"><div class="score-badge">8/10</div><div><h5>Multi-Segment Capability</h5><p>FMCG + Cookware + Textiles + Leather. Few competitors cover this range from one engagement.</p></div></div>
+            <div class="score-item"><div class="score-badge gold">7/10</div><div><h5>Scale &amp; Track Record</h5><p>462K+ pcs to KSA, 120K pcs to MY. Growing but still building reference base vs established houses.</p></div></div>
+          </div>
+
+          <div class="cs-insight">
+            <h4>Overall: 8.5 / 10</h4>
+            <p>A highly credible, data-transparent trade partner with a structural MPCEPA advantage. Best suited for importers entering the Malaysian market from Pakistan. The repetition from C1 to C2 demonstrates efficiency gains: lead time dropped 33%, customs processing time dropped ~40%, and per-piece cost improved 9%.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section band">
+      <div class="container">
+        <div class="quote-band" style="margin-top:0;">
+          <h2>Ready to become a case study?</h2>
+          <p>Share your product list, destination, and volume. We&rsquo;ll map the execution path and provide a container loading plan within 48 hours.</p>
+          <a class="btn ghost" href="contact.html#rfq">Request a Quote</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><div class="brand" style="margin-bottom:10px;"><span class="brand-mark">I</span><span class="brand-copy"><strong>INTERACT</strong><span>Pakistan buying house &amp; trade partner</span></span></div><p>Suite #44, 9th Floor, Arkay Square, Karachi</p><p class="notice">NTN: 2849737-6</p></div>
+      <div><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="industries.html">Industries</a></li><li><a href="products.html">Products</a></li><li><a href="corridors.html">Trade Corridors</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Get in Touch</h4><ul><li><a href="mailto:interact@paksaf.com">interact@paksaf.com</a></li><li><a href="https://wa.me/923002020179" target="_blank" rel="noopener">WhatsApp: +92 300 2020179</a></li><li><a href="client-login.html">Client Login</a></li></ul></div>
+      <div><h4>Legal</h4><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Use</a></li></ul></div>
+    </div>
+  </footer>
+  <script src="assets/main.js"></script>
+  <script>
+    document.querySelectorAll('.cs-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.cs-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.cs-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.cs).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
