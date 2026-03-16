@@ -34,7 +34,7 @@ a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 .container { width: min(var(--container), calc(100% - 32px)); margin: 0 auto; }
 
-/* -- HEADER -- */
+/* ── HEADER ── */
 .site-header {
   position: sticky; top: 0; z-index: 20;
   backdrop-filter: blur(18px);
@@ -71,7 +71,7 @@ img { max-width: 100%; display: block; }
 .site-nav a.active::after, .site-nav a:hover::after { opacity: 1; transform: scaleX(1); }
 .header-actions { display: flex; gap: 10px; align-items: center; }
 
-/* -- BUTTONS -- */
+/* ── BUTTONS ── */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   padding: 13px 19px; border-radius: 16px; border: 1px solid transparent;
@@ -90,7 +90,7 @@ img { max-width: 100%; display: block; }
 .btn.secondary:hover { background: rgba(255,255,255,0.9); }
 .btn.ghost { background: transparent; border-color: rgba(255,255,255,0.18); color: #fff; }
 
-/* -- EYEBROW -- */
+/* ── EYEBROW ── */
 .eyebrow {
   display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px;
   border-radius: 999px; background: var(--accent-soft); border: 1px solid var(--accent-line);
@@ -102,7 +102,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: .14em; font-weight: 700;
 }
 
-/* -- HERO -- */
+/* ── HERO ── */
 .hero { padding: 40px 0 34px; }
 .hero-grid {
   display: grid; grid-template-columns: 1.14fr .86fr; gap: 28px; align-items: stretch;
@@ -140,7 +140,7 @@ img { max-width: 100%; display: block; }
 .hero-panel h3 { margin: 8px 0 8px; font-size: 1.4rem; line-height: 1.08; }
 .hero-panel p { margin: 0; color: var(--muted); font-size: .95rem; }
 
-/* -- STATS ROW -- */
+/* ── STATS ROW ── */
 .stats-row {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
 }
@@ -156,7 +156,7 @@ img { max-width: 100%; display: block; }
   display: block; color: var(--muted); font-size: .85rem; margin-top: 6px;
 }
 
-/* -- PAGE HERO -- */
+/* ── PAGE HERO ── */
 .page-hero { padding: 48px 0 24px; }
 .page-hero-box {
   border-radius: 32px; padding: 34px;
@@ -173,7 +173,7 @@ img { max-width: 100%; display: block; }
   max-width: 60ch; color: rgba(255,255,255,0.80); margin: 0 0 24px;
 }
 
-/* -- SECTIONS -- */
+/* ── SECTIONS ── */
 .section { padding: 48px 0; }
 .section.tight { padding: 24px 0 0; }
 .section-header {
@@ -196,14 +196,14 @@ img { max-width: 100%; display: block; }
   background: linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(249,244,235,0.72) 100%);
 }
 
-/* -- GRID -- */
+/* ── GRID ── */
 .grid { display: grid; gap: 18px; }
 .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
 .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 .grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
 .split { display: grid; gap: 22px; grid-template-columns: 1fr 1fr; }
 
-/* -- ICON CARDS -- */
+/* ── ICON CARDS ── */
 .card {
   background: var(--surface-strong); border: 1px solid rgba(16, 24, 40, 0.07);
   backdrop-filter: blur(10px); border-radius: var(--radius); padding: 24px;
@@ -239,7 +239,7 @@ img { max-width: 100%; display: block; }
 .card.compact .ic { width: 44px; height: 44px; border-radius: 14px; margin-bottom: 10px; }
 .card.compact .ic svg { width: 22px; height: 22px; }
 
-/* -- STEPS -- */
+/* ── STEPS ── */
 .steps { counter-reset: step; display: grid; gap: 14px; }
 .step {
   position: relative; padding: 20px 20px 20px 72px;
@@ -257,7 +257,7 @@ img { max-width: 100%; display: block; }
 .step h3 { margin: 0 0 4px; font-size: 1.1rem; }
 .step p { margin: 0; color: var(--muted); font-size: .92rem; }
 
-/* -- QUOTE BAND -- */
+/* ── QUOTE BAND ── */
 .quote-band {
   margin-top: 28px;
   background:
@@ -269,7 +269,7 @@ img { max-width: 100%; display: block; }
 .quote-band h2 { margin: 0 0 8px; font-size: 1.6rem; }
 .quote-band p { color: rgba(255,255,255,0.78); max-width: 56ch; margin: 0 0 16px; }
 
-/* -- TAGS -- */
+/* ── TAGS ── */
 .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 .tag {
   display: inline-flex; padding: 7px 11px; border-radius: 999px;
@@ -280,12 +280,19 @@ img { max-width: 100%; display: block; }
   display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none;
 }
 .inline-list li {
-  padding: 10px 12px; border-radius: 999px;
+  padding: 0; border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.11); background: rgba(255,255,255,0.08);
   font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.86);
+  transition: background .18s ease, border-color .18s ease;
+}
+.inline-list li:hover {
+  background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.22); cursor: pointer;
+}
+.inline-list li a {
+  display: block; padding: 10px 12px; color: inherit; text-decoration: none;
 }
 
-/* -- TABLE -- */
+/* ── TABLE ── */
 .table-wrap {
   overflow-x: auto; background: var(--surface-strong);
   border: 1px solid rgba(16,24,40,0.07); border-radius: var(--radius);
@@ -295,7 +302,7 @@ table { width: 100%; border-collapse: collapse; min-width: 560px; }
 th, td { padding: 14px 16px; border-bottom: 1px solid rgba(16,24,40,0.06); text-align: left; }
 th { font-size: 12px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--muted); }
 
-/* -- FORM -- */
+/* ── FORM ── */
 .form-grid { display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr); }
 .form-grid .full { grid-column: 1 / -1; }
 label {
@@ -313,12 +320,12 @@ input:focus, select:focus, textarea:focus {
 }
 .form-actions-stack { display: flex; gap: 12px; flex-wrap: wrap; }
 
-/* -- MISC -- */
+/* ── MISC ── */
 .note { margin-top: 10px; color: var(--muted); font-size: 13px; }
 .notice { font-size: 14px; color: var(--muted); margin-top: 8px; }
 .center { text-align: center; }
 
-/* -- ROUTE CARD (corridors) -- */
+/* ── ROUTE CARD (corridors) ── */
 .route-card {
   background: var(--surface-strong); border: 1px solid rgba(16,24,40,0.07);
   border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow-soft);
@@ -335,11 +342,11 @@ input:focus, select:focus, textarea:focus {
 .route-card h3 { margin: 0 0 4px; font-size: 1.15rem; font-family: var(--display); color: var(--brand); }
 .route-card p { margin: 0; color: var(--muted); font-size: .9rem; }
 
-/* -- CONTACT MINI GRID -- */
+/* ── CONTACT MINI GRID ── */
 .contact-mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .contact-mini-grid .card p { margin: 0; }
 
-/* -- FOOTER -- */
+/* ── FOOTER ── */
 .site-footer {
   padding: 42px 0 58px; margin-top: 36px;
   border-top: 1px solid rgba(16,24,40,0.06);
@@ -353,7 +360,7 @@ input:focus, select:focus, textarea:focus {
 .footer-grid a:hover { color: var(--brand); }
 .footer-grid ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
 
-/* -- RESPONSIVE -- */
+/* ── RESPONSIVE ── */
 @media (max-width: 980px) {
   .hero-grid, .split, .footer-grid, .grid.cols-4, .grid.cols-3, .grid.cols-2,
   .form-grid, .stats-row, .contact-mini-grid { grid-template-columns: 1fr; }
@@ -376,4 +383,4 @@ input:focus, select:focus, textarea:focus {
   .hero { padding-top: 24px; }
   .hero-copy h1 { max-width: none; }
   .stats-row { grid-template-columns: repeat(2, 1fr); }
-            }
+}
